@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[“白墨黑群晖搭建记录”]]></title>
+    <url>%2Fpost%2F918a0011.html</url>
+    <content type="text"><![CDATA[序言为自己搭建黑群晖nas的一个经验性的一个总结，从2017年2月开始了解nas这个系统性的“玩具”可以说还是有一些经验吧。 !–more–&gt; 内容配置 配置清单及报价如下 CPU：i3 4代 自带 散热：大镰刀S950m 43.8包邮 主板：华硕H81i plus 228包邮 内存：DDR3 2G 旧电脑拆下 电源：益衡 小1u电源 240元 机箱：蜗牛星际拆机B款机箱 59包邮 总价：570.8 元 cpu自带拆机的，4代i3 内存条拆机，其实nas就算是二手的也需要一点小钱钱的，所以尽量有拆机的，就尽量吧。节约钱。 机箱蜗牛星际的b款机箱发过来的时候，怎么说嘞，成色确实没有太好，而且因为担心像网上说的硬盘板有问题，所以说拆了，3但这有一个问题面板虽然拆了，但这样就造成了硬盘插上去后直插主板上会造成 硬盘不紧很松]]></content>
+      <tags>
+        <tag>黑群晖</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[N1媒体中心搭建常见问题自用]]></title>
     <url>%2Fpost%2F98570041.html</url>
     <content type="text"><![CDATA[刷入系统 可以不用线刷刷入系统 CoreELEC必须是修改的镜像，官方的会引导不成功 播放4k视频卡可能是缓存原因 安装“Ares Wizard”插件，在里面设置缓存，选第二个模式，点启用就可以了，然后重启，不需要另外建什么缓存文件。 关于Jellyfin相关设置有字幕相关的设置，实在找了许久做一个记录 安卓TV端Kodi部署Jellyfin，使用Jellyfin打造最强媒体中心（篇二）]]></content>
@@ -575,6 +583,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[centos7 安装(ღ˘⌣˘ღ)lnmp环境]]></title>
+    <url>%2Fpost%2F7ef0a72b.html</url>
+    <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysql.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
+      <tags>
+        <tag>lnmp centos7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[centos7 安装 (ღ˘⌣˘ღ)lnmp 环境]]></title>
     <url>%2Fpost%2F88b5e2fc.html</url>
     <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysqld.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
@@ -582,14 +598,6 @@
         <tag>B3log</tag>
         <tag>CentOS</tag>
         <tag>lnmp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[centos7 安装(ღ˘⌣˘ღ)lnmp环境]]></title>
-    <url>%2Fpost%2F7ef0a72b.html</url>
-    <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysql.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
-      <tags>
-        <tag>lnmp centos7</tag>
       </tags>
   </entry>
   <entry>
@@ -788,19 +796,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[博客建造历程一搭建]]></title>
-    <url>%2Fpost%2F52078ffc.html</url>
-    <content type="text"><![CDATA[这次建造博客可以说是经历了波折，没有其他的人感觉这样累吧但也是收获了不少东西， #选择主题1一般来说一开始搭建我是按照教程开始的主题也是选择yiliy的但毕竟有一些小众对于大白来说修改或添加一些东西还是不怎么方便最后我选择的是next这个主题官方也有许多的教程也很方便修改，官方有很好的教程安装这个主题可以说我们现在是没有教怎么安装hexo这个静态博客程序而是直奔主题怎么优化给一个思路附上next主题官方教程地址[next中文地址][1][1]: http://theme-next.iissnan.com/官方有许多好东西写的也比我们这些时间一过没有维护文章的误人子弟强多了]]></content>
-      <tags>
-        <tag>博客建造历程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[建了一个新博客]]></title>
     <url>%2Fpost%2Fc7c3121d.html</url>
     <content type="text"><![CDATA[不知道为什么在三蛋空间老是出问题，查了论坛说是升级ssd现在好咯一些了，但有时会数据库出现问题，所以嘞建了一个Git博客，呵呵 过程1 1其中需要注意的是空格问题 2编码问题 3一些美化了 4推荐使用Notepas++工具来修改配 置文件 5过程使用的是yilia主题坑已经填 完 6慢慢改进其中网站统计还有待提 高 7写文章的地方在网上了[网站地址][1][1]: https://www.zybuluo.com]]></content>
       <tags>
         <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客建造历程一搭建]]></title>
+    <url>%2Fpost%2F52078ffc.html</url>
+    <content type="text"><![CDATA[这次建造博客可以说是经历了波折，没有其他的人感觉这样累吧但也是收获了不少东西， #选择主题1一般来说一开始搭建我是按照教程开始的主题也是选择yiliy的但毕竟有一些小众对于大白来说修改或添加一些东西还是不怎么方便最后我选择的是next这个主题官方也有许多的教程也很方便修改，官方有很好的教程安装这个主题可以说我们现在是没有教怎么安装hexo这个静态博客程序而是直奔主题怎么优化给一个思路附上next主题官方教程地址[next中文地址][1][1]: http://theme-next.iissnan.com/官方有许多好东西写的也比我们这些时间一过没有维护文章的误人子弟强多了]]></content>
+      <tags>
+        <tag>博客建造历程</tag>
       </tags>
   </entry>
   <entry>
@@ -828,14 +836,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[网络经验（2）]]></title>
-    <url>%2Fpost%2Fdfc88137.html</url>
-    <content type="text"><![CDATA[经过试验，centos7安装起后boot分区启动不能自动启动，去、fs文件下注释掉这个boot，可以启动经过试验应该，是系统版本太高，驱动太新，对这个电脑不支持，（长城定制电脑）其他电脑可以正常安装，最后centos6.9正常安装启动已经安装了轻量级桌面xfce。打个备忘]]></content>
-      <tags>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[华为路由器]]></title>
     <url>%2Fpost%2F77d696.html</url>
     <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
@@ -844,9 +844,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
-    <url>%2Fpost%2F7889c636.html</url>
-    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
+    <title><![CDATA[网络经验（2）]]></title>
+    <url>%2Fpost%2Fdfc88137.html</url>
+    <content type="text"><![CDATA[经过试验，centos7安装起后boot分区启动不能自动启动，去、fs文件下注释掉这个boot，可以启动经过试验应该，是系统版本太高，驱动太新，对这个电脑不支持，（长城定制电脑）其他电脑可以正常安装，最后centos6.9正常安装启动已经安装了轻量级桌面xfce。打个备忘]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
@@ -855,6 +855,14 @@
     <title><![CDATA[centos7搭建dhcp服务器]]></title>
     <url>%2Fpost%2F62e11409.html</url>
     <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下： TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
+    <url>%2Fpost%2F7889c636.html</url>
+    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
@@ -900,19 +908,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[今天心情很好]]></title>
-    <url>%2Fpost%2F1076a63b.html</url>
-    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
+    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
+    <url>%2Fpost%2F104acc17.html</url>
+    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
       <tags>
         <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[linux安装btsync]]></title>
-    <url>%2Fpost%2Fb8706160.html</url>
-    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
-      <tags>
-        <tag>Linux 系统教程</tag>
       </tags>
   </entry>
   <entry>
@@ -921,6 +921,14 @@
     <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的 第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
       <tags>
         <tag>交换机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux安装btsync]]></title>
+    <url>%2Fpost%2Fb8706160.html</url>
+    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
+      <tags>
+        <tag>Linux 系统教程</tag>
       </tags>
   </entry>
   <entry>
@@ -940,9 +948,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
-    <url>%2Fpost%2F104acc17.html</url>
-    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+    <title><![CDATA[今天心情很好]]></title>
+    <url>%2Fpost%2F1076a63b.html</url>
+    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
