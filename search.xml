@@ -366,14 +366,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[XigmaNAS安装研究-U盘安装]]></title>
-    <url>%2Fpost%2F5ccadf77.html</url>
-    <content type="text"><![CDATA[序言在研究U盘安装这个nas系统之前需要也希望对之前的文章有一个详细的解读，因为这样才能知道我们下载的文件工具是什么。也知道我们写的相关名词是什么，也希望如果你看这篇文章如果有什么错误的地方可以在下方评论留言或发邮件给我。 相关文件 镜像文件 8G及更高容量U盘 win10 64位系统 制作软件 硬件及相关软件配置启动U盘的制作与安装额外其他版本启动U盘制作尝试pe启动软件引导安装尝试]]></content>
-      <tags>
-        <tag>nas</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[vm esxi 驱动集成工具教程]]></title>
     <url>%2Fpost%2F28479.html</url>
     <content type="text"><![CDATA[Esxi6.5版本开始，以前的驱动集成工具ESXi-Customizer，就无法使用了，而且这个工具比较老，在win10下也不能很好的工作。v-front发布了新的集成工具，ESXi-Customizer-PS-v2.6.0.ps1，这个脚本要在powershell里面用命令行方式运行。 前几天没事按照网上的教程简单研究了一下，发现这个工具非常不错，需要的同学可以直接去 www.v-front.de下载。运行前有些事情要注意一下，工具下载后，在powershell里面是无法直接使用的，提示此程序未通过认证。这时需要更改执行策略，用管理员身份打开powershell，输入命令set-executionpolicy remotesigned，然后yes就可以了。执行完之后 ESXi-Customizer-PS-v2.6.0.ps1就可以正常工作了。首先切换到脚本所在目录，用dos命令 cd 就可以了，这个大家应该都会。输入命令 .\ESXi-Customizer-PS-v2.6.0.ps1 -v67，脚本会自动下载创建6.7版exsi的标准iso文件。对应的参数 -V50，V51 V55 V60 V65分别代表对应的esxi 标准iso文件。参数-help 可以帮助你了解这个脚本的其他参数和使用方法。这个工具的另外一个优点就是可以直接连接v-front的驱动库，创建集成驱动的iso。例如：输入 .\ESXi-Customizer-PS-v2.6.0.ps1 -v67 -vft -load sata-xahci,net55-r8168就可以得到集成sata-xahci和R8168网卡驱动的 esxi6.7 iso文件。驱动名可以去https://vibsdepot.v-front.de/wik … lable_ESXi_packages查询，需要集成哪些驱动，直接在后面加上相应的驱动名称即可。当然集成前，请注意检查一下驱动兼容性，否则可能会不成功的。上面那条命令可以解决大多数人安装esxi集成驱动碰到的麻烦，realtek网卡在普通主板上应用太广泛了，很多网友都需要自己集成网卡驱动到 exsi，这个工具比使用powercli简单快捷多了。希望这个教程对大家有所帮助ps：转载链接http://koolshare.cn/thread-139057-1-2.html 顺便提下，从6.5开始包括6.7，官方镜像已经集成了SATA驱动，sata-xahci驱动包补丁应该不需要再添加了.\ESXi-Customizer-PS-v2.6.0.ps1 -v67 -vft -load net55-r8168 链接：esxi 6.7集成螃蟹网卡和SATA驱动的镜像https://pan.baidu.com/s/1Xjp1a7feS7poIRDUiTTt4A 密码：hrke]]></content>
@@ -517,14 +509,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7 yum安装Shadowsocks-Qt5]]></title>
-    <url>%2Fpost%2F42105.html</url>
-    <content type="text"><![CDATA[Shadowsocks-Qt5 是可以安装在centos系统中shadowsocks GUI客户端，参考官网的资料和广大群众的研究在centos7下亲测可行注意yum安装的 安装过程centos7123456cd ~ sudo yum install wget -y wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/ sudo yum update sudo yum install shadowsocks-qt5 安装过程centos6123456cd ~ sudo yum install wget -y wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-6/librehat-shadowsocks-epel-6.repo mv librehat-shadowsocks-epel-6.repo /etc/yum.repos.d/ sudo yum update sudo yum install shadowsocks-qt5 系统信息12345678910111213141516171819 .. qifcn@localhost.localdomain .PLTJ. OS: CentOS 7.5.1804 Core &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt; Kernel: x86_64 Linux 3.10.0-862.2.3.el7.x86_64 KKSSV&apos; 4KKK LJ KKKL.&apos;VSSKK Uptime: 41m KKV&apos; 4KKKKK LJ KKKKAL &apos;VKK Packages: 1467 V&apos; &apos; &apos;VKKKK LJ KKKKV&apos; &apos; &apos;V Shell: bash .4MA.&apos; &apos;VKK LJ KKV&apos; &apos;.4Mb. Resolution: 1920x1080 . KKKKKA.&apos; &apos;V LJ V&apos; &apos;.4KKKKK . DE: GNOME 3.26.2 .4D KKKKKKKA.&apos;&apos; LJ &apos;&apos;.4KKKKKKK FA. WM: Mutter&lt;QDD ++++++++++++ ++++++++++++ GFD&gt; WM Theme: &apos;VD KKKKKKKK&apos;.. LJ ..&apos;KKKKKKKK FV GTK Theme: Adwaita [GTK2/3] &apos; VKKKKK&apos;. .4 LJ K. .&apos;KKKKKV &apos; Icon Theme: Adwaita &apos;VK&apos;. .4KK LJ KKA. .&apos;KV&apos; Font: Cantarell 11 A. . .4KKKK LJ KKKKA. . .4 CPU: Intel Core i5-7200U @ 4x 3.1GHz [42.0°C] KKA. &apos;KKKKK LJ KKKKK&apos; .4KK GPU: Mesa DRI Intel(R) HD Graphics 620 (Kaby Lake GT2) KKSSA. VKKK LJ KKKV .4SSKK RAM: 1897MiB / 3734MiB &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt; &apos;MKKM&apos; &apos;&apos; ps：2018-5-14更新centos下一直有问题链接不上谷歌，有时候要重启系统才行，换到debian9环境可行，但第一次安装重启系统才行，蜜汁原因]]></content>
-      <tags>
-        <tag>ss linux centos7</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[优雅的使用git命令行]]></title>
     <url>%2Fpost%2F57186163.html</url>
     <content type="text"><![CDATA[序言Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 克隆仓库 git clone http://XXX.XXX/sq-group/XXX.git 配置用户名与邮箱对应信息git config --global user.name &quot;qifcn&quot; git config --global user.email &quot;abc@outlook.com&quot; ps:注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置 查看一下远程项目的分支git branch –r 克隆远程分支 格式：git checkout –b 本地分支名 远程分支名 git checkout -b xxxx origin/xxxx 把本地分支推送到远程 git push origin 分支名 切换分支 git checkout 分支名 提交修改内容 git commit -m ‘填写提交内容’ 查看提交内容 git log –oneline 把本地的develop分支强制(-f)推送到远程master git push origin develop:master -f]]></content>
@@ -625,28 +609,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CentOS 安装 Docker CE]]></title>
-    <url>%2Fpost%2Febf9b2cb.html</url>
-    <content type="text"><![CDATA[CentOS 安装 Docker CE系统要求Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 overlay2 存储层驱动）无法使用，并且部分功能可能不太稳定。ps: \是空格 执行以下命令安装依赖包： $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2 执行下面的命令添加 yum 国内软件源： $ sudo yum-config-manager –add-repo https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo 更新 yum 软件源缓存，并安装 docker-ce $ sudo yum makecache fast $ sudo yum install docker-ce 设置自启并启动 Docker CE $ sudo systemctl enable docker $ sudo systemctl start docker 建立 docker 用户组原因: 默认情况下， docker 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 root 用户和docker 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 root 用户。因此，更好地做法是将需要使用 docker 的用户加入 docker用户组。 建立 docker 组： $ sudo groupadd docker 将当前用户加入 docker 组： $sudo usermod -aG docker $USER 退出当前终端并重新登录，进行如下测试。 查看安装 docker version docker -v 安装海鸥容器控制面板 docker run -d -p 10086:10086 -v /var/run/docker.sock:/var/run/docker.sock tobegit3hub/seagull]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[潮5000升级ssd注意事项及配置]]></title>
     <url>%2Fpost%2Fd40b3034.html</url>
     <content type="text"><![CDATA[潮5000升级ssd注意事项及配置这次升级潮5000 可能是意料之内的，本来想机械硬盘先用用，但标配的机械硬盘5200转数的，但因为实际上没用过体验后速度实在是太慢，电脑反应速度实在太慢，也就是俗称电脑速度太慢。也导致这款电脑可能有许多的退货吧。 配置 联想潮5000 标配版本 固态硬盘三星850 (120g SATA3) 飞毛腿维修工具套装8件套（京东买的） IT-CEO 9.5mm笔记本光驱位sata硬盘托架 其实上面用到的最大的就两个，一个是飞毛腿工具与固态硬盘买这两个就可以了光驱托架买重了联想潮5000自带的光驱位本来就可以装一个2.5英寸的硬盘，就是需要4个硬盘螺丝固定，这个就看万能的淘宝有没有卖的了，买一个回来也需要几十块钱吧。看一下身边有没有多余的。 关于拆机工具在我买的时候网上就张大妈上有一篇教程，我就是按照他上的教程买的东西，升级需要的，可以说我这可能是他的补充版本，在我们的升级笔记本的时候最怕的是误拆，一不小心就把我们心爱的笔记本给毁掉，张大妈的那个教程上说他也不小心把边不小心拆出痕迹。所以我查阅了一些网上的资料，这个维修工具里有撬棒，等拆机工具，上面说是拆手机的，我想拆笔记本应该没问题，（第一次拆笔记本有些紧张）最后全过程都是，先把笔记本后盖螺丝取掉，然后用撬棒慢慢的沿着笔记本的缝隙慢慢的拆除。因为是塑料的撬棒可以说这是一次完美的拆机体验。没有对笔记本的缝隙造成凹痕影响外观。 所以说这个拆机工具是必备的东西网上有很多，淘宝京东都有卖。 关于硬盘固态硬盘现在鱼龙混杂，有便宜的有贵的，买东西嘛一般我想贵有贵的理由，便宜没好货，好货不便宜。 所以我选择了三星这个品牌我想这个硬盘不会用tlc颗粒来损坏自己的形象，这个硬盘没有测试过但说是mlc颗粒的硬盘所以使用寿命应该可以覆盖这个笔记本的寿命吧。 关于内存条潮5000的内存最大是12G 只有一个多于的内存插槽，这个插槽最大支持8G，标配版本的4G内存是焊接到主板上的，所以拆不了。我没买内存条因为加了固态硬盘系统速度本来就很快了。加上本来不玩大型游戏和高耗内存的应用所以不加了。内存价格参考京东价格。 关于系统在网上查资料说笔记本主板上嵌入了密匙直接装原版的系统联网激活就可以了，同样微软的办公软件也一样，不过我开始时候用微软的邮箱账户登录过也就是outlook邮箱账户好像关联了。同时说一下把系统装到ssd硬盘。我是直接在网上下载装微软的原版widows 10 系统。引导也是uefl引导，全程用微pe工具箱。 相关链接 张大妈的原创教程 京东硬盘链接]]></content>
       <tags>
         <tag>ssd</tag>
         <tag>笔记本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[centos6.5 ssl]]></title>
-    <url>%2Fpost%2F79fe1679.html</url>
-    <content type="text"><![CDATA[今天备份 1python版本错误 yum install python-setuptoolseasy_install virtualenveasy_install pip 开启443端口 /sbin/iptables -I INPUT -p tcp –dport 443 -j ACCEPT #开启8080端口 server配置加密证书 ssl_certificate /etc/letsencrypt/live/域名/fullchain.pem; #Nginx 所需要 ssl_certificate 文件 ssl_certificate_key /etc/letsencrypt/live/域名/privkey.pem; #安全证书 KEY 文件 server配置http跳转https return 301 https://$server_name$request_uri; #非 http 跳转到 https Ps: 注意修改了nginx配置文件必须重启nginx Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. David LevithanWide Awake]]></content>
-      <tags>
-        <tag>ssl</tag>
       </tags>
   </entry>
   <entry>
@@ -719,14 +687,6 @@
     <content type="text"><![CDATA[分为3个部分P: 第一个部分，掌握配置路由器、交换机、防火墙、无线设备的相关命名。 第二部分：学习配置服务器的操作。服务器分为Server2003 Server2008 第三部分：linux服务器的配置。 第一部分重点：1 学会连接电脑跟路由器、交换机的come的知识点。2 查看台式电脑上是否有（超级终端）没有要去自己下载。3 学会查看是come那个端口计算机—–设备管理器—4 名称可以随便给，确定是哪个COM口，位/秒还原成为9600 2、开始学习设备的命令配置 (1）、查看USB连接线是否插对到设备上面console口。 (2）、拿到比赛题是要分析拓扑图注意事项—交换机的缩写（SW–Switch）、路由器的缩写（R-Router）.送分的必须得分，看图连接不能出错。 命名开始学习理解VLAN的概念：vlan是一个物理网络上划分出来的逻辑网络。1、 几种用户模式看懂&gt;用户模式#特权模式是查看配置情况（config）全局模式是配置设备的模式?是帮助命名 Tab是英文补全命名 language语言设置翻译为中文&gt;下输入en 进入特权模式可查看配置情况，再次输入config进入全局模式开始配置 认识基本的操作命名：1、 更改设备的名称 hostname 后输入设备名称2、 创建VLAN 直接输入vlan 空格 vlan号 vlan也可以设备名称 name 取名为JSB3、 将端口划分到vlan中去方法一：如果vlan10已经创建好了先进入端口号int e1/0/2-3 回车 sw ac vlan 10方法二：vlan 10回车 sw int e1/0/4-104、在特权模式下恢复出厂设置命名Set default 回车Y ,要保存 write 重启命名reload回车y 保存命名write回车Y5、ctrl+z退出到特权模式下查看配置命名show vlan或者show int e1/0/10 实训一:单台交换机配置vlan实训目的：相同的VLAN之间可以通信。 不同的VLAN之间不能通信。 实训二：跨交换机实现相同vlan能通信，不同的 VLAN之间不能通信1236、干线配置Trunk1)int e1/0/24 回车 sw mode trunk 设置中继模式 sw trunk all vlan all 表示意思所有的VLAN都通过2）查看PING命令——在开始菜单下—–运行输入CMD 回车 ping 192.168.1.10 -t 实训三：三层交换机实现vlan之间能通信命名：1）vlan 10 2)int vlan 10 进入vlan10 3)ip add 192.168.1.1 255.255.255.0注意：要想不同的vlan之间可以通信就必须要设置VLAN的IP地址 实训四：三层交换机跨交换机实现vlan之间的通信命名：1）vlan 10 2)int vlan 10 进入vlan10 3)ip add 192.168.1.1 255.255.255.0 4)int e1/0/24 进入24号口 sw mo trunk 设置干线注意：跨交换机只要设置了干线，两台交换机的vlan 可以互相访问 实训五：单臂路由器实现VLAN之间互访命令：交换机—1)vlan 10 sw int e1/0/1-5 Vlan 20 sw int e1/0/6-10 Int e1/0/24 sw mo trunk 路由器：1) int f0/0.1 encapsulation dot1q 10 封装vlan 10 Ip add 192.168.1.1 255.255.255.0 设置vlan 10的网关int f0/0.2 encapsulation dot1q 20 封装vlan 20 Ip add 192.168.21 255.255.255.0 设置vlan 20关注意：一定不能在F0/0端口上配置IP地址 实训六：链路聚合命令：port-group 1 创建聚合端口组 Int e1/0/1-2 进入端口需两个23 Port-group 1 mode on{静态} 第二种 active 主 passive 被 不能同时使用 只能一主一被 实训七：端口安全绑定1) 静态绑定MAC— 一个端口绑定一台电脑只能这台电脑使用 Int e1/0/1 进入端口 sw port—security 打开端口安全防护 Sw port-security mac-add ff-ff-ff-ff-ff-ff 2) 静态绑定两个MAC地址Int e1/0/1 进入端口 sw port—security 打开端口安全防护 Sw port-security maximum 2 端口最大数Sw port-security mac-add ff-ff-ff-ff-ff-ff 3）MAC地址和IP地址同时绑定到端口Am enable 启动访问管理功能 int e10/1Am port 对端口进行访问管理Am mac-ip –pool ff-ff-ff-ff-ff-ff 192.168.1.10 3) 绑定IP地址区间范围Am enable 启动访问管理功能 int e10/1Am port 对端口进行访问管理Am ip –pool 192.168.1.10 2 表示从10过后的2个地址 实训八：三层交换机上配置DHCP服务也叫自动分配IP地址]]></content>
       <tags>
         <tag>企业网</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[win2008 r2分区安装时间]]></title>
-    <url>%2Fpost%2Fcade9844.html</url>
-    <content type="text"><![CDATA[window2008 r2 分区系统默认要保留100M的容量，如果你30G的硬盘分区20G的主分区默认以M为单位的话是20580M，注意硬盘的单位1G=1024m window2008r2 在vm10虚拟机下安装要10分钟。]]></content>
-      <tags>
-        <tag>window服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -828,19 +788,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[建了一个新博客]]></title>
-    <url>%2Fpost%2Fc7c3121d.html</url>
-    <content type="text"><![CDATA[不知道为什么在三蛋空间老是出问题，查了论坛说是升级ssd现在好咯一些了，但有时会数据库出现问题，所以嘞建了一个Git博客，呵呵 过程1 1其中需要注意的是空格问题 2编码问题 3一些美化了 4推荐使用Notepas++工具来修改配 置文件 5过程使用的是yilia主题坑已经填 完 6慢慢改进其中网站统计还有待提 高 7写文章的地方在网上了[网站地址][1][1]: https://www.zybuluo.com]]></content>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[博客建造历程一搭建]]></title>
     <url>%2Fpost%2F52078ffc.html</url>
     <content type="text"><![CDATA[这次建造博客可以说是经历了波折，没有其他的人感觉这样累吧但也是收获了不少东西， #选择主题1一般来说一开始搭建我是按照教程开始的主题也是选择yiliy的但毕竟有一些小众对于大白来说修改或添加一些东西还是不怎么方便最后我选择的是next这个主题官方也有许多的教程也很方便修改，官方有很好的教程安装这个主题可以说我们现在是没有教怎么安装hexo这个静态博客程序而是直奔主题怎么优化给一个思路附上next主题官方教程地址[next中文地址][1][1]: http://theme-next.iissnan.com/官方有许多好东西写的也比我们这些时间一过没有维护文章的误人子弟强多了]]></content>
       <tags>
         <tag>博客建造历程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[建了一个新博客]]></title>
+    <url>%2Fpost%2Fc7c3121d.html</url>
+    <content type="text"><![CDATA[不知道为什么在三蛋空间老是出问题，查了论坛说是升级ssd现在好咯一些了，但有时会数据库出现问题，所以嘞建了一个Git博客，呵呵 过程1 1其中需要注意的是空格问题 2编码问题 3一些美化了 4推荐使用Notepas++工具来修改配 置文件 5过程使用的是yilia主题坑已经填 完 6慢慢改进其中网站统计还有待提 高 7写文章的地方在网上了[网站地址][1][1]: https://www.zybuluo.com]]></content>
+      <tags>
+        <tag>心情</tag>
       </tags>
   </entry>
   <entry>
@@ -868,14 +828,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[华为路由器]]></title>
-    <url>%2Fpost%2F77d696.html</url>
-    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
-      <tags>
-        <tag>经验,待验证</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[网络经验（2）]]></title>
     <url>%2Fpost%2Fdfc88137.html</url>
     <content type="text"><![CDATA[经过试验，centos7安装起后boot分区启动不能自动启动，去、fs文件下注释掉这个boot，可以启动经过试验应该，是系统版本太高，驱动太新，对这个电脑不支持，（长城定制电脑）其他电脑可以正常安装，最后centos6.9正常安装启动已经安装了轻量级桌面xfce。打个备忘]]></content>
@@ -884,17 +836,25 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7搭建dhcp服务器]]></title>
-    <url>%2Fpost%2F62e11409.html</url>
-    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下： TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
+    <title><![CDATA[华为路由器]]></title>
+    <url>%2Fpost%2F77d696.html</url>
+    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
       <tags>
-        <tag>经验</tag>
+        <tag>经验,待验证</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[经验我网络之间的通顺（1）]]></title>
     <url>%2Fpost%2F7889c636.html</url>
     <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7搭建dhcp服务器]]></title>
+    <url>%2Fpost%2F62e11409.html</url>
+    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下： TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
@@ -948,19 +908,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
-    <url>%2Fpost%2F104acc17.html</url>
-    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+    <title><![CDATA[linux安装btsync]]></title>
+    <url>%2Fpost%2Fb8706160.html</url>
+    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
       <tags>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[几种nas硬件方案]]></title>
-    <url>%2Fpost%2F4cf0d6b6.html</url>
-    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
-      <tags>
-        <tag>方案</tag>
+        <tag>Linux 系统教程</tag>
       </tags>
   </entry>
   <entry>
@@ -972,6 +924,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[几种nas硬件方案]]></title>
+    <url>%2Fpost%2F4cf0d6b6.html</url>
+    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
+      <tags>
+        <tag>方案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CentOS7.0下载各版本说明]]></title>
     <url>%2Fpost%2F597c0af.html</url>
     <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
@@ -980,11 +940,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[linux安装btsync]]></title>
-    <url>%2Fpost%2Fb8706160.html</url>
-    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
+    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
+    <url>%2Fpost%2F104acc17.html</url>
+    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
       <tags>
-        <tag>Linux 系统教程</tag>
+        <tag>经验</tag>
       </tags>
   </entry>
   <entry>
