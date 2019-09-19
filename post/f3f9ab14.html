@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0"><link rel="manifest" href="/manifest.json">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="常见问题集合  黑群晖常见问题【不定时更新，最后更新2019-5-25】  群晖最新版DSM 6.2.1的U盘安装方法  玩法/技巧 黑群终于搞定远程唤醒  矿难无情 人间有情 蜗牛NAS硬改MAC补充篇  黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具）  黑群晖6.17半洗白教程  群晖NAS进阶使用Audio Station网易歌词插件  SSH在线修改黑群晖DS3617 DS918+的SN">
+<meta name="keywords" content="KMS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="民间版群晖   相关问题集合与解决">
+<meta property="og:url" content="http://clul.cn/post/f3f9ab14.html">
+<meta property="og:site_name" content="白墨笔记">
+<meta property="og:description" content="常见问题集合  黑群晖常见问题【不定时更新，最后更新2019-5-25】  群晖最新版DSM 6.2.1的U盘安装方法  玩法/技巧 黑群终于搞定远程唤醒  矿难无情 人间有情 蜗牛NAS硬改MAC补充篇  黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具）  黑群晖6.17半洗白教程  群晖NAS进阶使用Audio Station网易歌词插件  SSH在线修改黑群晖DS3617 DS918+的SN">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/06/1838592892.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/06/3539109073.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/07/QQ截图20190728110816.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035-300x164.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233-300x197.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324-300x197.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-300x224.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-300x224.png">
+<meta property="og:image" content="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-300x224.png">
+<meta property="og:updated_time" content="2019-09-19T05:05:25.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="民间版群晖   相关问题集合与解决">
+<meta name="twitter:description" content="常见问题集合  黑群晖常见问题【不定时更新，最后更新2019-5-25】  群晖最新版DSM 6.2.1的U盘安装方法  玩法/技巧 黑群终于搞定远程唤醒  矿难无情 人间有情 蜗牛NAS硬改MAC补充篇  黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具）  黑群晖6.17半洗白教程  群晖NAS进阶使用Audio Station网易歌词插件  SSH在线修改黑群晖DS3617 DS918+的SN">
+<meta name="twitter:image" content="https://Qifcn.github.io/wp-content/uploads/2019/06/1838592892.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://clul.cn/post/f3f9ab14.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>民间版群晖   相关问题集合与解决 | 白墨笔记</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白墨笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-links">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/links/" rel="section"><i class="menu-item-icon fa fa-fw fa-address-book"></i> <br>友链</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://clul.cn/post/f3f9ab14.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="白墨">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白墨笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">民间版群晖   相关问题集合与解决
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-22 17:57:00" itemprop="dateCreated datePublished" datetime="2019-06-22T17:57:00+08:00">2019-06-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-19 13:05:25" itemprop="dateModified" datetime="2019-09-19T13:05:25+08:00">2019-09-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Centos7/" itemprop="url" rel="index"><span itemprop="name">Centos7</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Centos7/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>常见问题集合</strong></p>
+<ol>
+<li><p><a href="https://wp.gxnas.com/2450.html" target="_blank" rel="noopener">黑群晖常见问题【不定时更新，最后更新2019-5-25】</a></p>
+</li>
+<li><p><a href="https://www.qzkyl.cn/post-228.html" target="_blank" rel="noopener">群晖最新版DSM 6.2.1的U盘安装方法</a></p>
+</li>
+<li><p><a href="http://www.gebi1.com/forum.php?mod=viewthread&amp;tid=278311&amp;page=1&amp;_dsign=ef0eafdc" target="_blank" rel="noopener">玩法/技巧 黑群终于搞定远程唤醒</a></p>
+</li>
+<li><p><a href="https://post.m.smzdm.com/p/a07mqwd9/" target="_blank" rel="noopener">矿难无情 人间有情 蜗牛NAS硬改MAC补充篇</a></p>
+</li>
+<li><p><a href="https://www.qzkyl.cn/post-257.html" target="_blank" rel="noopener">黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具）</a></p>
+</li>
+<li><p><a href="http://www.leftso.com/blog/560.html" target="_blank" rel="noopener">黑群晖6.17半洗白教程</a></p>
+</li>
+<li><p><a href="https://post.smzdm.com/p/623268/" target="_blank" rel="noopener">群晖NAS进阶使用Audio Station网易歌词插件</a></p>
+</li>
+<li><p><a href="https://b.gx86.cn/?id=33" target="_blank" rel="noopener noreferrer">SSH在线修改黑群晖DS3617 DS918+的SN/MAC</a></p>
+</li>
+<li><p><a href="http://www.nasyun.com/forum.php?mod=viewthread&amp;tid=67121&amp;extra=page%3D9&amp;mobile=2?reload=true" target="_blank" rel="noopener">DSM 5.x / 6.x CPU名称和核心信息更改工具</a></p>
+</li>
+<li><p><a href="https://www.tenlonstudio.com/4302.html" target="_blank" rel="noopener">物理机安装黑群晖DSM6.1.7系统推荐的</a></p>
+</li>
+</ol>
+<p><strong>系统折腾</strong></p>
+<ol>
+<li><p>去掉黑辉更新与小红点</p>
+<p>问：我的群晖不想升级，但是看到小红点又不爽，怎样办？</p>
+<p>答：以root用户登录SSH，编辑/etc/hosts文件，在最下面一行写入127.0.0.1  update.synology.com，然后保存退出即可（无需重启）。</p>
+</li>
+</ol>
+<p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/1838592892.png" alt="效果图1" title="效果图1"></p>
+<pre><code>问： 去掉桌面小红点
+# 1、处理控制面板里面系统升级的小红点
+cp /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png.bak
+cp /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png.bak
+wget -O /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png
+wget -O /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png
+
+# 2、处理控制面板里面系统升级的小红点（侧栏提示）
+cp /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png.bak
+cp /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png.bak
+wget -O /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png
+wget -O /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png
+
+# 3、直接把桌面的小红点提示也都撸掉
+cp /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png.bak
+cp /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png.bak
+wget -O /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png
+wget -O /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png
+</code></pre><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/3539109073.png" alt="效果图2" title="效果图2"></p>
+<p><strong>简单问题</strong></p>
+<ol>
+<li><p>关于洗白</p>
+<p>答： [scode type=&#8221;blue&#8221;]只有SN的话只能半洗白，全洗白必须要SN和mac且必须对应[/scode]</p>
+</li>
+<li><p>918+对黑裙邮件有什么要求吗？必须是intel的网卡吗？如果用918+的引导，是不是在装pat的时候可以点击自动安装？另外3615和3617有啥区别？</p>
+<p>答： [scode type=&#8221;blue&#8221;]918需要CPU是四代以后的包含四代，可以是其他网卡，但是对英特尔的支持最好，其他的可能需要几分钟启动，可以在线安装。 2、3615和3617软件上没有什么区别[/scode]</p>
+</li>
+<li><p>关于黑裙晖远程唤醒</p>
+<p>答:</p>
+</li>
+</ol>
+<p>[scode type=&#8221;blue&#8221;]需要公网IP</p>
+<p>需要在bios设置网卡网络唤醒</p>
+<p>需要路由器设置端口转发远程唤醒包走端口9</p>
+<p>需要黑群晖引导mac地址和网络网卡地址一样</p>
+<p>需要绑定arp[/scode]</p>
+<blockquote>
+<p>ARP映射表的功能是定义mac地址与ip地址的映射关系，即使设备不在线时路由器也能知道这个设备的存在。理论上说唤醒包是通过广播方式发送的，与ip地址没什么关系，但在实测中发现，如果不定义ARP映射，则路由器不会向局域网广播唤醒包，所以定义ARP映射还是必要的。</p>
+</blockquote>
+<p>&nbsp;</p>
+<h1 id="速度问题"><a href="#速度问题" class="headerlink" title="速度问题"></a>速度问题</h1><p>我在2台黑群晖之间对拷数据15G后速度就从100m的速度掉到20左右的速度了还不稳定，猜测是拷ssd的硬盘缓存没有了的原因。做一个记录</p>
+<p><img class="alignnone size-medium" src="https://Qifcn.github.io/wp-content/uploads/2019/07/QQ截图20190728110816.png" width="937" height="561"></p>
+<p>2019年8月4日更新</p>
+<p>环境远程群晖nas 3机械硬盘raid0 固态读缓存本地三星固态硬盘</p>
+<p>读下载到本地速度</p>
+<p><img class="alignnone size-medium wp-image-123" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035-300x164.png" alt width="300" height="164" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035-300x164.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035.png 495w" sizes="(max-width: 300px) 100vw, 300px"><img class="alignnone size-medium wp-image-122" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233-300x197.png" alt width="300" height="197" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233-300x197.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233.png 416w" sizes="(max-width: 300px) 100vw, 300px"><img class="alignnone size-medium wp-image-121" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324-300x197.png" alt width="300" height="197" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324-300x197.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324.png 416w" sizes="(max-width: 300px) 100vw, 300px">可以看到到后面就慢了</p>
+<p>从本地到nas&nbsp; 速度</p>
+<p> <img class="alignnone size-medium wp-image-120" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-300x224.png" alt width="300" height="224" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-300x224.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-768x573.png 768w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538.png 938w" sizes="(max-width: 300px) 100vw, 300px"> <img class="alignnone size-medium wp-image-119" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-300x224.png" alt width="300" height="224" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-300x224.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-768x573.png 768w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921.png 938w" sizes="(max-width: 300px) 100vw, 300px"><img class="alignnone size-medium wp-image-118" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-300x224.png" alt width="300" height="224" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-300x224.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-768x573.png 768w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019.png 938w" sizes="(max-width: 300px) 100vw, 300px"></p>
+<p><span style="color: #ff9900;"><strong>群晖之间对拷不知道是什么原因反正很慢</strong></span></p>
+<p><a href="https://zhuanlan.zhihu.com/p/76804146" target="_blank" rel="noopener noreferrer">千兆网络的传输速度能超过125MB/s么?</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KMS/" rel="tag"># KMS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/11817a8a.html" rel="next" title="KMS激活服务器搭建自用版本">
+                <i class="fa fa-chevron-left"></i> KMS激活服务器搭建自用版本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/6fbcd38d.html" rel="prev" title="OSFMount群晖镜像修改软件">
+                OSFMount群晖镜像修改软件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">白墨</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#速度问题"><span class="nav-number">1.</span> <span class="nav-text">速度问题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白墨</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 暴力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">技术支持 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+<div class="BbeiAn-info"">
+  蜀ICP备 -
+  <a href="http://www.miitbeian.gov.cn/">19000994号-1</a>
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1568869619890')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script></body>
+</html>

@@ -104,13 +104,13 @@
 <meta property="og:site_name" content="白墨笔记">
 <meta property="og:description" content="序言Goaccess是一款开源的实时日志分析查看软件，不仅有在终端下有不同的颜色区分显示，同时还能输出详细的图表供用户参考。支持Apache、Nginx、 Amazon S3、 Elastic Load Balancing、CloudFront等服务器日志的分析。与之前ngxtop不同的是Goaccess更侧重于现在整体而不是排查。不仅LNMP可以用，只要是前面列出的日志格式都可以。最新版本是G">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://t.clul.cn/data/f_59996733.JPG">
+<meta property="og:image" content="https://t.Qifcn.github.io/data/f_59996733.JPG">
 <meta property="og:image" content="https://i.loli.net/2019/01/12/5c39426ed6411.jpg">
 <meta property="og:updated_time" content="2019-01-13T12:25:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Goaccess centos7 编译安装与使用">
 <meta name="twitter:description" content="序言Goaccess是一款开源的实时日志分析查看软件，不仅有在终端下有不同的颜色区分显示，同时还能输出详细的图表供用户参考。支持Apache、Nginx、 Amazon S3、 Elastic Load Balancing、CloudFront等服务器日志的分析。与之前ngxtop不同的是Goaccess更侧重于现在整体而不是排查。不仅LNMP可以用，只要是前面列出的日志格式都可以。最新版本是G">
-<meta name="twitter:image" content="https://t.clul.cn/data/f_59996733.JPG">
+<meta name="twitter:image" content="https://t.Qifcn.github.io/data/f_59996733.JPG">
 
 
 
@@ -437,7 +437,7 @@
       
 
       
-        <p><img src="https://t.clul.cn/data/f_59996733.JPG" alt></p>
+        <p><img src="https://t.Qifcn.github.io/data/f_59996733.JPG" alt></p>
 <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>Goaccess是一款开源的实时日志分析查看软件，不仅有在终端下有不同的颜色区分显示，同时还能输出详细的图表供用户参考。支持Apache、Nginx、 Amazon S3、 Elastic Load Balancing、CloudFront等服务器日志的分析。与之前<a href="https://www.vpser.net/manage/ngxtop.html" target="_blank" rel="noopener">ngxtop</a>不同的是Goaccess更侧重于现在整体而不是排查。不仅<a href="https://lnmp.org/" target="_blank" rel="noopener">LNMP</a>可以用，只要是前面列出的日志格式都可以。最新版本是<strong>GoAccess</strong> <strong><code>v1.3</code></strong></p>
 <h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><p>centos7</p>
 <h1 id="安装教程"><a href="#安装教程" class="headerlink" title="安装教程"></a>安装教程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#安装依赖</span><br><span class="line">yum -y install libmaxminddb-devel</span><br><span class="line">#下载源码</span><br><span class="line">wget https://tar.goaccess.io/goaccess-1.3.tar.gz</span><br><span class="line">#解压</span><br><span class="line">tar -xzvf goaccess-1.3.tar.gz</span><br><span class="line">#进入目录</span><br><span class="line">cd goaccess-1.3/</span><br><span class="line">#编译安装</span><br><span class="line">./configure --enable-utf8 --enable-geoip=mmdb --with-openssl --with-libmaxminddb-devel</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
@@ -446,10 +446,10 @@
 <h2 id="设置中文报表"><a href="#设置中文报表" class="headerlink" title="设置中文报表"></a>设置中文报表</h2><p>这个程序在1.3版本支持中文了，但需要设置一下啊把系统的系统语言设置成中文</p>
 <h3 id="临时设置"><a href="#临时设置" class="headerlink" title="临时设置"></a>临时设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LANG=&quot;zh_CN.UTF-8&quot;  #修改为中文</span><br><span class="line">LANG=&quot;en_US.UTF-8&quot;  #修改为英文</span><br></pre></td></tr></table></figure>
 <p>额，给一篇外链写的好的<a href="https://www.cnblogs.com/li5206610/p/7828618.html" target="_blank" rel="noopener">我是centos7修改语言教程</a></p>
-<h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><p>基本上这个使用还是很简单的可以在终端使用，但大部分还是喜欢那个漂亮的web界面报表吧，它的基本命令就是   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">比如说我服务器生成web报表该怎么操作类</span><br><span class="line">我使用的web环境是[oneinstack](https://oneinstack.com/)这个脚本安装的，nginx日志文件在/data/wwwlogs/clul.cn_nginx.log这个文件</span><br><span class="line">![1](https://i.loli.net/2019/01/12/5c3948a04d991.jpg)</span><br><span class="line">而我的网站目录是/data/wwwroot/t.clul.cn/这个目录，相应的你应知道你网站日志在什么地方，还有网站根目录，就这样，我们用goaccess来生成web报表，这个就是一个很精美的html静态文件。</span><br><span class="line"></span><br><span class="line">## 生成html静态报表命令</span><br></pre></td></tr></table></figure></p>
-<p>goaccess -f /data/wwwlogs/clul.cn_nginx.log  -c -a&gt;/data/wwwroot/t.clul.cn/go.html</p>
+<h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><p>基本上这个使用还是很简单的可以在终端使用，但大部分还是喜欢那个漂亮的web界面报表吧，它的基本命令就是   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">比如说我服务器生成web报表该怎么操作类</span><br><span class="line">我使用的web环境是[oneinstack](https://oneinstack.com/)这个脚本安装的，nginx日志文件在/data/wwwlogs/Qifcn.github.io_nginx.log这个文件</span><br><span class="line">![1](https://i.loli.net/2019/01/12/5c3948a04d991.jpg)</span><br><span class="line">而我的网站目录是/data/wwwroot/t.Qifcn.github.io/这个目录，相应的你应知道你网站日志在什么地方，还有网站根目录，就这样，我们用goaccess来生成web报表，这个就是一个很精美的html静态文件。</span><br><span class="line"></span><br><span class="line">## 生成html静态报表命令</span><br></pre></td></tr></table></figure></p>
+<p>goaccess -f /data/wwwlogs/Qifcn.github.io_nginx.log  -c -a&gt;/data/wwwroot/t.Qifcn.github.io/go.html</p>
 <p><code>`</code></p>
-<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p><a href="https://t.clul.cn/go.html" target="_blank" rel="noopener">https://t.clul.cn/go.html</a></p>
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p><a href="https://t.Qifcn.github.io/go.html" target="_blank" rel="noopener">https://t.Qifcn.github.io/go.html</a></p>
 <h2 id="后言"><a href="#后言" class="headerlink" title="后言"></a>后言</h2><p>这个看有一篇教程好像可以实时显示日志的，但也可以给一个定时任务。</p>
 
       
@@ -571,12 +571,35 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">108</span>
+                    <span class="site-state-item-count">121</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
               
 
               
@@ -728,7 +751,21 @@
                     
                       
                     
-                    <span class="site-state-item-count">71</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -1277,7 +1314,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1568867797569')
+  navigator.serviceWorker.register('/sw.js?t=1568869619890')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

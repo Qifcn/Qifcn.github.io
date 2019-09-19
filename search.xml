@@ -1,9 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[N1媒体中心搭建常见问题自用]]></title>
+    <url>%2Fpost%2F98570041.html</url>
+    <content type="text"><![CDATA[刷入系统 可以不用线刷刷入系统 CoreELEC必须是修改的镜像，官方的会引导不成功 播放4k视频卡可能是缓存原因 安装“Ares Wizard”插件，在里面设置缓存，选第二个模式，点启用就可以了，然后重启，不需要另外建什么缓存文件。 关于Jellyfin相关设置有字幕相关的设置，实在找了许久做一个记录 安卓TV端Kodi部署Jellyfin，使用Jellyfin打造最强媒体中心（篇二）]]></content>
+      <categories>
+        <category>BT</category>
+      </categories>
+      <tags>
+        <tag>N1</tag>
+        <tag>媒体中心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[群晖查看储存库占用空间命令]]></title>
+    <url>%2Fpost%2Fad2142eb.html</url>
+    <content type="text"><![CDATA[序言使用download station进行PT下载时，如果缓存目录和下载目录没有设置在同一个磁盘 ，在任务完成时缓存将不会自动删除，相当于占用了两份空间。而且这个时候想把缓存删掉也比较麻烦，因为这个缓存文件夹“@download”是不能直接查看到的，所以使用群晖NAS使用download station下载时一定要把缓存目录和下载目录设置在同一个空间。 (2) 使用终端机软件，例如 putty (Windows) 或 Terminal (Mac，又称终端机)连上DSM，登入账号密码使用管理员admin，密码也是admin的密码。 使用root身份需要键入一下指令 sudo -i（注意空格） 要求输入密码，输入admin的密码即可 (3) 输入以下的指令，它会计算出您各文件夹下的用量 du -sh /volume1/* (若您的储存空间为2，则改成volume2，依此类推) 这个过程可能会需要数分钟到数十分钟不等，依您的文件数及空间大小而定。 若您想要进一步的了解各文件夹下的子文件夹的容量，则您可以更进一步的使用指令查看 例如 储存空間下的 photo 文件夹 du -sh /volume1/photo 或是 Cloud Station的隐藏文件夹 du -sh /volume1/@cloudstation （4）删除文件夹命令 rm -rf /volume1/@download [说明：这里是删除下载中心download station的缓存文件夹]]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[OSFMount群晖镜像修改软件]]></title>
+    <url>%2Fpost%2F6fbcd38d.html</url>
+    <content type="text"><![CDATA[OSFMount 是一个支持光盘镜像和内存虚拟盘创建装载实用小工具。OSFMount这个软件特色在于，既可以加载光盘镜像，也可以创建内存虚拟盘。 在创建黑群晖引导盘的时候我们需要把img文件写入U盘后才修改VID和PID但用这个软件可以提前修改img文件，然后保存后直接写入U盘。 1&#215;01打开软件 1&#215;02 主界面 1&#215;02参照设置 特别注意 Read-only drvie(只读模式不能打勾) 确认无误 点击确认 这时候多出一个虚拟驱动器 进入驱动器目录/grub/找到grub.cfg文件使用Notepad++（推荐） set vid=0x0DD8 //修改 0DD8 为你U盘的VID 保留前面的0x set pid=0x0C00 //修改 0C00 为你U盘的PID 保留前面的0x set sn=C7LWN09761 //此处为序列号 如你有的洗白需求的话可修改 set mac1=00113207DCBD //此处为网卡MAC修改为和你NAS一致的MAC 洗白的话需要001132开头 需要该硬件MAC 顺便说一句如果有远程唤醒的需求的话也得改mac地址和真实实体网卡mac地址一样 然后保存文件。在 OSFMount软件主界面点击卸载全部并退出 就这样就修改完成了然后写入U盘就可以了。]]></content>
+      <categories>
+        <category>默认分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[民间版群晖 相关问题集合与解决]]></title>
+    <url>%2Fpost%2Ff3f9ab14.html</url>
+    <content type="text"><![CDATA[常见问题集合 黑群晖常见问题【不定时更新，最后更新2019-5-25】 群晖最新版DSM 6.2.1的U盘安装方法 玩法/技巧 黑群终于搞定远程唤醒 矿难无情 人间有情 蜗牛NAS硬改MAC补充篇 黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具） 黑群晖6.17半洗白教程 群晖NAS进阶使用Audio Station网易歌词插件 SSH在线修改黑群晖DS3617 DS918+的SN/MAC DSM 5.x / 6.x CPU名称和核心信息更改工具 物理机安装黑群晖DSM6.1.7系统推荐的 系统折腾 去掉黑辉更新与小红点 问：我的群晖不想升级，但是看到小红点又不爽，怎样办？ 答：以root用户登录SSH，编辑/etc/hosts文件，在最下面一行写入127.0.0.1 update.synology.com，然后保存退出即可（无需重启）。 问： 去掉桌面小红点 # 1、处理控制面板里面系统升级的小红点 cp /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png.bak cp /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png.bak wget -O /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png wget -O /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png # 2、处理控制面板里面系统升级的小红点（侧栏提示） cp /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png.bak cp /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png.bak wget -O /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png wget -O /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png # 3、直接把桌面的小红点提示也都撸掉 cp /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png.bak cp /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png.bak wget -O /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png wget -O /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png 简单问题 关于洗白 答： [scode type=&#8221;blue&#8221;]只有SN的话只能半洗白，全洗白必须要SN和mac且必须对应[/scode] 918+对黑裙邮件有什么要求吗？必须是intel的网卡吗？如果用918+的引导，是不是在装pat的时候可以点击自动安装？另外3615和3617有啥区别？ 答： [scode type=&#8221;blue&#8221;]918需要CPU是四代以后的包含四代，可以是其他网卡，但是对英特尔的支持最好，其他的可能需要几分钟启动，可以在线安装。 2、3615和3617软件上没有什么区别[/scode] 关于黑裙晖远程唤醒 答: [scode type=&#8221;blue&#8221;]需要公网IP 需要在bios设置网卡网络唤醒 需要路由器设置端口转发远程唤醒包走端口9 需要黑群晖引导mac地址和网络网卡地址一样 需要绑定arp[/scode] ARP映射表的功能是定义mac地址与ip地址的映射关系，即使设备不在线时路由器也能知道这个设备的存在。理论上说唤醒包是通过广播方式发送的，与ip地址没什么关系，但在实测中发现，如果不定义ARP映射，则路由器不会向局域网广播唤醒包，所以定义ARP映射还是必要的。 &nbsp; 速度问题我在2台黑群晖之间对拷数据15G后速度就从100m的速度掉到20左右的速度了还不稳定，猜测是拷ssd的硬盘缓存没有了的原因。做一个记录 2019年8月4日更新 环境远程群晖nas 3机械硬盘raid0 固态读缓存本地三星固态硬盘 读下载到本地速度 可以看到到后面就慢了 从本地到nas&nbsp; 速度 群晖之间对拷不知道是什么原因反正很慢 千兆网络的传输速度能超过125MB/s么?]]></content>
+      <categories>
+        <category>Centos7</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>KMS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[KMS激活服务器搭建自用版本]]></title>
+    <url>%2Fpost%2F11817a8a.html</url>
+    <content type="text"><![CDATA[快速搭建yum install git gcc make -y git clone https://github.com/Wind4/vlmcsd.git cd vlmcsd make cp bin/vlmcsd /usr/bin vlmcsd 激活方法Windows 激活方式 1.使用 命令提示符（CMD）管理员模式 执行命令导入对应版本的密钥(请参见附录) slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX 2.执行命令设置Windows的KMS服务器地址 slmgr /skms 地址 3.执行命令激活Windows slmgr /ato 密匙附录（KMS 客户端安装密钥） Windows 10 专业版 &#8211; Pro W269N-WFGWX-YVC9B-4J6C9-T83GX 专业版N &#8211; Pro N MH37W-N47XK-V7XM9-C7227-GCQG9 企业版 &#8211; Enterprise NPPR9-FWDCX-D2C8J-H872K-2YT43 企业版N &#8211; Enterprise N DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4 教育版 &#8211; Education NW6C2-QMPVW-D7KKK-3GKT6-VCFB2 教育版N &#8211; Education N 2WH4N-8QGBV-H22JP-CT43Q-MDWWJ 企业版2015LTSB &#8211; Enterprise 2015 LTSB WNMTR-4C88C-JK8YV-HQ7T2-76DF9 企业版2015LTSB N &#8211; Enterprise 2015 LTSB N 2F77B-TNFGY-69QQF-B8YKP-D69TJ 企业版2016LTSB &#8211; Enterprise 2016 LTSB DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ 企业版2016LTSB N &#8211; Enterprise 2016 LTSB N QFFDN-GRT3P-VKWWX-X7T3R-8B639 Windows Server 2016 数据中心版 &#8211; Datacenter CB7KF-BWN84-R7R2Y-793K2-8XDDG 标准版 &#8211; Standard WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY 精华版 &#8211; Essentials JCKRF-N37P4-C2D82-9YXRT-4M63B Windows 8.1 专业版 &#8211; Pro GCRJD-8NW9H-F2CDX-CCM8D-9D6T9 专业版N &#8211; Pro N HMCNV-VVBFX-7HMBH-CTY9B-B4FXY 企业版 &#8211; Enterprise MHF9N-XY6XB-WVXMC-BTDCT-MKKG7 企业版N &#8211; Enterprise N TT4HM-HN7YT-62K67-RGRQJ-JFFXW Windows Server 2012 R2 标准版 &#8211; Server Standard D2N9P-3P6X9-2R39C-7RTCD-MDVJX 数据中心版 &#8211; Datacenter W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9 精华版 &#8211; Essentials KNC87-3J2TX-XB4WP-VCPJV-M4FWM Windows 8 专业版 &#8211; Pro NG4HW-VH26C-733KW-K6F98-J8CK4 专业版N &#8211; Pro N XCVCF-2NXM9-723PB-MHCB7-2RYQQ 企业版 &#8211; Enterprise 32JNW-9KQ84-P47T8-D8GGY-CWCK7 企业版N &#8211; Enterprise N JMNMF-RHW7P-DMY6X-RF3DR-X2BQT Windows Server 2012 标准版 &#8211; Server Standard XC9B7-NBPP2-83J2H-RHMBY-92BT4 数据中心版 &#8211; Datacenter 48HP8-DN98B-MYWDG-T2DCC-8W83P Windows 7 专业版 &#8211; Pro FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4 专业版N &#8211; Pro N MRPKT-YTG23-K7D7T-X2JMM-QY7MG 专业版E &#8211; Pro E W82YF-2Q76Y-63HXB-FGJG9-GF7QX 企业版 &#8211; Enterprise 33PXH-7Y6KF-2VJC9-XBBR8-HVTHH 企业版N &#8211; Enterprise N YDRBP-3D83W-TY26F-D46B2-XCKRJ 企业版E &#8211; Enterprise E C29WB-22CC8-VJ326-GHFJW-H9DH4 Windows Server 2008 R2 站点版 &#8211; Web 6TPJF-RBVHG-WBW2R-86QPH-6RTM4 标准版 &#8211; Standard YC6KT-GKW9T-YTKYR-T4X34-R7VHC 企业版 &#8211; Enterprise 489J6-VHDMP-X63PK-3K798-CPX3Y 数据中心版 &#8211; Datacenter 74YFP-3QFB3-KQT8W-PMXWJ-7M648 自启设置传vlmcsd文件到/usr/bin/目录下并设置755的权限： chmod 755 /usr/bin/vlmcsd 添加vlmcsd服务，新建一个空的文件保存，用来存放PID的文件，便于后来添加service时要用到 vi /var/run/vlmcsd.pid 新建vlmcsd.service的文档，并添加以下内容 vi /lib/systemd/system/vlmcsd.service [Unit] Description=KMS Server By vlmcsd After=network.target [Service] Type=forking PIDFile=/var/run/vlmcsd.pid ExecStart=/usr/bin/vlmcsd -p /var/run/vlmcsd.pid ExecStop=/bin/kill -HUP $MAINPID PrivateTmp=true [Install] WantedBy=multi-user.target 重载服务： systemctl daemon-reload 启动vlmcsd：systemctl start vlmcsd 设置开机启动：systemctl enable vlmcsd 查看运行状态：systemctl status vlmcsd 防火墙设置vlmcsd 使用 tcp 协议的 1688 端口进行通信，所以必须打开 1688 端口，否则客户机将无法连接至 KMS 服务器，步骤及命令如下： CentOS 6： 添加规则：iptables -I INPUT -p tcp -m tcp &#8211;dport 1688 -j ACCEPT 保存规则：service iptables save 重启 CentOS：shutdown -h now CentOS 7： 停止自带防火墙：systemctl stop firewalld.service 禁止自带防火墙开机自启动：systemctl disable firewalld.service 安装 iptables：yum install iptables-services 安装其间可能会有 1-2 次确认，输入 y 后回车即可。 若已安装 iptables 则忽略此步骤，可通过检查 /etc/sysconfig 目录下是否存在 iptables 文件来确 定，命令如下： ls -l /etc/sysconfig | grep iptables，结果如图： iptables 是否存在 打开 /etc/sysconfig/iptables 文件：vi /etc/sysconfig/iptables 在 -A INPUT -p tcp -m state –state NEW -m tcp –dport 22 -j ACCEPT 行后添加以下内容： vlmcsd port-A INPUT -p tcp -m state –state NEW -m tcp –dport 1688 -j ACCEPT 重启 iptables 使配置生效：systemctl restart iptables.service 设置 iptables 开机自启动：systemctl enable iptables.service]]></content>
+      <categories>
+        <category>默认分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[关于我学习的接触Linux操作系统的生涯]]></title>
+    <url>%2Fpost%2Fe9f32458.html</url>
+    <content type="text"><![CDATA[序言 挖了这么大一个坑给自己，怎么说也得把这个坑给填完，从14年中学图书馆开始，或许大部分人都是从网上开始接触Linux这个服务器网络操作系统，但博主可以肯定的说，我是从书本上开始接触的 中学博主来自一个其貌不扬的镇上中学，中学不这么说大部分人都知道一周放一次假，再加上本身没有什么娱乐活动，可以说除了学习还是学习，很幸运每周四学校图书馆可以开，再加上管理员是一个很善良的女老师，就这样我与图书馆结下了不解之缘 哪一个星期四快结束时候还有10分钟就要上晚自习，匆匆的我在一本入门电脑的书籍上翻到怎么一个系统的简介，在简介旁边还有一幅图是一个老式显示器黑压压的显示，旁边简介说Linux服务器专用系统，非常稳定几年不关机都可以。这对我非常惊奇，那时候我不知道我与它有了走不开的联系。 高中高中时候因为兴趣释然，再加上我满了16岁，申请了人生中第一张银行卡，镇上的农业银行，关联了支付宝。买了人生中第一本盗版书籍鹩哥的私房菜第三版20几块钱包邮，真香，至于为什么买这个，因为他厚实就这样网上流传的入门级神书被我看到了最后面内核，就没看了，原因有一点，Linux对于我来说是一个全新的概念，很多知识在当时我看来，是第一次接触。当时我连Windows都没接触过，硬件什么的更没有，电脑对于一个农村户口的孩子来说是很遥远的事，所以对于我来说入门从Linux开始是一个全新的体验，也对我操作系统理解对比其他人不同的想法。我接触Linux就的原因有很多，都有些偶然性。大部分人买了鹩哥的私房菜都嫌他啰嗦，但这种啰嗦反而成全了我。 [scode type=&#8221;blue&#8221;]萌芽阶段[/scode] 职中因为家庭因数，和几种不可抗拒的原因，博主走上了中职的道路，高中就读了一学期就没有读了，中职生涯里是我全面学习Linux操作系统的阶段，在这3年里，我想我应该把Linux常用的东西都入门了吧，其实大部分人应该都看不起中职生，在我周围觉得中职生其实就是差生去的地方，初中时候我的班主任建议我去他推荐的职业学校，我没去，现在想来很幸运当时没去，不然我又是另一个命运了，已经毕业的职业学校叫遂宁市职业技术学校是一所百年学校，职业学校最好初中就进去上3+2的大专，这是最好的选择，也是不浪费宝贵的时间。不然你想从职业学校上大学只有几种途径。 技能大赛省一等奖 单招考试 3+2五年大专 技能比赛获奖进行特长生单招 考试省一等奖可以在四川省内在单招时候获得专科学院的免试资格，我记得是59所专科学院，就是说你随意进。但也是最难的，第一，你上的职业学校有比赛，而且比赛有省赛。第二，你得在全省内有这个项目比赛的职校里，在省比赛拿第一。并不比高考差多少，（╯‵□′）╯︵┴─┴你要在参加之前有基础更好。 单招考试，第一你得高考报名，在每年3月底进行单招考试，单招考试是国家认可的，也说春季高考有2次报名，第一次是高考报名，第二次是单招考试报名，报了高考报名你才能报单招考试报名。 不过小道消息，我毕业前一个学长，他没有高考报名，在毕业后想单招，就找市教育局，好像获取了报名号，如果错过的同学可以试试。这是我遇到过的，因为那个学长就是我前一届的学长，本来3年学习，提前半年实习的，后遇到学校通知必须读满三年，没有高考报名，直接去市教育局问，具体过程不得而知了。不过博主也是要毕业那年但3月单招考试已经过了，去问市教育局的，办公室的值班人员说为什么你们不早点，单招考试都过了。也就是说可行的 5年制大专基本上是最好拿大专文凭的，节约时间不做评价，读满3年后进大学读，有一个转录考试，很好过 中职生涯获奖，必须是市教育局盖章的奖状，也就是地级市的，这是一个很好的加分项，叫特长生，能走特长生走特长生，走不了就普通单招考试。因为每一个学院的特长生不一样，不予评价 中职生涯好了啰嗦完了，在中职生涯里，很幸运，遇到了几个好老师，这是我的幸运，我最开始的班主任是王老师，是一个很漂亮的女老师，开始几学期很严，但后来就会发现其实王老师是一个很善良的老师，在第二学期我就开始技能比赛的学习了，这也是我入门实际操作Linux系统的实战阶段，还记得在centos下搭建dhcp服务器一周都卡到哪的窘迫，指导老师不怎么了解这个系统。所以只能自学，在其中书本是我了解Linux知识一个重要来源。虽然开始用搜索引擎来搜索知识了，但在国内的大环境下，懂的都懂。开始班主任很纵容我，这也是我放心比赛的原因。也很感谢她。就这样1 到 2年后我基本把电脑从零开始学习了一个遍，掌握的都是运维方面的知识。希望后面有所帮助。]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[freenas ZFS级别]]></title>
+    <url>%2Fpost%2F84fddb57.html</url>
+    <content type="text"><![CDATA[Stripe：与RAID0类似，磁盘带条，至少需要一个磁盘；Mirror：与RAID1类似，磁盘镜像，至少需要两个磁盘；RAIDZ1：与RAID5类似，一重奇偶校验，至少需要三个磁盘；RAIDZ2：与RAID6类似，双重奇偶校验，至少需要四个磁盘；RAIDZ3：ZFS特有的，三重奇偶校验，至少需要五个磁盘；Log(ZIL)：高速写缓存设备，至少需要一个专用设备，建议使用具有停电保护的SSD；Cache(L2ARC)：高速读缓存设备，需要至少一个专用设备，建议使用具有停电保护的SSD；Spare：热备磁盘，当正在使用的磁盘发生故障后，Spare磁盘将马上代替此故障盘。性能对比Stripe &gt; Mirror Stripe &gt; RAIDZ1 &gt; RAIDZ2 &gt; RAIDZ3 数据可靠性Mirror &gt; Stripe RAIDZ3 &gt; RAIDZ2 &gt; RAIDZ1 &gt; Stripe]]></content>
+      <categories>
+        <category>Centos7</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>fedora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ProxmoxVE 安装后初始化操作]]></title>
+    <url>%2Fpost%2F49d87ad4.html</url>
+    <content type="text"><![CDATA[title: ProxmoxVE 安装后初始化操作tags: Proxmoxabbrlink: 49d87ad4 date: 2019-03-08 20:19:24序言重要！！！更改软件源，默认是订阅版，如果不做修改，在使用pveceph init进行ceph初始化安装的时候会将整个环境破坏，切记！更改为非订阅版 一些让操作Proxmox更简单的JIO本 内容rm -f /etc/apt/sources.list.d/pve-enterprise.list echo &quot;deb http://download.proxmox.com/debian/pve stretch pve-no-subscription&quot; &gt;/etc/apt/sources.list.d/pve-install-repo.list wget http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-5.x.gpg apt update &amp;&amp; apt dist-upgrade 安装ntp。ceph集群对时间同步的要求很高，需要安装ntp服务： apt-get install ntp -y 安装完成之后会自动启动并同步debian的时间服务器，注意，是联网的情况下，如果不连接外网，需要设定内网的ntp服务，这里不赘述。 apt-get install ntpdate ntpdate 120.25.108.11 echo &quot;0 * * * * /usr/sbin/ntpdate 120.25.108.11 &gt; /dev/null 2&gt;&amp;1&quot; &gt;&gt; /etc/crontab 消除“No valid subscription”提示的方法参考下面的网址： https://johnscs.com/remove-proxmox51-subscription-notice/ 即，ssh登录服务器后执行下面的指令： sed -i.bak &quot;s/data.status !== &apos;Active&apos;/false/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js &amp;&amp; systemctl restart pveproxy.service]]></content>
+      <categories>
+        <category>BT</category>
+        <category>Centos7</category>
+      </categories>
+      <tags>
+        <tag>Tracker服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[fedora29安装后操作]]></title>
+    <url>%2Fpost%2F5c690de.html</url>
+    <content type="text"><![CDATA[更新系统sudo dnf upgrade 浏览器安装谷歌浏览器20190324更新 实际上是我插件问题，安装地址 我是地址 安装后播放视频没有问题，但在线播放音乐有问题，目前找不到问题所在。 谷歌浏览器安装后插件安装有问题，实际上Chromium浏览器一样的，对谷歌账号书签同步一样的。在应用中心安装。 添加chrome源 #cd /etc/yum.repos.d #wget http://repo.fdzh.org/chrome/google-chrome-mirrors.repo 安装Chrome #dnf install -y google-chrome-stable 卸载 sudo dnf -y remove google-chrome-stable 写作工具安装Typora安装图片上传工具wget https://github.com/Molunerfinn/PicGo/releases/download/v2.0.4/picgo-2.0.4-x86_64.AppImage 播放软件sudo dnf install vlc 安装ffmpeg解码器sudo dnf install ffmpeg ffmpeg-libs gstreamer-ffmpeg xvidcore libdvdread libdvdnav lsdvd gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg libmatroska xvidcore 主题安装cd /tmp &amp;&amp; rm -rf flat-remix &amp;&amp; git clone https://github.com/daniruiz/flat-remix &amp;&amp; mkdir -p ~/.icons &amp;&amp; cp -r flat-remix/Flat-Remix* ~/.icons/ &amp;&amp; gsettings set org.gnome.desktop.interface icon-theme &quot;Flat-Remix-Blue&quot; 字体安装# clone git clone https://github.com/powerline/fonts.git --depth=1 # install cd fonts ./install.sh # clean-up a bit cd .. rm -rf fonts]]></content>
+      <categories>
+        <category>默认分类</category>
+      </categories>
+      <tags>
+        <tag>ed2k</tag>
+        <tag>电骡</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 使用OpenTracker自建高性能Tracker服务器]]></title>
+    <url>%2Fpost%2Fc2bc3eba.html</url>
+    <content type="text"><![CDATA[title: centos7 使用OpenTracker自建高性能Tracker服务器date: 2019-03-18 20:52:32 tags:序言参考opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。 目录1 特点2 所用技术3 使用情况4 外部链接5 参考特点opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半1。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。 所用技术opentracker可以完全在内存中运行，这就是它速度快的原因。它完全由C语言写成，使用libowfat库管理网络连接。 使用情况程序的作者运营着全球第二大的BitTorrent服务器denis.stalker.h3q.com，而全球最大的BitTorrent服务器海盗湾也在2007年底开始使用opentracker之前他们使用自己的Hypercube。挪威的挪威广播公司也用opentracker来发布自己的电视剧。教程参考链接 以上摘自维基百科 内容搭建环境yum -y install epel-release yum -y groupinstall &quot;Development Tools&quot; yum -y install openssl-devel zlib-devel 下载相关文件编译文件已经上传到了国内的github上这样，虽然速度不咋地，胜在稳定。 git clone https://github.com/Qifcn/OpenTracker.git cd OpenTracker tar -xzvf libowfat.tar.gz tar -xzvf opentracker.tar.gz 编译cd libowfat make cd .. cd opentracker make 按照步骤做，不用make install 二进制文件移动到/usr/bin：cp opentracker /usr/bin 一个服务文件：vim /usr/lib/systemd/system/opentracker.service [Unit] Description=opentracker server [Service] User=root ExecStart=/usr/bin/opentracker -p 1337 -P 1337 Restart=on-abort [Install] WantedBy=multi-user.target 我这里监听的端口是1337，这个端口可以自行更改，并且opentracker支持同时监听多端口。-p（小写p）指TCP端口，-P（大写P）指UDP端口。 设置开机启动并自启动systemctl enable opentracker.service systemctl start opentracker.service 其他管理命令systemctl status opentracker.service systemctl stop opentracker.service systemctl restart opentracker.service 制作种子的时候，我们添加Tracker服务器时，可以这么写： http://你的服务器公网IP:1337/announce 或者： udp://你的服务器公网IP:1337/announce 当然也可以同时添加http和udp，这个不受影响。 OpenTracker还有一个自带的统计功能： http://你的服务器公网IP:1337/stats 更详细的统计信息访问： http://你的服务器公网IP:1337/stats?mode=everything]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[centos7 使用OpenTracker自建高性能Tracker服务器]]></title>
     <url>%2Fpost%2Fc2bc3eba.html</url>
     <content type="text"><![CDATA[序言参考opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。 目录1 特点2 所用技术3 使用情况4 外部链接5 参考特点opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半[1]。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。 所用技术opentracker可以完全在内存中运行，这就是它速度快的原因。它完全由C语言写成，使用libowfat库管理网络连接。 使用情况程序的作者运营着全球第二大的BitTorrent服务器denis.stalker.h3q.com，而全球最大的BitTorrent服务器海盗湾也在2007年底开始使用opentracker之前他们使用自己的Hypercube。挪威的挪威广播公司也用opentracker来发布自己的电视剧。教程参考链接 以上摘自维基百科 内容搭建环境123yum -y install epel-releaseyum -y groupinstall &quot;Development Tools&quot;yum -y install openssl-devel zlib-devel 下载相关文件编译文件已经上传到了国内的github上这样，虽然速度不咋地，胜在稳定。1234git clone https://github.com/Qifcn/OpenTracker.gitcd OpenTrackertar -xzvf libowfat.tar.gztar -xzvf opentracker.tar.gz 编译12345cd libowfatmakecd ..cd opentrackermake 按照步骤做，不用make install 二进制文件移动到/usr/bin：1cp opentracker /usr/bin 一个服务文件：123456789101112vim /usr/lib/systemd/system/opentracker.service[Unit]Description=opentracker server [Service]User=rootExecStart=/usr/bin/opentracker -p 1337 -P 1337Restart=on-abort [Install]WantedBy=multi-user.target 我这里监听的端口是1337，这个端口可以自行更改，并且opentracker支持同时监听多端口。-p（小写p）指TCP端口，-P（大写P）指UDP端口。 设置开机启动并自启动12systemctl enable opentracker.service systemctl start opentracker.service 其他管理命令123systemctl status opentracker.servicesystemctl stop opentracker.servicesystemctl restart opentracker.service 制作种子的时候，我们添加Tracker服务器时，可以这么写： http://你的服务器公网IP:1337/announce 或者： udp://你的服务器公网IP:1337/announce 当然也可以同时添加http和udp，这个不受影响。 OpenTracker还有一个自带的统计功能： http://你的服务器公网IP:1337/stats 更详细的统计信息访问： http://你的服务器公网IP:1337/stats?mode=everything]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 smb共享快速设置]]></title>
+    <url>%2Fpost%2Ff82e4eee.html</url>
+    <content type="text"><![CDATA[title: centos7 smb共享快速设置date: 2019-03-17 19:08:44 tags: centos7序言本文的目的是在centso7下快速设置一个共享，有一个思路。 内容安装 yum install samba vim -y 启动 systemctl start smb nmb systemctl enable smb nmb 配置匿名 vim /etc/samba/smb.conf 在全局配置global添加以下行 参数意思是允许匿名访问centos7里smb版本包不再支持share map to guest = bad user 添加共享目录[share] comment = 共享描述 path = /share writable = yes browseable = yes guest ok = yes [share] comment = 共享描述 path = /share #共享的文件路径 writable = yes #是否可写 browseable = yes #是否可被浏览 guest ok = yes #是否允许匿名访问 配置权限 chmod -R 755chown -R 用户:root /sharechown -R nobody:root sd1/chcon -t samba_share /share #进一步配置Selinux 配置Selinux setenforce 0 临时关闭systemctl stop firewalld # 临时关闭防火墙 为samba开放特定端口firewall-cmd --zone=public --add-port=139/tcp --permanent firewall-cmd --zone=public --add-port=445/tcp --permanent firewall-cmd --zone=public --add-port=137/udp --permanent firewall-cmd --zone=public --add-port=138/udp --permanent firewall-cmd --reload systemctl restart firewalld.service]]></content>
+      <categories>
+        <category>默认分类</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[centos7 smb共享快速设置]]></title>
@@ -12,6 +120,14 @@
       <tags>
         <tag>centos7</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS7安装qbittorrent 最新版]]></title>
+    <url>%2Fpost%2F73cc8cfd.html</url>
+    <content type="text"><![CDATA[title: Compiling qbittorrent nox for CentOS from sourcedate: 2019-03-15 20:51:36 tags: qbittorrent序言 依赖版本 版本qBittorrent的源代码库有200M多兆所以如果不是追求最新版本与网速不理想的话建议下载打包好的源代码。 现在 qBittorrent在我写文章的时候已经发展到4.15这个版本了。libtorrent-1.1.10 最低Gcc版本要新版本 内容一 环境准备1.安装依赖项 yum -y groupinstall &quot;Development Tools&quot; yum -y install qt-devel boost-devel openssl-devel qt5-qtbase-devel qt5-linguist 2.libtorrent版本1.1.12 wget https://github.com/arvidn/libtorrent/releases/download/libtorrent_1_1_12/libtorrent-rasterbar-1.1.12.tar.gz 3.升级GCC编译器CentOS 7 升级gcc 7升级时候因个人网速快慢。 sudo yum install centos-release-scl sudo yum install devtoolset-7-gcc* scl enable devtoolset-7 bash which gcc gcc --version 这种方法同样适用于安装gcc6，只需要将上面命令中7改成6即可。详情请参考： https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/ centos7默认gcc版本 cnetos7升级后的版本 二 编译安装此时你的目录下应该有这些文件，libtorrent-rasterbar-1.1.12.tar.gz与qBittorrentqBittorren为什么是一个目录嘞，我下的仓库源码包有200m多兆，哭 编译libtorrenttar -zxf libtorrent-rasterbar-1.1.12.tar.gz cd libtorrent-rasterbar-1.1.12 ./configure --prefix=/usr CXXFLAGS=-std=c++11 make make install ln -s /usr/lib/pkgconfig/libtorrent-rasterbar.pc /usr/lib64/pkgconfig/libtorrent-rasterbar.pc ln -s /usr/lib/libtorrent-rasterbar.so.9 /usr/lib64/libtorrent-rasterbar.so.9 cd ~ 0x1执行make0x2执行make install 0x3别忘记创建链接 编译qBittorrentcd qBittorrent ./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5 make make install cd ~ 0x1执行./configure省略后0x2执行make后0x3执行make install 默认我是用root这个用户编译的文件也下载到root的家目录 编译后的收尾打开防火墙firewall-cmd --zone=public --add-port=8080/tcp --permanent firewall-cmd --zone=public --add-port=8080/udp --permanent firewall-cmd --reload 先执行一遍程序在#下输入qbittorrent-noxPress &#8216;y&#8217; key to accept and continue&#8230;输入y回车同意 设置成systemctl 服务]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[Compiling qbittorrent nox for CentOS from source]]></title>
@@ -28,6 +144,14 @@
       <tags>
         <tag>bt</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[电骡ed2k服务器搭建]]></title>
+    <url>%2Fpost%2Fb140841c.html</url>
+    <content type="text"><![CDATA[title: 电骡ed2k服务器搭建tags: 电骡，ed2k，服务器，p2pabbrlink: b140841c date: 2019-03-03 15:12:51序言Lugdunum是一个eDonkey网络服务器软件，也是一个闭源免费的专有软件。 创建eDonkey协议与eDonkey2000软件的MetaMachine公司编写了最早的eD2k服务器软件，名字叫做DSERVER，一直更新到版本16。之后交由法国的Lugdunum小组维护，最后版本为17.15。Lugdunum也称eserver[1]\#cite_note-1)]9，意即“eDonkey Server”（eDonkey服务器）。 Lugdunum是当前最常用的eD2k服务器软件，基本上现在所有的eD2k服务器都使用Lugdunum维护。它支持复杂的逻辑搜索。 Lugdunum主要用于Linux下，支持多核与64位运行。虽然Lugdunum有Windows版本，但它的Windows最新版本使用有一定问题，所有连接服务器的用户都会被错误的分配一个Low ID。所以如果想在Windows平台架设服务器则需要使用Lugdunum的17.14版本。 Lugdunum的主页现在已经失效，现在无任何官方网站，但是有一些非官方的资料页面。 Lugdunum软件名称源于法国城市里昂在古罗马时期的同名称呼。 摘自维基百科中文 内容### 环境 centos6.9 x64 Lugdunum相关软件 电骡官方客户端软件 相关下载电骡官方客户端软件Lugdunum相关软件 软件目录图 默认搭建好了的centos6.9系统环境ip地址192.168.13.99内网地址打开端口4661 上传相关文件到服务器home目录我用的是ssh上传文件的方式官方叫这个名字为sftp只要ssh远程能用就可以上传文件 修改相关配置默认在hmoe目录 vi donkey.ini 相关修改我已经圈了起来。 2019年3月13日早上更新电骡配置文件[server] name=特殊资源共享平台 desc=http://lcx.com thisIP=192.168.13.99 port=4661 verbose=ture public=true threads=10 LOWIDpercent=100 autoservlist= softLimit=13000 hardLimit=14000 type=key tableSize=3089 maxClients=100000 maxVersion=9999 logFile=ture welcome[0]=登录ddddd1111 welcome[1]=*************************** welcome[2]=临时电骡服务器 seckey=2B9E64A4189599B5516E6C2C85327ECD # Added by eserver. Should not be public 打开端口操作iptables -I INPUT -p tcp --dport 4661 -j ACCEPT /etc/init.d/iptables save service iptables restart 一行一条命令，centos6.9安装后默认打开了防火墙的。 给相关权限chmod 755 lugdunum-17.15.x86_64-linux.nptl ln -s lugdunum-17.15.x86_64-linux.nptl eserver chmod 755 script.sh 运行服务器再输入screen ./script.sh 回车 就运行电骡服务器了如果没有安装screen 就yum install screen 安装screen 再运行screen ./script.sh 运行成功的图 客户端测试打开电骡客户端的选项-》扩展设置把过滤内网ip的服务器和客户的勾去掉。 最终效果图至于为什么ID是LOWid因为我作实验的服务器和测试的客户端中间隔了一个无线路由器，测试的客户端是通过无线连接搭建的内网服务器的。 测试速度官方的电骡客户端在2台电脑直连千兆交换机下有20M左右的速度。有兴趣的朋友可以试试。忘记说了我测试的文件是一个iso的系统文件有1.5G的大小。所以速度还是有一定的权威性。 总结电骡是一个共享软件，体现了人人为我，我为人人，只要有速度神马都是浮云。希望有什么问题欢迎指出。 支持相关软件和一些教程是在电骡群里找的，最权威的是，贴吧讨论得多一些。就这几个中文地方。如果有什么不足或者侵权的地方欢迎私信。]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[ProxmoxVE 安装后初始化操作]]></title>
@@ -101,7 +225,7 @@
   <entry>
     <title><![CDATA[Goaccess centos7 编译安装与使用]]></title>
     <url>%2Fpost%2F41ab5961.html</url>
-    <content type="text"><![CDATA[序言Goaccess是一款开源的实时日志分析查看软件，不仅有在终端下有不同的颜色区分显示，同时还能输出详细的图表供用户参考。支持Apache、Nginx、 Amazon S3、 Elastic Load Balancing、CloudFront等服务器日志的分析。与之前ngxtop不同的是Goaccess更侧重于现在整体而不是排查。不仅LNMP可以用，只要是前面列出的日志格式都可以。最新版本是GoAccess v1.3 安装环境centos7 安装教程1234567891011#安装依赖yum -y install libmaxminddb-devel#下载源码wget https://tar.goaccess.io/goaccess-1.3.tar.gz#解压tar -xzvf goaccess-1.3.tar.gz#进入目录cd goaccess-1.3/#编译安装./configure --enable-utf8 --enable-geoip=mmdb --with-openssl --with-libmaxminddb-develmake &amp;&amp; make install 安装成功截图 添加文件vim /usr/local/etc/goaccess.conf改成goaccess格式标准对应为这个文件是新建的，默认空白，把下面的参数复制到里面1234time-format %Tdate-format %d/%b/%Ylog-format %h - %^ [%d:%t %^] requesthost:&quot;%v&quot;; &quot;%r&quot; requesttime:&quot;%T&quot;; %s %b &quot;%R&quot; - %^&quot;%u&quot; 设置中文报表这个程序在1.3版本支持中文了，但需要设置一下啊把系统的系统语言设置成中文 临时设置12LANG=&quot;zh_CN.UTF-8&quot; #修改为中文LANG=&quot;en_US.UTF-8&quot; #修改为英文 额，给一篇外链写的好的我是centos7修改语言教程 使用教程基本上这个使用还是很简单的可以在终端使用，但大部分还是喜欢那个漂亮的web界面报表吧，它的基本命令就是 12345678比如说我服务器生成web报表该怎么操作类我使用的web环境是[oneinstack](https://oneinstack.com/)这个脚本安装的，nginx日志文件在/data/wwwlogs/clul.cn_nginx.log这个文件![1](https://i.loli.net/2019/01/12/5c3948a04d991.jpg)而我的网站目录是/data/wwwroot/t.clul.cn/这个目录，相应的你应知道你网站日志在什么地方，还有网站根目录，就这样，我们用goaccess来生成web报表，这个就是一个很精美的html静态文件。## 生成html静态报表命令 goaccess -f /data/wwwlogs/clul.cn_nginx.log -c -a&gt;/data/wwwroot/t.clul.cn/go.html ` 查看https://t.clul.cn/go.html 后言这个看有一篇教程好像可以实时显示日志的，但也可以给一个定时任务。]]></content>
+    <content type="text"><![CDATA[序言Goaccess是一款开源的实时日志分析查看软件，不仅有在终端下有不同的颜色区分显示，同时还能输出详细的图表供用户参考。支持Apache、Nginx、 Amazon S3、 Elastic Load Balancing、CloudFront等服务器日志的分析。与之前ngxtop不同的是Goaccess更侧重于现在整体而不是排查。不仅LNMP可以用，只要是前面列出的日志格式都可以。最新版本是GoAccess v1.3 安装环境centos7 安装教程1234567891011#安装依赖yum -y install libmaxminddb-devel#下载源码wget https://tar.goaccess.io/goaccess-1.3.tar.gz#解压tar -xzvf goaccess-1.3.tar.gz#进入目录cd goaccess-1.3/#编译安装./configure --enable-utf8 --enable-geoip=mmdb --with-openssl --with-libmaxminddb-develmake &amp;&amp; make install 安装成功截图 添加文件vim /usr/local/etc/goaccess.conf改成goaccess格式标准对应为这个文件是新建的，默认空白，把下面的参数复制到里面1234time-format %Tdate-format %d/%b/%Ylog-format %h - %^ [%d:%t %^] requesthost:&quot;%v&quot;; &quot;%r&quot; requesttime:&quot;%T&quot;; %s %b &quot;%R&quot; - %^&quot;%u&quot; 设置中文报表这个程序在1.3版本支持中文了，但需要设置一下啊把系统的系统语言设置成中文 临时设置12LANG=&quot;zh_CN.UTF-8&quot; #修改为中文LANG=&quot;en_US.UTF-8&quot; #修改为英文 额，给一篇外链写的好的我是centos7修改语言教程 使用教程基本上这个使用还是很简单的可以在终端使用，但大部分还是喜欢那个漂亮的web界面报表吧，它的基本命令就是 12345678比如说我服务器生成web报表该怎么操作类我使用的web环境是[oneinstack](https://oneinstack.com/)这个脚本安装的，nginx日志文件在/data/wwwlogs/Qifcn.github.io_nginx.log这个文件![1](https://i.loli.net/2019/01/12/5c3948a04d991.jpg)而我的网站目录是/data/wwwroot/t.Qifcn.github.io/这个目录，相应的你应知道你网站日志在什么地方，还有网站根目录，就这样，我们用goaccess来生成web报表，这个就是一个很精美的html静态文件。## 生成html静态报表命令 goaccess -f /data/wwwlogs/Qifcn.github.io_nginx.log -c -a&gt;/data/wwwroot/t.Qifcn.github.io/go.html ` 查看https://t.Qifcn.github.io/go.html 后言这个看有一篇教程好像可以实时显示日志的，但也可以给一个定时任务。]]></content>
       <tags>
         <tag>goaccess</tag>
         <tag>日志</tag>
@@ -118,7 +242,7 @@
   <entry>
     <title><![CDATA[solo 博客搭建 2019 年版本]]></title>
     <url>%2Fpost%2F3dac98a3.html</url>
-    <content type="text"><![CDATA[序言 solo博客系统是用java这类的语言开发的博客程序，在这很感谢hacpai。而对于一个经常接触这类博客系统的技术人员，会安装这个博客系统，但对于经常自己用面板或者一键脚本安装环境的爱好者来说，可能会遇到一定的问题，所以说本教程就是给想一次性就成功安装体验这个博客系统的爱好者，能以从安装操作系统开始在什么地方遇到，怎么解决，可能会遇到的问题一一列举，一一回答出来，能按照步骤来做，有百分之90可以性成功安装，以少走弯路为标准，当然因为环境的苛刻要求，可能有一定的差异，也可以本文做一个标准以来参考之。 相关环境 阿里云轻量级服务器 centos7 solo博客安装包 java安装包 MySQL 相关下载创建目录并下载solo程序，值得关注的是solo博客程序的发布搬到github上了，以前是百度网盘发布的。123mkdir /home/solocd /home/solowget https://github.com/b3log/solo/releases/download/v2.9.7/solo-2.9.7.war​ java相关centos7的java环境搭建其实很简单在这就解压，设置环境变量就ok了。安装教程还有一种方式就是通过yum安装的方式我也不知道这两种安装方式的优劣，不过都可行，下面命令是yum安装方式1yum install java-1.8.0-openjdk -y​ java官网下载地址 MySQL安装mysql的安装没有什么不一样的注意最后一个命令开机自启多了一个d我就是被这个坑了好久 12345wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmyum install -y mysql-serversystemctl restart mysql.servicesystemctl enable mysqld.service MySQL相关操作需要注意的mysql安装后root用户没有密码的所以嘿嘿嘿按照相关命令一步一步的操作就ok了12345msyql -u rootcreate user &apos;blog&apos;@&apos;localhost&apos; identified by &apos;LTAIIJoeRp&apos;;CREATE DATABASE IF NOT EXISTS solo DEFAULT CHARSET utf8 COLLATE utf8_general_ci;grant all privileges on `solo`.* to &apos;blog&apos;@&apos;localhost&apos; identified by &apos;LTAIIJoeRp&apos;;flush privileges; 解释一下上面的操作默认你在用root这个系统用户操作的 登录mysql数据库用root用户来登录，注意哦这个是MySQL数据库root用户，不是系统的，默认没有密码。 创建一个blog这个用户并密码密码设置为LTAIIJoeRp并只需要本地登录 创建一个叫solo的数据库，这可不是随便创建的你可以看到很多属性 赋予solo这个数据库的所有权给blog这个数据库用户 刷新权限 解压solo博客安装包并进入目录12jar -xvf solo-2.9.7.warcd solo solo程序配置篇，这是一个很重要的步骤解释一下旧版的安装，旧版默认是solo自带的一个数据库H2这个数据库所以不需要安装mysql就可以起动起但最新版本把这个的配置注释了,默认用MySQL来连接，这样如果按照GitHub上的说明文件下载下来后解压启动是不行的。 用户为blog 密码为LTAIIJoeRp 数据库为solo 需要配置的有2个文件12WEB-INF/classes/latke.propertiesWEB-INF/classes/local.properties latke.properties文件是配置域名没有域名就ip地址不然的话不能正确加载静态资源 local.properties 配置数据库的 修改latke.properties文件1vim WEB-INF/classes/latke.properties 1234567891011#### Server ##### Browser visit protocolserverScheme=http# Browser visit domain nameserverHost=clul.cn #要么域名要么ip地址这个是一定要修改的# Browser visit port, 80 as usual, THIS IS NOT SERVER LISTEN PORT!serverPort=8080 # 选修，启动端口` 修改local.properties文件1vim WEB-INF/classes/local.properties 123456789101112131415#### H2 runtime #####runtimeDatabase=H2#jdbc.username=root#jdbc.password=#jdbc.driver=org.h2.Driver#jdbc.URL=jdbc:h2:~/solo_h2/db#jdbc.pool=h2 #### MySQL runtime ####runtimeDatabase=MYSQLjdbc.username=blog # 数据库用户jdbc.password=LTAIIJoeRp # 数据库密码jdbc.driver=com.mysql.jdbc.Driver ↓到没这就是数据库jdbc.URL=jdbc:mysql://localhost:3306/solo?useUnicode=yes&amp;amp;characterEncoding=utf8jdbc.pool=druid 后续启动程序到现在我们已经配置好程序了，就开始启动吧默认在1前台启动 java -cp WEB-INF/lib/*:WEB-INF/classes org.b3log.solo.Starter1后台启动 nohup java -cp WEB-INF/lib/*:WEB-INF/classes org.b3log.solo.Starter &amp;` 后言默认关闭了防火墙]]></content>
+    <content type="text"><![CDATA[序言 solo博客系统是用java这类的语言开发的博客程序，在这很感谢hacpai。而对于一个经常接触这类博客系统的技术人员，会安装这个博客系统，但对于经常自己用面板或者一键脚本安装环境的爱好者来说，可能会遇到一定的问题，所以说本教程就是给想一次性就成功安装体验这个博客系统的爱好者，能以从安装操作系统开始在什么地方遇到，怎么解决，可能会遇到的问题一一列举，一一回答出来，能按照步骤来做，有百分之90可以性成功安装，以少走弯路为标准，当然因为环境的苛刻要求，可能有一定的差异，也可以本文做一个标准以来参考之。 相关环境 阿里云轻量级服务器 centos7 solo博客安装包 java安装包 MySQL 相关下载创建目录并下载solo程序，值得关注的是solo博客程序的发布搬到github上了，以前是百度网盘发布的。123mkdir /home/solocd /home/solowget https://github.com/b3log/solo/releases/download/v2.9.7/solo-2.9.7.war​ java相关centos7的java环境搭建其实很简单在这就解压，设置环境变量就ok了。安装教程还有一种方式就是通过yum安装的方式我也不知道这两种安装方式的优劣，不过都可行，下面命令是yum安装方式1yum install java-1.8.0-openjdk -y​ java官网下载地址 MySQL安装mysql的安装没有什么不一样的注意最后一个命令开机自启多了一个d我就是被这个坑了好久 12345wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmyum install -y mysql-serversystemctl restart mysql.servicesystemctl enable mysqld.service MySQL相关操作需要注意的mysql安装后root用户没有密码的所以嘿嘿嘿按照相关命令一步一步的操作就ok了12345msyql -u rootcreate user &apos;blog&apos;@&apos;localhost&apos; identified by &apos;LTAIIJoeRp&apos;;CREATE DATABASE IF NOT EXISTS solo DEFAULT CHARSET utf8 COLLATE utf8_general_ci;grant all privileges on `solo`.* to &apos;blog&apos;@&apos;localhost&apos; identified by &apos;LTAIIJoeRp&apos;;flush privileges; 解释一下上面的操作默认你在用root这个系统用户操作的 登录mysql数据库用root用户来登录，注意哦这个是MySQL数据库root用户，不是系统的，默认没有密码。 创建一个blog这个用户并密码密码设置为LTAIIJoeRp并只需要本地登录 创建一个叫solo的数据库，这可不是随便创建的你可以看到很多属性 赋予solo这个数据库的所有权给blog这个数据库用户 刷新权限 解压solo博客安装包并进入目录12jar -xvf solo-2.9.7.warcd solo solo程序配置篇，这是一个很重要的步骤解释一下旧版的安装，旧版默认是solo自带的一个数据库H2这个数据库所以不需要安装mysql就可以起动起但最新版本把这个的配置注释了,默认用MySQL来连接，这样如果按照GitHub上的说明文件下载下来后解压启动是不行的。 用户为blog 密码为LTAIIJoeRp 数据库为solo 需要配置的有2个文件12WEB-INF/classes/latke.propertiesWEB-INF/classes/local.properties latke.properties文件是配置域名没有域名就ip地址不然的话不能正确加载静态资源 local.properties 配置数据库的 修改latke.properties文件1vim WEB-INF/classes/latke.properties 1234567891011#### Server ##### Browser visit protocolserverScheme=http# Browser visit domain nameserverHost=Qifcn.github.io #要么域名要么ip地址这个是一定要修改的# Browser visit port, 80 as usual, THIS IS NOT SERVER LISTEN PORT!serverPort=8080 # 选修，启动端口` 修改local.properties文件1vim WEB-INF/classes/local.properties 123456789101112131415#### H2 runtime #####runtimeDatabase=H2#jdbc.username=root#jdbc.password=#jdbc.driver=org.h2.Driver#jdbc.URL=jdbc:h2:~/solo_h2/db#jdbc.pool=h2 #### MySQL runtime ####runtimeDatabase=MYSQLjdbc.username=blog # 数据库用户jdbc.password=LTAIIJoeRp # 数据库密码jdbc.driver=com.mysql.jdbc.Driver ↓到没这就是数据库jdbc.URL=jdbc:mysql://localhost:3306/solo?useUnicode=yes&amp;amp;characterEncoding=utf8jdbc.pool=druid 后续启动程序到现在我们已经配置好程序了，就开始启动吧默认在1前台启动 java -cp WEB-INF/lib/*:WEB-INF/classes org.b3log.solo.Starter1后台启动 nohup java -cp WEB-INF/lib/*:WEB-INF/classes org.b3log.solo.Starter &amp;` 后言默认关闭了防火墙]]></content>
       <tags>
         <tag>Solo博客</tag>
       </tags>
@@ -134,7 +258,7 @@
   <entry>
     <title><![CDATA[nginx禁止直接用ip访问web服务]]></title>
     <url>%2Fpost%2Fa58bc2b0.html</url>
-    <content type="text"><![CDATA[很简单加一个服务就ok了 新加的server（注意是新增，并不是在原有的server基础上修改） server { listen 80 default; server_name _; return 403; } 比如说我一共有就一个站点。 /usr/local/nginx/conf/clul.cn.conf 这个是配置文件路径，而要能直接ip访问的是这个nginx配置文件 /usr/local/nginx/conf/nginx.conf 所以我直接修改这个配置文件就ok了]]></content>
+    <content type="text"><![CDATA[很简单加一个服务就ok了 新加的server（注意是新增，并不是在原有的server基础上修改） server { listen 80 default; server_name _; return 403; } 比如说我一共有就一个站点。 /usr/local/nginx/conf/Qifcn.github.io.conf 这个是配置文件路径，而要能直接ip访问的是这个nginx配置文件 /usr/local/nginx/conf/nginx.conf 所以我直接修改这个配置文件就ok了]]></content>
       <tags>
         <tag>未分类</tag>
       </tags>
@@ -784,19 +908,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7安装webmin]]></title>
-    <url>%2Fpost%2F4c082866.html</url>
-    <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
-      <tags>
-        <tag>linux软件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[centos7关闭防火墙和selinux]]></title>
     <url>%2Fpost%2F74201e82.html</url>
     <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
       <tags>
         <tag>linux资料</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7安装webmin]]></title>
+    <url>%2Fpost%2F4c082866.html</url>
+    <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
+      <tags>
+        <tag>linux软件</tag>
       </tags>
   </entry>
   <entry>
@@ -816,19 +940,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
-    <url>%2Fpost%2F104acc17.html</url>
-    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+    <title><![CDATA[今天心情很好]]></title>
+    <url>%2Fpost%2F1076a63b.html</url>
+    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[linux安装btsync]]></title>
-    <url>%2Fpost%2Fb8706160.html</url>
-    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
+    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
+    <url>%2Fpost%2F104acc17.html</url>
+    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
       <tags>
-        <tag>Linux 系统教程</tag>
+        <tag>经验</tag>
       </tags>
   </entry>
   <entry>
@@ -840,11 +964,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[今天心情很好]]></title>
-    <url>%2Fpost%2F1076a63b.html</url>
-    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
+    <title><![CDATA[关于华为交换机端口批量加入错误问题]]></title>
+    <url>%2Fpost%2Fc4197f0f.html</url>
+    <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的 第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
       <tags>
-        <tag>经验</tag>
+        <tag>交换机</tag>
       </tags>
   </entry>
   <entry>
@@ -856,11 +980,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于华为交换机端口批量加入错误问题]]></title>
-    <url>%2Fpost%2Fc4197f0f.html</url>
-    <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的 第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
+    <title><![CDATA[linux安装btsync]]></title>
+    <url>%2Fpost%2Fb8706160.html</url>
+    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
       <tags>
-        <tag>交换机</tag>
+        <tag>Linux 系统教程</tag>
       </tags>
   </entry>
   <entry>
