@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[centos7 使用OpenTracker自建高性能Tracker服务器]]></title>
+    <url>%2Fpost%2Fc2bc3eba.html</url>
+    <content type="text"><![CDATA[序言参考opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。 目录1 特点2 所用技术3 使用情况4 外部链接5 参考特点opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半[1]。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。 所用技术opentracker可以完全在内存中运行，这就是它速度快的原因。它完全由C语言写成，使用libowfat库管理网络连接。 使用情况程序的作者运营着全球第二大的BitTorrent服务器denis.stalker.h3q.com，而全球最大的BitTorrent服务器海盗湾也在2007年底开始使用opentracker之前他们使用自己的Hypercube。挪威的挪威广播公司也用opentracker来发布自己的电视剧。教程参考链接 以上摘自维基百科 内容搭建环境123yum -y install epel-releaseyum -y groupinstall &quot;Development Tools&quot;yum -y install openssl-devel zlib-devel 下载相关文件编译文件已经上传到了国内的github上这样，虽然速度不咋地，胜在稳定。1234git clone https://github.com/Qifcn/OpenTracker.gitcd OpenTrackertar -xzvf libowfat.tar.gztar -xzvf opentracker.tar.gz 编译12345cd libowfatmakecd ..cd opentrackermake 按照步骤做，不用make install 二进制文件移动到/usr/bin：1cp opentracker /usr/bin 一个服务文件：123456789101112vim /usr/lib/systemd/system/opentracker.service[Unit]Description=opentracker server [Service]User=rootExecStart=/usr/bin/opentracker -p 1337 -P 1337Restart=on-abort [Install]WantedBy=multi-user.target 我这里监听的端口是1337，这个端口可以自行更改，并且opentracker支持同时监听多端口。-p（小写p）指TCP端口，-P（大写P）指UDP端口。 设置开机启动并自启动12systemctl enable opentracker.service systemctl start opentracker.service 其他管理命令123systemctl status opentracker.servicesystemctl stop opentracker.servicesystemctl restart opentracker.service 制作种子的时候，我们添加Tracker服务器时，可以这么写： http://你的服务器公网IP:1337/announce 或者： udp://你的服务器公网IP:1337/announce 当然也可以同时添加http和udp，这个不受影响。 OpenTracker还有一个自带的统计功能： http://你的服务器公网IP:1337/stats 更详细的统计信息访问： http://你的服务器公网IP:1337/stats?mode=everything]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 smb共享快速设置]]></title>
+    <url>%2Fpost%2Ff82e4eee.html</url>
+    <content type="text"><![CDATA[序言本文的目的是在centso7下快速设置一个共享，有一个思路。 内容安装 yum install samba vim -y 启动 systemctl start smb nmb 配置匿名 vim /etc/samba/smb.conf 在全局配置global添加以下行 参数意思是允许匿名访问centos7里smb版本包不再支持share12map to guest = bad user 添加共享目录123456[share] comment = 共享描述 path = /share writable = yes browseable = yes guest ok = yes 1234567[share] comment = 共享描述 path = /share #共享的文件路径 writable = yes #是否可写 browseable = yes #是否可被浏览 guest ok = yes #是否允许匿名访问 配置权限 chmod -R 755chown -R 用户:root /sharechcon -t samba_share /share #进一步配置Selinux 配置Selinux setenforce 0 临时关闭systemctl stop firewalld # 临时关闭防火墙 为samba开放特定端口1234567firewall-cmd --zone=public --add-port=139/tcp --permanentfirewall-cmd --zone=public --add-port=445/tcp --permanentfirewall-cmd --zone=public --add-port=137/udp --permanentfirewall-cmd --zone=public --add-port=138/udp --permanent firewall-cmd --reloadsystemctl restart firewalld.service]]></content>
+      <tags>
+        <tag>centos7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Compiling qbittorrent nox for CentOS from source]]></title>
+    <url>%2Fpost%2Fe8279405.html</url>
+    <content type="text"><![CDATA[序言 依赖版本 版本 qBittorrent的源代码库有200M多兆所以如果不是追求最新版本与网速不理想的话建议下载打包好的源代码。 现在 qBittorrent在我写文章的时候已经发展到4.15这个版本了。libtorrent-1.1.10 最低Gcc版本要新版本 内容一 环境准备1.安装依赖项12yum -y groupinstall &quot;Development Tools&quot;yum -y install qt-devel boost-devel openssl-devel qt5-qtbase-devel qt5-linguist 2.libtorrent版本1.1.121wget https://github.com/arvidn/libtorrent/releases/download/libtorrent_1_1_12/libtorrent-rasterbar-1.1.12.tar.gz 3.升级GCC编译器CentOS 7 升级gcc 7升级时候因个人网速快慢。12345sudo yum install centos-release-sclsudo yum install devtoolset-7-gcc*scl enable devtoolset-7 bashwhich gccgcc --version 这种方法同样适用于安装gcc6，只需要将上面命令中7改成6即可。详情请参考： https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/ centos7默认gcc版本cnetos7升级后的版本 二 编译安装此时你的目录下应该有这些文件，libtorrent-rasterbar-1.1.12.tar.gz与qBittorrentqBittorren为什么是一个目录嘞，我下的仓库源码包有200m多兆，哭 编译libtorrent12345678tar -zxf libtorrent-rasterbar-1.1.12.tar.gzcd libtorrent-rasterbar-1.1.12./configure --prefix=/usr CXXFLAGS=-std=c++11makemake installln -s /usr/lib/pkgconfig/libtorrent-rasterbar.pc /usr/lib64/pkgconfig/libtorrent-rasterbar.pcln -s /usr/lib/libtorrent-rasterbar.so.9 /usr/lib64/libtorrent-rasterbar.so.9cd ~ 0x1执行make0x2执行make install 0x3别忘记创建链接 编译qBittorrent12345cd qBittorrent./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5makemake installcd ~ 0x1执行./configure省略后0x2执行make后0x3执行make install 默认我是用root这个用户编译的文件也下载到root的家目录 编译后的收尾打开防火墙123firewall-cmd --zone=public --add-port=8080/tcp --permanentfirewall-cmd --zone=public --add-port=8080/udp --permanentfirewall-cmd --reload 先执行一遍程序在#下输入qbittorrent-noxPress ‘y’ key to accept and continue…输入y回车同意 设置成systemctl 服务123456789101112cat &lt;&lt;EOF | sudo tee /usr/lib/systemd/system/qbittorrent.service[Unit]Description=qbittorrent torrent server [Service]User=rootExecStart=/usr/bin/qbittorrent-noxRestart=on-abort [Install]WantedBy=multi-user.targeEOF 复制全部然后粘贴回车，然后执行以下命令123systemctl daemon-reloadsystemctl restart qbittorrentsystemctl enable qbittorrent 不知道为什么启动重启停止没有问题，开机启动反而有问题。参考 后期结尾然后在浏览器里输入http://ip:端口 访问控制端用户名admin密码adminadmin 对于qbittorrent仓库大国内下载速度慢，可以下载已经打包好的源代码，如果追求最新，可以，我记得国内coding托管可以克隆GitHub仓库，克隆后再在coding上下载，迂回办法，有条件的同学可以试试其他的，道路千万条，安全第一条，行车不规范，亲人两行泪。]]></content>
+      <tags>
+        <tag>qbittorrent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Transmission2.94]]></title>
+    <url>%2Fpost%2F33168d82.html</url>
+    <content type="text"><![CDATA[序言 510902199907166715 内容12345678910111213141516171819yum install epel-release -yrpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/city-fan.org-release-1-13.rhel7.noarch.rpmyum groupinstall &quot;Development tools&quot; -yyum install vim wget xz m4 expat openssl-devel perl-libwww-perl perl-XML-Parser curl libcurl-devel libidn-devel zlib-devel which intltool miniupnpc-devel -y cd /optwget https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gztar xzf libevent-2.1.8-stable.tar.gzcd libevent-2.1.8-stable./configure --prefix=/usrmake &amp;&amp; make install export PKG_CONFIG_PATH=/usr/lib/pkgconfigcd /optwget https://github.com/transmission/transmission-releases/raw/master/transmission-2.84.tar.xztar xJf transmission-2.84.tar.xzcd transmission-2.94./configure --prefix=/usrmake &amp;&amp; make install]]></content>
+      <tags>
+        <tag>bt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ProxmoxVE 安装后初始化操作]]></title>
+    <url>%2Fpost%2F49d87ad4.html</url>
+    <content type="text"><![CDATA[序言重要！！！更改软件源，默认是订阅版，如果不做修改，在使用pveceph init进行ceph初始化安装的时候会将整个环境破坏，切记！更改为非订阅版 内容1234rm -f /etc/apt/sources.list.d/pve-enterprise.list echo &quot;deb http://download.proxmox.com/debian/pve stretch pve-no-subscription&quot; &gt;/etc/apt/sources.list.d/pve-install-repo.list wget http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-5.x.gpg apt update &amp;&amp; apt dist-upgrade 安装ntp。ceph集群对时间同步的要求很高，需要安装ntp服务： 12apt-get install ntp -y 安装完成之后会自动启动并同步debian的时间服务器，注意，是联网的情况下，如果不连接外网，需要设定内网的ntp服务，这里不赘述。 123apt-get install ntpdate ntpdate 120.25.108.11 echo &quot;0 * * * * /usr/sbin/ntpdate 120.25.108.11 &gt; /dev/null 2&gt;&amp;1&quot; &gt;&gt; /etc/crontab 消除“No valid subscription”提示的方法参考下面的网址： https://johnscs.com/remove-proxmox51-subscription-notice/ 即，ssh登录服务器后执行下面的指令： sed -i.bak &quot;s/data.status !== &apos;Active&apos;/false/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js &amp;&amp; systemctl restart pveproxy.service]]></content>
+      <tags>
+        <tag>Proxmox</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[esxi6.5 centos6.9 VMware Tools]]></title>
+    <url>%2Fpost%2Fe73cb6aa.html</url>
+    <content type="text"><![CDATA[序言 内容]]></content>
+      <tags>
+        <tag>esxi,Tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Esxi 添加网卡驱动]]></title>
+    <url>%2Fpost%2F2cba04a9.html</url>
+    <content type="text"><![CDATA[序言从6.5开始包括6.7，官方镜像已经集成了SATA驱动，sata-xahci驱动包补丁应该不需要再添加了.\ESXi-Customizer-PS-v2.6.0.ps1 -v67 -vft -load net55-r8168 内容准备文件ESXi安装iso镜像添加驱动（esxi6.5，6.7）准备工作：1.安装 Windows PowerShell 3.0 （需要启用Windows AutoUpdate服务，安装完毕计算机需要重启） https://www.microsoft.com/en-us/download/details.aspx?id=345952.VMware-PowerCLI-6.0.0-3056836.exe http://www.pc6.com/softview/SoftView_570251.html3.ESXi-Customizer-PS-v2.6.0.ps1 http://vibsdepot.v-front.de/tools/ESXi-Customizer-PS-v2.6.0.ps1 4.驱动下载 https://vibsdepot.v-front.de/wiki/index.php/List_of_currently_available_ESXi_packages 打开RemoteSigned功能执行在powershell命令框分别执行两条命令打开RemoteSigned功能 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned Set-ExecutionPolicy Unrestricted 在PowerCLI里执行.\ESXi-Customizer-PS-v2.6.0.ps1 -v67 -vft -load net55-r8168]]></content>
+      <tags>
+        <tag>Esxi，网卡</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[电骡ed2k服务器搭建]]></title>
+    <url>%2Fpost%2Fb140841c.html</url>
+    <content type="text"><![CDATA[序言Lugdunum是一个eDonkey网络服务器软件，也是一个闭源免费的专有软件。 创建eDonkey协议与eDonkey2000软件的MetaMachine公司编写了最早的eD2k服务器软件，名字叫做DSERVER，一直更新到版本16。之后交由法国的Lugdunum小组维护，最后版本为17.15。Lugdunum也称eserver[1]#cite_note-1)，意即“eDonkey Server”（eDonkey服务器）。 Lugdunum是当前最常用的eD2k服务器软件，基本上现在所有的eD2k服务器都使用Lugdunum维护。它支持复杂的逻辑搜索。 Lugdunum主要用于Linux下，支持多核与64位运行。虽然Lugdunum有Windows版本，但它的Windows最新版本使用有一定问题，所有连接服务器的用户都会被错误的分配一个Low ID。所以如果想在Windows平台架设服务器则需要使用Lugdunum的17.14版本。 Lugdunum的主页现在已经失效，现在无任何官方网站，但是有一些非官方的资料页面。 Lugdunum软件名称源于法国城市里昂在古罗马时期的同名称呼。 摘自维基百科中文 内容环境 centos6.9 x64 Lugdunum相关软件 电骡官方客户端软件 相关下载电骡官方客户端软件Lugdunum相关软件 软件目录图 默认搭建好了的centos6.9系统环境ip地址192.168.13.99内网地址打开端口4661 上传相关文件到服务器home目录我用的是ssh上传文件的方式官方叫这个名字为sftp只要ssh远程能用就可以上传文件 修改相关配置默认在hmoe目录1vi donkey.ini 相关修改我已经圈了起来。 2019年3月13日早上更新电骡配置文件123456789101112131415161718192021[server]name=特殊资源共享平台desc=http://lcx.comthisIP=192.168.13.99port=4661verbose=turepublic=truethreads=10LOWIDpercent=100autoservlist=softLimit=13000hardLimit=14000type=keytableSize=3089maxClients=100000maxVersion=9999logFile=turewelcome[0]=登录ddddd1111welcome[1]=***************************welcome[2]=临时电骡服务器seckey=2B9E64A4189599B5516E6C2C85327ECD # Added by eserver. Should not be public 打开端口操作123iptables -I INPUT -p tcp --dport 4661 -j ACCEPT /etc/init.d/iptables saveservice iptables restart 一行一条命令，centos6.9安装后默认打开了防火墙的。 给相关权限123chmod 755 lugdunum-17.15.x86_64-linux.nptl ln -s lugdunum-17.15.x86_64-linux.nptl eserverchmod 755 script.sh 运行服务器再输入screen ./script.sh 回车 就运行电骡服务器了如果没有安装screen 就yum install screen 安装screen 再运行screen ./script.sh 运行成功的图 客户端测试打开电骡客户端的选项-》扩展设置把过滤内网ip的服务器和客户的勾去掉。 最终效果图至于为什么ID是LOWid因为我作实验的服务器和测试的客户端中间隔了一个无线路由器，测试的客户端是通过无线连接搭建的内网服务器的。 测试速度官方的电骡客户端在2台电脑直连千兆交换机下有20M左右的速度。有兴趣的朋友可以试试。忘记说了我测试的文件是一个iso的系统文件有1.5G的大小。所以速度还是有一定的权威性。 总结电骡是一个共享软件，体现了人人为我，我为人人，只要有速度神马都是浮云。希望有什么问题欢迎指出。 支持相关软件和一些教程是在电骡群里找的，最权威的是，贴吧讨论得多一些。就这几个中文地方。如果有什么不足或者侵权的地方欢迎私信。]]></content>
+      <tags>
+        <tag>电骡，ed2k，服务器，p2p</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年 白墨年终总结]]></title>
+    <url>%2Fpost%2Feb7680ff.html</url>
+    <content type="text"><![CDATA[序言 2018年真是一个很要人成长的一年，有收获，有放弃，有苦恼，有欢笑，也有下定决心的时候。总有一天幼稚的男孩，成长为一个手持刀剑的人。 内容笔记本电脑 在17年后，18年的开始白墨去打了寒假兼职，买了一台笔记本电脑，联想的，过了一年后怎么说嘞，在开始的时候，总觉得配置什么的，不怎么重要，后来这台笔记本慢慢的够不上，学习的步伐了。软件需要的配置越来越大，电脑却跟不上，总的来说有点后悔，完全有条件自己DIY台式机。所以学生时代如果有能耐的话，台式电脑是比较好的一个选择。毕竟学习新版本的软件可以说不是一个小的配置可以说想学习的话一个主力电脑是必须的。 网站 经历了怎么多，还是回归本源，hexo在还没退役前是不会哪下的。就算达到网上说的性能问题，大不了再开一个hexo博客，单线程做不了事情我用多线程来做。 毕业 本来白墨在18年6月份左右打算毕业的，可一个中专毕业证实在不甘心，所以在学校教务处的安排下，多了半年，打算过四川省的单招考试，进入大学生活试试，经历了这么多也基本熟悉单招的流程，白墨打算单招是四川省职业技术学院，写这句话的时候，还有一个月，加油。 结婚 在2019年2月我一个表哥结婚了，他在河北那边，那边住着我很喜欢的一个姐姐，不知怎么说，我逐渐讨厌起她了。三观简直风马牛不相及，虽然白墨不知道一些事，但总有一些事还是知道的，最根本的原因我心里很明白。请尊重我一下谢谢。 单招 19年单招，还有一个月，虽然要去考的大学不是一个非常好的大学，但对于我来说，对于我们来说，这是一个非常值得庆贺的事情，人生经历最重要。我会明白。 2019年3月2号晚 遂宁职业技术学校炳文楼七楼]]></content>
+      <tags>
+        <tag>2018，总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[freenas 中文 汉化 语言文件]]></title>
+    <url>%2Fpost%2F70e8db9e.html</url>
+    <content type="text"><![CDATA[序言上一篇说到，因为实验环境搭建不成功所以准备弃坑，但回想起来不甘心，所以学校有一台r410服务器戴尔的，我在8G的闪迪酷豆上远程安装了freenas11.7u这个在我下载的时候是官方右边根据官方描述，这个是稳定版本旧版U，提示一下，最新版本的freenas默认是登录最新版本的U但是可回到旧版u但是有一些功能不全。不知是否能在新的U下操作完需要的步骤。 思路结构 安装旧版稳定版本freenas11.7u 本地搭建jail（我理解为Freebsd版的docker容器） 在标准版本freebsd jail下搭建环境 git官方新版U仓库 执行命令生成新u的语言文件 上传产生的语言文件 内容0x1安装Freenas11.7U安装系统就不用教了吧，反正freenas的兼容性还是挺好的，大部分的电脑都安装成功了的。 0x2本地搭建Jail0x2x1搭建环境 FreeNAS-11.1-U7 freenas-standard-11.0-RELEASE.mtree freenas-standard-11.0-RELEASE.tgz 官方下载地址 0x2x2jail模板介绍 目录中的文件有三种类型： mtree文件是用于安装jails模板时进行验证的文件，是FreeNAS提供的一种安全机制。 tgz文件就是jails模板文件。 sha256文件里保存的是用于验证下载的标准jails模板文件的sha256码。 这里注意到文件名里freenas-xxxxxxx-11.0-RELEASE，有两个是pluginjail，这两个文件是用于安装PBI插件的jails模板。而standard是一个标准的FreeBSD的jails模板。 现在需要下载模板文件然后上传到Freenas服务器，当然这是我的方案，你也可以自己搭建一个FreeBSD虚拟机。我下载是以下的两个文件，标准Freebsd模板。 freenas-standard-11.0-RELEASE.mtree freenas-standard-11.0-RELEASE.tgz 0x2x3 上传模板我是创建了一个数据集然后用这个数据集smb共享出来，再把文件上传到共享里，下面图片是我的文件位置。/mnt/Git/jail1 0x2x4 创建jails模板在WebUI中，点击Jail图标，在点模板选项页。按照顺序点点击Add Jail 模板添加Jail模板按钮窗口中的选项设置都是必填项，简单说明一下。 添加Jail模板窗口选项说明 /mnt/Git/jail1/freenas-standard-11.0-RELEASE.tgz/mnt/Git/jail1/freenas-standard-11.0-RELEASE.mtree 选项 选项值 说明 名称 string 模版名称。将显示在模板列表中。自定义的随便写支持中文 操作系统 drop-down menu 可以选择FreeBSD或者Linux。注意FreeNAS官方下载站的jails是FreeBSD的。 系统架构 drop-down menu 选择x86(32位)或者x64(64位)。注意下载时模板的架构。 URL string 填写.tgz模板的完整URL(ftp:// 或者 http://)。这里也可以填写本地路径。注意是绝对路径 Mtree string 填写mtree文件的完整URL(ftp:// 或者 http://)。这里也可以填写本地路径注意是绝对路径 按确认就把模板创建好了。 创建jail容器0x2x5配置全局配置我习惯把jail理解为是freebsd下的容器，这样好理解些。在创建之前我们需要全局配置一下。 需要配置的就这么多，红色框中的看自己需求配置jail根目录：是容器的全部文件存储目录 0x2x6添加Jail需要配置的上图已经标记了。而网络配置配置一个和freenas同网段的地址就ok了至于jail容器的dns等不需要配置，默认跟freenas的dns跟随。]]></content>
+      <tags>
+        <tag>nas，freenas，中文，汉化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Debian上安装OpenMediaVault开源NAS系统]]></title>
+    <url>%2Fpost%2F5f6743a2.html</url>
+    <content type="text"><![CDATA[序言先安装debian9系统任何再修改源然后再安装OpenMediaVault 注意事项安装语言务必选择English安装服务的时候择安装SSH 内容1.添加源1echo &quot;deb http://packages.openmediavault.org/public arrakis main&quot; &gt; /etc/apt/sources.list.d/openmediavault.list 2.安装OMV源key12wget http://packages.openmediavault.org/public/pool/main/o/openmediavault-keyring/openmediavault-keyring_1.0_all.deb dpkg -i openmediavault-keyring_1.0_all.deb 3. 升级系统并安装OMV apt updateapt install postfix openmediavault 3.1 初始化 omv-initsystem 4. 添加OMVExtras插件库 wget -O - http://omv-extras.org/install | bash ps后续安装体验我的环境在虚拟机里安装的，这种用网络的安装方式非常依赖网络环境加上这个NAS系统相关文件都是国外的，所以网络环境非常糟糕的话非常容易在下载openmediavault服务器上的东西时候把ssh弹飞，就是突然短线，或者卡死，我是在虚拟机终端界面手打命令才成功的。所以这种安装方式只是在官方的ISO镜像无法安的情况下做一个备用的选择。特别是比较老的服务器阵列卡无法支持，在安装的时候没法识别到硬盘，而debian安装的时候又可以识别正常安装。而我在r410服务器上是无法安装成功的，而debian也是无法安装成功原因都是无法识别硬盘或者安装中途中报错卡死。而pve虚拟化平台就可以安装成功按道理都是基于debain这个系统平台， 安装后debian原版系统安装后只允许普通用户登录安装nas系统后普通用户不允许登录只允许root用户登录。]]></content>
+      <tags>
+        <tag>OpenMediaVault nas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[freenas新版U汉化中文教程]]></title>
+    <url>%2Fpost%2F13f74cae.html</url>
+    <content type="text"><![CDATA[弃坑序言无意间谷歌到一篇17年freenas的web控制界面的汉化教程，所以来试试如果汉化了的效果如何 内容相关软件版本 freeNAS-11.2-release 2019年2月14日下载 GetGnuWin32-0.6.3 Poedit Pro 2.0.9 Build 5330单文件版 win10 64位 相关文件官方翻译文档GIthub上翻译文件地址17年那篇文章fq使用编辑 .mo .po 的语言翻译文件的方法 2019年2月25日更新我在实体机上装freenas11.7u这个版本然后在本地搭建一个jail，安装官网上说的这是一个原版的freebad标准版本，而且因为新版的开发环境是freebad11这个环境，所以说开发环境基本上可以说是按照github上的帮助文档上说只会遇到一个问题]]></content>
+      <tags>
+        <tag>freenas，nas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7下搭建hexo基本流程]]></title>
+    <url>%2Fpost%2Fe26e0ef9.html</url>
+    <content type="text"><![CDATA[序言 看到网上没有太多这个其他系统平台的教程其实这可以说是全平台部署的，只要支持node这个环境就ok，说一句题外话，说这个hexo平台渲染速度非常慢，在md文件上千了就渲染速度就大幅度的降低，其实我内心的想法是你的文章还是没上千都有这个担心了真是矫情，文章到哪再说嘛，再说一个博客不行你文章上千了，你就不再开一个博客，！！！再 内容以下是正文 安装nginx yum install wget -ywgethttp://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmyum install -y nginx 管理nginx systemctl restart nginx.servicesystemctl enable nginx.servicesystemctl stop nginx.service ps题外话为什么不源代码编译啊，因为这个最方便，如果你有源代码编译的经验当我没说，而且这样默认加ssl也很方便直接加配置就ok了， 装node环境node是环境的总称，npm是包管理器就像centos有yum 乌班图有它的包管理器一样，我推荐一个用脚本安装，而且这样安装超过了很高nvmGithub地址]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Goaccess centos7 编译安装与使用]]></title>
+    <url>%2Fpost%2F41ab5961.html</url>
+    <content type="text"><![CDATA[序言Goaccess是一款开源的实时日志分析查看软件，不仅有在终端下有不同的颜色区分显示，同时还能输出详细的图表供用户参考。支持Apache、Nginx、 Amazon S3、 Elastic Load Balancing、CloudFront等服务器日志的分析。与之前ngxtop不同的是Goaccess更侧重于现在整体而不是排查。不仅LNMP可以用，只要是前面列出的日志格式都可以。最新版本是GoAccess v1.3 安装环境centos7 安装教程1234567891011#安装依赖yum -y install libmaxminddb-devel#下载源码wget https://tar.goaccess.io/goaccess-1.3.tar.gz#解压tar -xzvf goaccess-1.3.tar.gz#进入目录cd goaccess-1.3/#编译安装./configure --enable-utf8 --enable-geoip=mmdb --with-openssl --with-libmaxminddb-develmake &amp;&amp; make install 安装成功截图 添加文件vim /usr/local/etc/goaccess.conf改成goaccess格式标准对应为这个文件是新建的，默认空白，把下面的参数复制到里面1234time-format %Tdate-format %d/%b/%Ylog-format %h - %^ [%d:%t %^] requesthost:&quot;%v&quot;; &quot;%r&quot; requesttime:&quot;%T&quot;; %s %b &quot;%R&quot; - %^&quot;%u&quot; 设置中文报表这个程序在1.3版本支持中文了，但需要设置一下啊把系统的系统语言设置成中文 临时设置12LANG=&quot;zh_CN.UTF-8&quot; #修改为中文LANG=&quot;en_US.UTF-8&quot; #修改为英文 额，给一篇外链写的好的我是centos7修改语言教程 使用教程基本上这个使用还是很简单的可以在终端使用，但大部分还是喜欢那个漂亮的web界面报表吧，它的基本命令就是 12345678比如说我服务器生成web报表该怎么操作类我使用的web环境是[oneinstack](https://oneinstack.com/)这个脚本安装的，nginx日志文件在/data/wwwlogs/clul.cn_nginx.log这个文件![1](https://i.loli.net/2019/01/12/5c3948a04d991.jpg)而我的网站目录是/data/wwwroot/t.clul.cn/这个目录，相应的你应知道你网站日志在什么地方，还有网站根目录，就这样，我们用goaccess来生成web报表，这个就是一个很精美的html静态文件。## 生成html静态报表命令 goaccess -f /data/wwwlogs/clul.cn_nginx.log -c -a&gt;/data/wwwroot/t.clul.cn/go.html ` 查看https://t.clul.cn/go.html 后言这个看有一篇教程好像可以实时显示日志的，但也可以给一个定时任务。]]></content>
+      <tags>
+        <tag>goaccess</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[solo博客 用OneinStack一键安装脚本搭建]]></title>
+    <url>%2Fpost%2F2f0c3b8.html</url>
+    <content type="text"><![CDATA[序言对于小白来说博客系统的搭建，其中环境搭建与调试是很烦躁的一件事，特别是遇到一个对于不熟悉的环境的搭建者来说，虽然容器很方便但后期的维护和使用都需要时间和学习成本。而且也需要一定的时间去适应，所以说一键安装这些环境的脚本和面板很流行，但特别是系统这些，安装的东西越多，系统整体的安全性和稳定性，可维护性都理论上都会降低，而面板这些很方便但也需要一定的熟悉程度，而且安全性也有一定的可探究的地方，虽然技术达人，源代码编译爱好者，但不可否认的是越方便就越流行，因为使用的人多，教程方面，不同的人遇到的问题越多，知道的越多，可学习到的东西就越多。我们需要的是在一个安全与易维护之间与系统稳定性之间探究一个完美的平衡之道。 安装脚本脚本的安装很简单，解释一下这个脚本，我们需要安装的是一个nginx和tomcat和MySQL数据库的环境，这个脚本默认静态分离了的，nginx处理静态资源，而tomcat处理java程序。而默认把wer打包放到data/wwwroot/目录，就会自动的运行解包，但这样会在网站目录下直接生成一个二级目录建议mv一下移动全部的文件在网站根目录下。请按照命令一条一条的执行。这个脚本的学习成本还是很低的。 1wget http://mirrors.linuxeye.com/oneinstack-full.tar.gz &amp;&amp; tar xzf oneinstack-full.tar.gz &amp;&amp; ./oneinstack/install.sh --nginx_option 1 --tomcat_option 2 --jdk_option 2 --db_option 2 --dbinstallmethod 1 --dbrootpwd n0p1kpym --pureftpd --redis --memcached --iptables --reboot 执行上面的命令进行一个基础的java web环境搭建。提前说一下安装这个后还可以安装php环境，直接运行安装脚本选择php其他的不要选了。 添加网站，运行脚本 选择2java环境 基本上就是一个跟我们常用的一键脚本差不多，第一次使用的话习惯一下，需要注意的是123## 注意事项数据库是重中之重，这个数据库在创建的时候跟我 [solo 博客搭建 2019 年版本](https://hacpai.com/article/1547037391953)差不多，不过创建数据库用户的时候请用这条命令 create user ‘blog‘@’%’ identified by ‘LTAIIJoeR’; CREATE DATABASE IF NOT EXISTS solo DEFAULT CHARSET utf8 COLLATE utf8_general_ci; grant all privileges on solo.* to ‘blog‘@’%’ identified by ‘LTAIIJoeR’; flush privileges; 只是把localhost换成%`为什么要这样换，因为我成功搭建后初始化数据库不成功，猜测是没链接成功数据库，还有如过要hexo文章转过来md文件建议用自带使用内嵌的 Jetty 容器起一下，这样才能转成功， 后言只是一个很方便后期维护一个方向，请各位大佬高抬贵手，不要喷，毕竟都是小白过来的，这个是一定会成功搭建的，不然我也不会写这个文章，经验之谈，有什么错误的地方请指出，虚心学习。]]></content>
+      <tags>
+        <tag>Solo博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[solo 博客搭建 2019 年版本]]></title>
+    <url>%2Fpost%2F3dac98a3.html</url>
+    <content type="text"><![CDATA[序言 solo博客系统是用java这类的语言开发的博客程序，在这很感谢hacpai。而对于一个经常接触这类博客系统的技术人员，会安装这个博客系统，但对于经常自己用面板或者一键脚本安装环境的爱好者来说，可能会遇到一定的问题，所以说本教程就是给想一次性就成功安装体验这个博客系统的爱好者，能以从安装操作系统开始在什么地方遇到，怎么解决，可能会遇到的问题一一列举，一一回答出来，能按照步骤来做，有百分之90可以性成功安装，以少走弯路为标准，当然因为环境的苛刻要求，可能有一定的差异，也可以本文做一个标准以来参考之。 相关环境 阿里云轻量级服务器 centos7 solo博客安装包 java安装包 MySQL 相关下载创建目录并下载solo程序，值得关注的是solo博客程序的发布搬到github上了，以前是百度网盘发布的。123mkdir /home/solocd /home/solowget https://github.com/b3log/solo/releases/download/v2.9.7/solo-2.9.7.war​ java相关centos7的java环境搭建其实很简单在这就解压，设置环境变量就ok了。安装教程还有一种方式就是通过yum安装的方式我也不知道这两种安装方式的优劣，不过都可行，下面命令是yum安装方式1yum install java-1.8.0-openjdk -y​ java官网下载地址 MySQL安装mysql的安装没有什么不一样的注意最后一个命令开机自启多了一个d我就是被这个坑了好久 12345wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmyum install -y mysql-serversystemctl restart mysql.servicesystemctl enable mysqld.service MySQL相关操作需要注意的mysql安装后root用户没有密码的所以嘿嘿嘿按照相关命令一步一步的操作就ok了12345msyql -u rootcreate user &apos;blog&apos;@&apos;localhost&apos; identified by &apos;LTAIIJoeRp&apos;;CREATE DATABASE IF NOT EXISTS solo DEFAULT CHARSET utf8 COLLATE utf8_general_ci;grant all privileges on `solo`.* to &apos;blog&apos;@&apos;localhost&apos; identified by &apos;LTAIIJoeRp&apos;;flush privileges; 解释一下上面的操作默认你在用root这个系统用户操作的 登录mysql数据库用root用户来登录，注意哦这个是MySQL数据库root用户，不是系统的，默认没有密码。 创建一个blog这个用户并密码密码设置为LTAIIJoeRp并只需要本地登录 创建一个叫solo的数据库，这可不是随便创建的你可以看到很多属性 赋予solo这个数据库的所有权给blog这个数据库用户 刷新权限 解压solo博客安装包并进入目录12jar -xvf solo-2.9.7.warcd solo solo程序配置篇，这是一个很重要的步骤解释一下旧版的安装，旧版默认是solo自带的一个数据库H2这个数据库所以不需要安装mysql就可以起动起但最新版本把这个的配置注释了,默认用MySQL来连接，这样如果按照GitHub上的说明文件下载下来后解压启动是不行的。 用户为blog 密码为LTAIIJoeRp 数据库为solo 需要配置的有2个文件12WEB-INF/classes/latke.propertiesWEB-INF/classes/local.properties latke.properties文件是配置域名没有域名就ip地址不然的话不能正确加载静态资源 local.properties 配置数据库的 修改latke.properties文件1vim WEB-INF/classes/latke.properties 1234567891011#### Server ##### Browser visit protocolserverScheme=http# Browser visit domain nameserverHost=clul.cn #要么域名要么ip地址这个是一定要修改的# Browser visit port, 80 as usual, THIS IS NOT SERVER LISTEN PORT!serverPort=8080 # 选修，启动端口` 修改local.properties文件1vim WEB-INF/classes/local.properties 123456789101112131415#### H2 runtime #####runtimeDatabase=H2#jdbc.username=root#jdbc.password=#jdbc.driver=org.h2.Driver#jdbc.URL=jdbc:h2:~/solo_h2/db#jdbc.pool=h2 #### MySQL runtime ####runtimeDatabase=MYSQLjdbc.username=blog # 数据库用户jdbc.password=LTAIIJoeRp # 数据库密码jdbc.driver=com.mysql.jdbc.Driver ↓到没这就是数据库jdbc.URL=jdbc:mysql://localhost:3306/solo?useUnicode=yes&amp;amp;characterEncoding=utf8jdbc.pool=druid 后续启动程序到现在我们已经配置好程序了，就开始启动吧默认在1前台启动 java -cp WEB-INF/lib/*:WEB-INF/classes org.b3log.solo.Starter1后台启动 nohup java -cp WEB-INF/lib/*:WEB-INF/classes org.b3log.solo.Starter &amp;` 后言默认关闭了防火墙]]></content>
+      <tags>
+        <tag>Solo博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[世界，你好！]]></title>
+    <url>%2Fpost%2Ffa30a80a.html</url>
+    <content type="text"><![CDATA[欢迎使用 Solo 博客系统。这是系统自动生成的演示文章，编辑或者删除它，然后开始你的独立博客之旅！ 另外，欢迎你加入黑客与画家的社区，你可以使用博客账号直接登录！ Solo 博客系统是一个开源项目，如果你觉得它很赞，请到项目首页给颗星鼓励一下 :heart:]]></content>
+      <tags>
+        <tag>Solo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nginx禁止直接用ip访问web服务]]></title>
+    <url>%2Fpost%2Fa58bc2b0.html</url>
+    <content type="text"><![CDATA[很简单加一个服务就ok了 新加的server（注意是新增，并不是在原有的server基础上修改） server { listen 80 default; server_name _; return 403; } 比如说我一共有就一个站点。 /usr/local/nginx/conf/clul.cn.conf 这个是配置文件路径，而要能直接ip访问的是这个nginx配置文件 /usr/local/nginx/conf/nginx.conf 所以我直接修改这个配置文件就ok了]]></content>
+      <tags>
+        <tag>未分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[联想笔记本添加硬件注意事项(通用)]]></title>
+    <url>%2Fpost%2F5f50cc9e.html</url>
+    <content type="text"><![CDATA[序言联想笔记本我遇到几次，应该是比较熟悉的了，这个是遇到添加联想笔记本的步骤 去官网查看笔记本底部的型号，查看配置信息可以加的最大配置 注意笔记本的内存条代数 查看笔记本有没有m.2的接口 联想官方查看口]]></content>
+      <tags>
+        <tag>未分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Chrome浏览器 添加到主屏幕 没有任何反应]]></title>
+    <url>%2Fpost%2F1df1228e.html</url>
+    <content type="text"><![CDATA[移动端的Chrome浏览器可以将当前访问的应用“添加到主屏幕”，这样桌面上就会出现一个应用快捷方式。 小米4手机铬浏览器点击“添加到主屏幕”后，没有任何反应，桌面上也没有出现应用图标。 解决方法： 设置 - 更多应用 - 在“全部”中找到Chrome - 权限管理 - 开启“桌面快捷方式”权限]]></content>
+      <tags>
+        <tag>Chrome</tag>
+        <tag>WPA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[激活密匙连接]]></title>
+    <url>%2Fpost%2Faa572bc8.html</url>
+    <content type="text"><![CDATA[Windows系统各版本最新KMS GVLK列表，带一键激活Win脚本KMS激活Windows一键脚本]]></content>
+      <tags>
+        <tag>kms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 搭建kms激活服务器（内网）]]></title>
+    <url>%2Fpost%2F57ece926.html</url>
+    <content type="text"><![CDATA[序言在内网搭建一个服务器可是cpu是amd的只好源代码编译安装了相关命令就放下面了，找到一个脚本就不重复的造轮子了。我的环境是centos7 因人而异。 环境搭建systemctl stop firewalld systemctl enable firewalld yum install gcc git make -y 默认在root执行的命令#CentOS，Redhat，Fedora等请选择CentOS脚本 wget https://raw.githubusercontent.com/dakkidaze/one-key-kms/master/one-key-kms-centos.sh chmod +x one-key-kms-centos.sh ./one-key-kms-centos.sh #Debian，Ubuntu，Mint等请选择Debian脚本 wget https://raw.githubusercontent.com/dakkidaze/one-key-kms/master/one-key-kms-debian.sh chmod +x one-key-kms-debian.sh ./one-key-kms-debian.sh #启动KMS wget https://raw.githubusercontent.com/dakkidaze/one-key-kms/master/kms.sh chmod +x kms.sh ./kms.sh start 激活slmgr /skms ip #ip为你KMS的IP地址或者域名 slmgr /ato 因为不是VL版本的都没KEY，比如说旗舰版，家庭高级版等。 激活Office首先你的Office必须是VOL版本，否则无法激活。 找到你的Office安装目录，如果你不知道你的Office装在哪个目录，可以鼠标右键一个程序图标比如Word，然后选择“打开文件所在的位置”，在上面地址栏就可以看到了。 这里以Office2016为例，32位文件夹目录为C:Program Files (x86)Microsoft OfficeOffice16。62位目录为C:Program FilesMicrosoft OfficeOffice16。关于文件夹对应的版本说明：Office16是Office2016，Office15就是Office2013，Office14就是Office2010。 下面以32位为参考。使用管理员权限运行cmd，运行以下命令： 进入Office文件夹执行命令cd &quot;C:\Program Files (x86)\Microsoft Office\Office16&quot; cscript ospp.vbs /sethst:ip #ip为你KMS的IP地址或者域名 cscript ospp.vbs /act 如果提示看到successful的字样，那么就是激活成功了，重新打开Office就好。 转载至Linux VPS一键搭建KMS服务器脚本及激活Windows和Office教程]]></content>
+      <tags>
+        <tag>kms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 frp相关开机启动]]></title>
+    <url>%2Fpost%2F54c44acb.html</url>
+    <content type="text"><![CDATA[开机启动使用systemctl来控制启动 vim /lib/systemd/system/frps.service 在frps.service里写入以下内容 [Unit] Description=frps service After=network.target syslog.target Wants=network.target [Service] Type=simple #启动服务的命令（此处写你的frps的实际安装目录） ExecStart=/test/frp_0.20.0_linux_amd64/frps -c /test/frp_0.20.0_linux_amd64/frps.ini [Install] WantedBy=multi-user.target systemctl daemon-reload #重载daemon生效然后就启动frpssystemctl start frps再打开自启动systemctl enable frps关闭开机自启动systemctl disable frps如果要重启应用，可以这样，systemctl restart frps如果要停止应用，可以输入，systemctl stop frps如果要查看应用的日志，可以输入，systemctl status frps]]></content>
+      <tags>
+        <tag>frp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 源代码编译最新qbittorrent版本]]></title>
+    <url>%2Fpost%2Fab62f6b1.html</url>
+    <content type="text"><![CDATA[序言yum -y install epel-release yum -y groupinstall &quot;Development Tools&quot; yum -y install wget git gcc gcc-c++ qt-devel boost-devel openssl-devel qt5-qtbase-devel qt5-linguist wget https://github.com/arvidn/libtorrent/releases/download/libtorrent-1_1_6/libtorrent-rasterbar-1.1.6.tar.gz tar -zxf libtorrent-rasterbar-1.1.6.tar.gz cd libtorrent-rasterbar-1.1.6 ./configure --prefix=/usr CXXFLAGS=-std=c++11 make make install ln -s /usr/lib/pkgconfig/libtorrent-rasterbar.pc /usr/lib64/pkgconfig/libtorrent-rasterbar.pc ln -s /usr/lib/libtorrent-rasterbar.so.9 /usr/lib64/libtorrent-rasterbar.so.9 cd .. git clone https://github.com/qbittorrent/qBittorrent.git cd qBittorrent ./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5 CXXFLAGS=-std=c++11 make make install systemctl stop firewalld.service qbittorrent-nox #运行，第一次运行 按 y 同意qbittorrent-nox -d 或 qbittorrent-nox &amp; #后台运行 注册成服务vi /usr/lib/systemd/system/qbittorrent.service [Unit] Description=qbittorrent torrent server [Service] User=root ExecStart=/usr/bin/qbittorrent-nox Restart=on-abort [Install] WantedBy=multi-user.target systemctl daemon-reload #重载daemon生效相关命令systemctl start qbittorrentsystemctl enable qbittorrent #开启启动systemctl status qbittorrentsystemctl stop qbittorrent 开启启动chkconfig qbittorrent on 关闭防火墙systemctl stop firewalld.service #停止firewallsystemctl disable firewalld.service #禁止firewall开机启动 转自 http://hh.tn/d/146转自 https://lala.im/3024.html ，简化整理]]></content>
+      <tags>
+        <tag>qbittorrent</tag>
+        <tag>pt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[freeNAS ssh]]></title>
+    <url>%2Fpost%2Fe997d0b2.html</url>
+    <content type="text"><![CDATA[序言在freenas中ssh可以说是只要是开源的系统都自带的，除了传输加密以外为什么还要用这个功能呐。 客户端终端访问nas sftp功能 加密隧道 开启功能 设置高级功能哦]]></content>
+      <tags>
+        <tag>freenas</tag>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[freebsd 搜索目录命令有效]]></title>
+    <url>%2Fpost%2Fa5142b07.html</url>
+    <content type="text"><![CDATA[3.find指令 : find （ walk a file hierarchy ）语法 : find 起始目录 -name 欲找的文件名 -print用途 : 在档案系统架构中搜寻]]></content>
+      <tags>
+        <tag>默认分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XigmaNAS 开启ssh服务]]></title>
+    <url>%2Fpost%2Fb878b54.html</url>
+    <content type="text"><![CDATA[序言开启服务后默认居然admin登录不了 登录ssh root@ip密码默认为xigmanas（小写）]]></content>
+      <tags>
+        <tag>XigmaNAS</tag>
+        <tag>nas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[freenas jails模板介绍]]></title>
+    <url>%2Fpost%2Ff0f212bb.html</url>
+    <content type="text"><![CDATA[序言手动安装FreeBSD的jails模板来提高freenas的可玩性，jail可以理解为容器，但官方最新的11版本不支持linux系列版本模板了。 官方下载地址官方64位11版本下载站 文件类型目录中的文件的三种类型： mtree文件是用于安装jails模板时进行验证的文件，是FreeNAS提供的一种安全机制。 tgz文件就是jails模板文件。 sha256文件里保存的是用于验证下载的标准jails模板文件的sha256码。 文件名里freenas-xxxxxxx-11.0-RELEASE，有两个是pluginjail，这两个文件是用于安装PBI插件的jails模板。而standard是一个标准的FreeBSD的jails模板。]]></content>
+      <tags>
+        <tag>freenas</tag>
+        <tag>jail</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Freebsd 安装qBittorrent]]></title>
+    <url>%2Fpost%2Fd2b20f00.html</url>
+    <content type="text"><![CDATA[序言我需要在freenas里的jail里安装pt下载程序 升级系统pkg update pkg upgrade -y 安装qbittorrentpkg install qbittorrent-nox 后台启动qbittorrent-nox -d 访问http://ip:8080 登录默认用户密码用户名admin密码adminadmin]]></content>
+      <tags>
+        <tag>freenas</tag>
+        <tag>jail</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[manjaro安装VirtualBox虚拟机]]></title>
+    <url>%2Fpost%2F4e194b20.html</url>
+    <content type="text"><![CDATA[序言安装基本软件包安装 软件包 virtualbox。内核模块的安装方式要从下面二选一： 如果在用默认的 linux 内核，建议安装 virtualbox-host-modules-arch如果用了其它的内核，需要安装 virtualbox-host-dkms为了能基于 virtualbox-host-dkms 编译内核模块，你还要安装与内核对应的内核头文件（例如linux-lts 内核的头文件是 linux-lts-headers）。[1] 当 VirtualBox 或内核更新的时候，DKMS 的 Pacman 钩子会自动编译内核模块。 命令 sudo pacman -S virtualbox-guest-utils sudo modprobe vboxdrv]]></content>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XigmaNAS安装研究-U盘安装]]></title>
+    <url>%2Fpost%2F5ccadf77.html</url>
+    <content type="text"><![CDATA[序言在研究U盘安装这个nas系统之前需要也希望对之前的文章有一个详细的解读，因为这样才能知道我们下载的文件工具是什么。也知道我们写的相关名词是什么，也希望如果你看这篇文章如果有什么错误的地方可以在下方评论留言或发邮件给我。 相关文件 镜像文件 8G及更高容量U盘 win10 64位系统 制作软件 硬件及相关软件配置启动U盘的制作与安装额外其他版本启动U盘制作尝试pe启动软件引导安装尝试]]></content>
+      <tags>
+        <tag>nas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vm esxi 驱动集成工具教程]]></title>
+    <url>%2Fpost%2F28479.html</url>
+    <content type="text"><![CDATA[Esxi6.5版本开始，以前的驱动集成工具ESXi-Customizer，就无法使用了，而且这个工具比较老，在win10下也不能很好的工作。v-front发布了新的集成工具，ESXi-Customizer-PS-v2.6.0.ps1，这个脚本要在powershell里面用命令行方式运行。 前几天没事按照网上的教程简单研究了一下，发现这个工具非常不错，需要的同学可以直接去 www.v-front.de下载。运行前有些事情要注意一下，工具下载后，在powershell里面是无法直接使用的，提示此程序未通过认证。这时需要更改执行策略，用管理员身份打开powershell，输入命令set-executionpolicy remotesigned，然后yes就可以了。执行完之后 ESXi-Customizer-PS-v2.6.0.ps1就可以正常工作了。首先切换到脚本所在目录，用dos命令 cd 就可以了，这个大家应该都会。输入命令 .\ESXi-Customizer-PS-v2.6.0.ps1 -v67，脚本会自动下载创建6.7版exsi的标准iso文件。对应的参数 -V50，V51 V55 V60 V65分别代表对应的esxi 标准iso文件。参数-help 可以帮助你了解这个脚本的其他参数和使用方法。这个工具的另外一个优点就是可以直接连接v-front的驱动库，创建集成驱动的iso。例如：输入 .\ESXi-Customizer-PS-v2.6.0.ps1 -v67 -vft -load sata-xahci,net55-r8168就可以得到集成sata-xahci和R8168网卡驱动的 esxi6.7 iso文件。驱动名可以去https://vibsdepot.v-front.de/wik … lable_ESXi_packages查询，需要集成哪些驱动，直接在后面加上相应的驱动名称即可。当然集成前，请注意检查一下驱动兼容性，否则可能会不成功的。上面那条命令可以解决大多数人安装esxi集成驱动碰到的麻烦，realtek网卡在普通主板上应用太广泛了，很多网友都需要自己集成网卡驱动到 exsi，这个工具比使用powercli简单快捷多了。希望这个教程对大家有所帮助ps：转载链接http://koolshare.cn/thread-139057-1-2.html 顺便提下，从6.5开始包括6.7，官方镜像已经集成了SATA驱动，sata-xahci驱动包补丁应该不需要再添加了.\ESXi-Customizer-PS-v2.6.0.ps1 -v67 -vft -load net55-r8168 链接：esxi 6.7集成螃蟹网卡和SATA驱动的镜像https://pan.baidu.com/s/1Xjp1a7feS7poIRDUiTTt4A 密码：hrke]]></content>
+      <tags>
+        <tag>驱动 esxi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XigmaNAS安装研究]]></title>
+    <url>%2Fpost%2F26999.html</url>
+    <content type="text"><![CDATA[起因是群里老哥对新版安装一直安装不起，这也是促使我去官网看看有什么新变化的原因 历史渊源XigmaNAS前面的名字是nas4free，而nas4free是FreeNAS代码的直接延续，XigmaNAS于2005年至2011年以FreeNAS的名义开发。在2011年iXsystems公司合法收购FreeNAS名称后，此原始代码无法再以相同的品牌名称开发，因此需要更改名称。FreeNAS（Olivier Cochard-Labbé）的创始人向现在的XigmaNAS开发团队捐赠了IXsystems无法用于其版本的受版权保护的源代码。同时IXsystems禁止XigmaNAS开发团队根据其新获得的品牌名称发布基于原始代码的新版本。同时IXsystems的FreeNAS 8诞生于2011年5月，同时freenas7的后续开源版本NAS4Free诞生，XigmaNAS开发团队开始发布重新启动的新名称和开发时，也借此机会升级了基本系统。新品牌NAS4Free的第一个版本于2012-03-22完成，NAS4Free 9.0.0.1系列的第一个版本。2017年底，XigmaNAS开发团队XigmaNAS提交了商标。从2018年7月起，开始发布XigmaNAS版本。 历史序列号从上面可以看出XigmaNAS这个开源的nas系统的发展历史 版本XigmaNAS基于FreeBSD 11.2构建，适用于11.2.0.4.xxxx系列，只提供64位版本！当前版本为11.2.0.4 时间：2018-07-31 XigmaNAS下载选项 x64 LiveCD ISO这是64位安装/光盘映像。它旨在写入CD，然后启动以执行初始安装。 x64 LiveUSB img.gz这是64位安装/ LiveUSB映像。它旨在写入USB闪存驱动器，然后启动以执行初始安装。如果您使用的是64位硬件，但没有光驱，则可能是您想要的文件。 x64 full.tgz这是64位完整安装系统的完整升级映像。它仅在您从WebGUI执行升级时才有用。此文件不是您正在寻找的文件。首次系统安装只需要livecd / usb即可完成！升级文件没有安装机制 x64 Embedded img.xz这是64位硬件的升级/ CF映像。它仅在您从WebGUI执行升级时才有用。此文件不是您正在寻找的文件。首次系统安装只需要livecd / usb即可完成！升级文件没有安装机制 x8632位的系统已经停止开发了 官方下载地址https://sourceforge.net/projects/xigmanas/files/XigmaNAS-11.2.0.4/11.2.0.4.5774/]]></content>
+      <tags>
+        <tag>nas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[sym社区搭建详细教程]]></title>
+    <url>%2Fpost%2Ff1142d5.html</url>
+    <content type="text"><![CDATA[![123][1][1]:https://wx1.sinaimg.cn/mw690/5e9ac85egy1ft7923pntuj20by0bydgz.jpg虽然最后还是因为sym社区的可定制化，因为对代码完全不熟小白一个，但这个教程还是说明我对这个社区程序搭建用过心，最后感谢D大设计了这个很棒的程序。我可能只是咸鱼一个吧 白墨2018年7月12日晚序 环境准备 JDK，版本至少需要 JDK8 MySQL，版本至少需要 5.6 Tomcat，版本至少需要 9 Maven，下载解压后设置 bin 目录到 PATH 环境变量中在centos7下安装的程序安装一、JDK 安装 1. 安装 wget 1yum -y install wget 2. 下载，输入指令 1wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.rpm 3. 执行 npm 安装包，等待安装完成 1rpm -ivh jdk-8u112-linux-x64.rpm 4. 验证安装是否成功 123456#输入指令java -version#出版本java version &quot;1.8.0_112&quot;Java(TM) SE Runtime Environment (build 1.8.0_112-b15)Java HotSpot(TM) 64-Bit Server VM (build 25.112-b15, mixed mode) 二、Tomcat 安装 下载，切换至任意目录执行 1wget http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.0.M18/bin/apache-tomcat-9.0.0.M18.tar.gz 解压 ，执行以下命令 tar -zxvf apache-tomcat-9.0.0.M18.tar.gz 移动至想放置的目录 mv apache-tomcat-9.0.0.M18 /usr/local/ 配置自启动，切换至 Tomcat 的 bin 目录执行 vi setenv.sh，并按 i 进入编辑模式，拷贝以下代码粘贴 #add tomcat pidCATALINA_PID=”$CATALINA_BASE/tomcat.pid” #add java optsJAVA_OPTS=”-server -XX:PermSize=256M -XX:MaxPermSize=1024m -Xms512M -Xmx1024M -XX:MaxNewSize=256m” 然后输入 wq 保存退出，最后执行 chmod +x setenv.sh，确保文件 setenv.sh 可执行。 5. 配置 service 执行 cd /usr/lib/systemd/system 切换至目录 并执行 vi tomcat.service（也可以直接 vi /usr/lib/systemd/system/tomcat.service）, 拷贝以下代码粘贴（注意将第 6 和 7 行的 Tomcat 路径 / usr/local/apache-tomcat-9.0.0.M18 换成你自己的 Tomcat 的绝对路径） [Unit]Description=TomcatAfter=syslog.target network.target remote-fs.target nss-lookup.target[Service]Type=forkingPIDFile=/usr/local/apache-tomcat-9.0.0.M18/tomcat.pidExecStart=/usr/local/apache-tomcat-9.0.0.M18/bin/startup.shExecReload=/bin/kill -s HUP $MAINPIDExecStop=/bin/kill -s QUIT $MAINPIDPrivateTmp=true[Install]WantedBy=multi-user.target 之后按 esc 键，在按 shift+：（左下角出现会出现 “：”），然后输入 wq 保存退出。执行以下指令将 tomcat.service 添加开机至开机启动 #配置开机启动systemctl enable tomcat #启动systemctl start tomcat #停止systemctl stop tomcat #重启systemctl restart tomcat 三、ntos7+maven 安装1、下载安装包1wget https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz 2、解压安装包 tar -xvf apache-maven-3.5.4-bin.tar.gz 3、移动至 / usr/local 下 mv apache-maven-3.5.4 /usr/local 4、配置环境变量，编辑 / etc/profile 文件，添加如下代码 AVEN_HOME=/usr/local/apache-maven-3.5.4export MAVEN_HOMEexport PATH=${PATH}:${MAVEN_HOME}/bin 5、保存文件，并运行如下命令使环境变量生效 ource /etc/profile 6、输入如下命令，如果能看到 Maven 相关版本信息，则说明 Maven 已经安装成功 mvn -v]]></content>
+      <tags>
+        <tag>Note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[家庭虚拟化软件方案]]></title>
+    <url>%2Fpost%2F2698b715.html</url>
+    <content type="text"><![CDATA[序言1、 家庭虚拟化软件是我打算持续更新的一个方案，其实在实际应用当中我们会遇到许多莫名其妙的问题，这也是我打算用通俗易懂的方式记一下，也给大家特别是新入门的大佬与萌新一个方向那么什么是虚拟化勒。虚拟化就是把硬件资源从物理方式转变为逻辑方式，打破了物理硬件与操作系统及在其上运行的应用程序之间的硬性连接。使用户可以灵活的管理计算机资源，在一台计算机上同时运行多个操作系统，实现资源利用率最大化与灵活管理的一项技术。 与物理机一样，虚拟机是运行操作系统和应用程序的软件计算机。管理程序用作虚拟机的运行平台，并且可以整合计算资源。每个虚拟机包含自己的虚拟（基于软件的）硬件，包括虚拟CPU、内存、硬盘和网络接口卡。 2、虚拟化的优势 （1）减少服务器数量，降低硬件采购成本 （2）资源利用率最大化 （3）降低机房空间、散热、用电成本 （4）硬件资源可以动态调整，提高企业IT业务的灵活性 （5）高可用性 （6）在不中断服务的情况下，进行物理硬件调整 （7）降低管理成本 （8）具备更高效的灾备能力 资金预算土豪有土豪的预算，垃圾佬也有他自己的想法不是吗，其实大部分我们拿出来的资金都不是太够2k人民币都已经可以有一个不错的硬件环境，我们大部分的资金都投入到了硬件方面软件我们其实并没有投入太多，可以说软件的投入基本上为零。而硬件我们虚拟化最主要需要投入的是内存和硬盘，这两个是我们主要投入的大体方向，其中硬盘是一个烧钱大户，内存在18年也涨了不少。 特别是后期的投入，时间、精力、金钱。可以说都是需要考虑的地方。 主要需求 需求主要分5个方面1.安全2.娱乐3.工作4.备份5.存储 我想对有过移动硬盘损坏的读者对数据的安全有过深刻体会，其实我们只能提高数据的可靠性，没有什么办法是100%的可靠的，在虚拟化的同时我们可以选择很多提高我们数据安全性的技术，比如说我们的最常用的功能快照功能，就是一个很好用的备份与防误操作的功能。而且因为在虚拟机里运行我们的系统或者软件，对病毒的防护能力可以说是大大的提高。病毒也不可能跨系统，跨虚拟机感染文件吧。 esxi6.5虚拟机平台1.推荐使用rufus来制作系统安装盘2.遇到常见的不能识别网卡需要在镜像文件里加网卡驱动 常见驱动问题解决网址我是网址]]></content>
+      <tags>
+        <tag>虚拟化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win10家庭版升级专业版加数字激活]]></title>
+    <url>%2Fpost%2F1cc29797.html</url>
+    <content type="text"><![CDATA[需要的资源都已经在百度云盘了 第一步卸载本机密匙1、卸载密钥 已管理员身份运行 cmd.exe，输入 slmgr.vbs /upk，会弹出“成功卸载了产品密钥”，重启 第二步密钥升级首先你需要一个可用的专业版的密钥。我找到一个可用的 1、依次打开开始菜单—设置—更新和安全—激活—更改产品密钥； 2、输入产品升级密钥（实在找不到上万能的淘宝吧！）1DR9VN-GF3CR-RCWT2-H7TR8-82QGT 第三步数字权利升级（不是kms升级哦） 其实不用这么麻烦 下载本软件后关闭win10自带的杀毒软件然后右击管理员运行本软件，然后输入2回车然后输入1回车就ok了，你可以看到已经激活， 下载链接链接：https://pan.baidu.com/s/19scqTTfKn8-XFKCY8akRmQ 密码：u3n3]]></content>
+      <tags>
+        <tag>win10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 安装nvm脚本]]></title>
+    <url>%2Fpost%2F52b619b6.html</url>
+    <content type="text"><![CDATA[序言nvm是个啥？nvm是一个可以让你在同一台机器上安装和切换不同版本node的工具我是官网 安装nvm第一步 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash ps:第一步成功后会有提示第二步的代码 第二步依次输入123export NVM_DIR=&quot;$HOME/.nvm&quot;[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot; # This loads 使用1列出全部版本 nvm ls-remote 2安装指定版本 nvm install v7.9.0 3切换指定版本，切换效果是全局的 nvm use v7.8.0 4查看当前使用的版本 nvm current 5查看该系统已经安装的版本，这个命令也能看到当前使用的是哪个版本 nvm ls]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 安装nvm脚本]]></title>
+    <url>%2Fpost%2F61734.html</url>
+    <content type="text"><![CDATA[序言nvm是个啥？nvm是一个可以让你在同一台机器上安装和切换不同版本node的工具我是官网 安装nvm第一步 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash ps:第一步成功后会有提示第二步的代码 第二步依次输入123export NVM_DIR=&quot;$HOME/.nvm&quot;[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot; # This loads 使用1列出全部版本 nvm ls-remote 2安装指定版本 nvm install v7.9.0 3切换指定版本，切换效果是全局的 nvm use v7.8.0 4查看当前使用的版本 nvm current 5查看该系统已经安装的版本，这个命令也能看到当前使用的是哪个版本 nvm ls]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[solo博客搭建教程与常见错误]]></title>
+    <url>%2Fpost%2F181affc4.html</url>
+    <content type="text"><![CDATA[序言研究了一下solo博客搭建方法，虽然网上说这个博客系统出来已经好久了，2010年出来的但网上安装资料还是没有几篇，这对一个不会谷歌与百度的小白来说可以说是非常不友好的，虽然官方说一个命令就可以搭建但我们还不是需要准备环境是不是，就是容器也需要安装环境不是吗 安装环境 centos7 jdk环境 开启防火墙端口8080 安装jdk环境检查版本 yum search java|grep jdk 安装 yum install java-1.8.0-openjdk -y 打开防火墙8080端口添加端口 firewall-cmd –zone=public –add-port=80/tcp –permanent 重载防火墙 firewall-cmd –reload 下载solo博客程序这个源程序d哥发布在百度网盘[点我下载][1][1]: https://hacpai.com/forward?goto=https%3A%2F%2Fpan.baidu.com%2Fs%2F1dzk7SU然后点击目录里的最新版本，别整个目录下载下来里面有历史版本 创建目录 mkdir /home/solo 把solo程序上传到目录我是用Winscp这个win下的程序上传到/home/solo目录的，sftp了解一下只要你Linux服务器可以ssh链接都可以上传文件，不需要额外搭建ftp服务器 进入solo目录 cd /home/solo 解压solo-2.9.0.war yum install unzip -yunzip solo-2.9.0.war 重要修改(引用的官方教程）这个是必须要修改的地方，因为每个人安装博客的环境都不一样，所以必须得这个步骤必须自己理解现在我们来修改local.properties这个文件打开文件 vi WEB-INF/classes/latke.properties 1234567#### Server ##### Browser visit protocolserverScheme=http# Browser visit domain nameserverHost=localhost# Browser visit port, 80 as usual, THIS IS NOT SERVER LISTEN PORT!serverPort=8080 我们需要修改的是serverHost=localhost这个地方的值，修改为你本机的ip或者域名这样才能访问到一些solo需要的资源点击我[我是官方教程配置详解][2][2]: https://hacpai.com/article/1474087427032 启动博客然后访问Windows: &nbsp;&nbsp; java -cp “WEB-INF/lib/;WEB-INF/classes” org.b3log.solo.StarterUnix-like: &nbsp;&nbsp; java -cp “WEB-INF/lib/:WEB-INF/classes” org.b3log.solo.Starter ps: 后面的配置nginx配置反向代理因为我只是在虚拟机里实验访问还行，如果真的要搭建推荐还是配置一下nginx，另外hexo的md导入支持和导出支持感觉特别棒，还有吐槽一下手机端的美化，有一股原始感，]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[小生不才]]></title>
+    <url>%2Fpost%2F690dca4e.html</url>
+    <content type="text"><![CDATA[小生不才,仰慕姑娘许久不曾敢言,怕唐突姑娘。时至今日才有胆量。敢问姑娘,我愿以白头换白头,不知姑娘愿不愿意?如若有所唐突,还望姑娘多加体谅 此番便先谢过姑娘 小生不才，讨了姑娘欢心，却又忘了初心 小生不才，姑娘已长发及腰，我却功名未就 小生不才，与姑娘萍水相逢，却又妄自恋姑娘许久 小生不才，世间自有弱水三千，偏我眼中只有姑娘一人 小生不才，留不住姑娘，还望姑娘能留住自己的心上人 小生不才，姑娘请便。不要误了你的红尘，却又不知道归途 小生不才，仰慕姑娘许许久，不知姑娘是否与小生喜结良缘 小生不才，姑娘与我甚是遥远何必受那相思之苦，小生告辞 小生不才, 没能与姑娘谈笑风生，所以爱慕之意尽在晚安之中、 小生不才, 仰慕姑娘已久,竟不知姑娘早已心系他人 小生不才，殊不知姑娘早有心上人，经此一别，怕是再不会相遇了 小生不才，姑娘佳偶已觅，何不邀我饮你喜酒一杯，断我心事几重 小生不才,没能与姑娘阅尽繁华,所有酸甜苦辣,尽在各奔东西之中 小生不才，不知姑娘早已心系别家公子，此经一别自是不必再相见了 小生不才,没能与姑娘相互托付余生,余生悠长,剩下已浸在一樽清酒之中。 小生不才，一不小心爱上姑娘了，竟然留不住姑娘，还望姑娘能留住自己的心上人 小生不才，未能与姑娘谈笑风生，愿姑娘此去经年能得所爱，小生这便告辞了，这一别，便是自不在相见 小生不才，未得姑娘青睐，扰姑娘良久，姑娘勿怪，自此所有爱慕之意止于唇齿，匿于年华，今生就此别过，各自安好。 小生不才，仰慕姑娘许久不曾敢言，怕唐突姑娘。时至今日才有胆量。敢问姑娘，我愿以白头换白头，不知姑娘愿不愿意？如若有所唐突，还望姑娘多加体谅 此番便先谢过姑娘 ！ 小生不才，没能与姑娘谈笑风生，不知姑娘早已心系别家公子，经此一别自是不必相见，所有爱慕之意都随风流去了吧！ 自当是小生误了姑娘前程 ，自此姑娘往南走小生便往北瞧 ，再不扰姑娘清净，今生就此别过各生欢喜。从此山高路远，纵马扬鞭，定铭记姑娘于心间，待他日披锦归时，卿若未嫁，必与你相恋。如若不然，便遥祝红颜，愿你三冬暖，愿你春不寒，愿你天黑有灯，下雨有伞，愿你，余生有良人相伴。]]></content>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018年四川职业技术学院单独招生考试]]></title>
+    <url>%2Fpost%2F126f6ce0.html</url>
+    <content type="text"><![CDATA[2018年四川职业技术学院单独招生考试软件技术专业专业知识、技能测试考试大纲* 根据2018年四川职业技术学院单独招生章程对对口高职类考生的考试要求，特制订软件技术专业专业知识、技能测试考试大纲。一、考试性质* 本专业知识、技能测试考试是中等职业学校（含普通中专、职业高中、技工学校和成人中专）信息一类专业毕业生报考四川职业技术学院软件技术专业单独（对口）招生的选拔性考试。 二、考试依据* 1.《中等职业学校专业教学标准(试行)》，教职成厅函【2014】11号； 2. 人社部颁发“计算机操作员”中级职业资格标准。 三、考试方法* 软件技术专业专业知识、技能测试考试由专业知识（应知）和技能操作（应会）两部分组成，考试总分为230分，其中专业知识（应知）满分100分，技能操作（应会）满分130分。 专业知识（应知）考试采用笔试、闭卷形式，考试时间为90分钟。技能操作（应会）考试采取机考操作考试方式，设置3个考试项目，第1～2项目为选作题，考生现场通过抽签的方式随机抽取一个作答；第3个项目为必答题，每个考生都必须作答，考试时间共计120分钟。 四、考试内容和要求 第一部分** **专业知识（应知） （一）考试科目与分值比例 1.计算机系统基础与操作系统（Windows7）应用 占30% 2.OFFICE2010办公自动化软件 占30% 3.PHOTOSHOP 占10% 4.FLASH 占10% 5.网页设计 占10% 6.C语言程序设计 占10% （二）**试卷结构及分值比例** 1.单项选择题 占60% 2.多项选择题 占20% 3.是非判断题 占20% （三）考试范围及要求** 【计算机系统基础与操作系统（Windows7）应用】** （一）计算机基础知识 1.了解计算机的发展及应用，了解计算机的特点及分类，掌握计算机系统的组成，理解计算机软件和硬件的概念； 2.理解计算机软件的分类，程序、计算机程序设计语言的概念，掌握计算机硬件系统的组成，了解计算机的工作原理； 3.理解微型计算机的CPU、主板、存储器、常用外围设备的功能，了解计算机主要部件的性能指标，理解通用外部设备接口的使用方法，了解BIOS在计算机系统硬件配置和管理中的作用； 4.了解常用进制的表示方法，掌握二进制与十进制整数之间的转换方法，理解数据的存储单位及字符的表示方法； 5.理解计算机病毒的概念，掌握其基本特征、种类及防治。 （二）计算机操作系统 1.理解操作系统的概念与作用； 2.了解Windows 操作系统的特点，了解Windows中文版的安装，掌握Windows的启动及退出； 3.理解桌面、图标、菜单、任务栏、工具栏、窗口和对话框、快捷方式等概念，掌握窗口的组成及操作，掌握菜单的分类及操作，掌握工具栏、任务栏的操作，掌握对话框的组成及操作，掌握中英文输入法的选择和切换方法； 4.理解文件和文件夹的概念及命名原则，掌握常用的文件类型，掌握文件和文件夹的显示方式和排列方式，理解剪贴板、复制、剪切、粘贴的概念，理解“回收站”的概念和作用，掌握文件和文件夹的创建、重命名、复制、移动、删除的操作方法，掌握快捷方式的创建，掌握文件和文件夹的属性及设置方法，掌握文件和文件夹的搜索方法； 5.理解驱动程序的概念，掌握应用软件的安装和卸载方法，掌握驱动程序的安装和更新，了解软件的下载方法。 【**OFFICE办公自动化软件*】（一）Word字处理软件应用 1.了解计算机字处理软件的基本概念； 2.理解文档管理的基本操作，创建、打开、保存、关闭和文档类型转换； 3.掌握Word的启动、退出； 4.掌握文本的录入、特殊符号的插入，掌握查找和替换，掌握字符格式、段落格式设置及页面设置，掌握项目符号和编号的设置，掌握边框和底纹的设置，掌握分栏的方法，掌握文档的打印设置与预览； 5.掌握表格的创建和编辑，了解表格与文本的转换，掌握文本框的使用，掌握图片、艺术字的插入及格式设置，掌握页眉、页脚的设置。 （二）Excel电子表格软件应用 1.了解电子表格的基本概念，工作薄、工作表及单元格的概念； 2.掌握工作薄的创建、保存、打开和关闭，掌握工作表的插入、重命名、选择、移动、复制、删除等操作，掌握单元格、行、列的选定，掌握单元格、行、列的插入、删除、移动、复制，掌握数据的输入、填充、清除，掌握单元格格式设置，掌握行高、列宽的设置，了解条件格式的使用，掌握页面设置； 3.掌握单元格引用的方法，掌握公式与常用函数的应用，掌握数据的排序、筛选，了解分类汇总，了解图表的插入和格式设置。 （三）PowerPoint幻灯片软件应用 基本概念，新建幻灯片、幻灯片的复制、插入、放映方式种类、切换，对象插入（哪些对象类型：图片、表格，艺术字、文本框、声音、视频等）。 【网页设计】** （一）基本概念 1.了解什么是网页； 2.了解网页的基本构成。 （二）文本 1.掌握文本的编辑方法； 2.掌握文本格式化标记的使用。 （三）超级链接 1.了解绝对路径与相对路径； 2.掌握超级链接标记的使用方法； 3.掌握超级链接样式的控制。 （四）图片 1.掌握图片标记的使用方法； 2.掌握图片与超级链接的混合使用方法； 3.掌握图片的大小、边框等格式控制方法。 （五）表格 1.了解表格的构成； 2.掌握表格标记的使用方法； 3.掌握跨行、跨列的操作方法； 4.掌握表格样式的控制方法。 【PHOTOSHOP】** （一）基本操作 1.理解图像处理的基本概念和基础知识； 2.掌握画布和图像尺寸、分辨率的概念及设置方法； 3.掌握图像的编辑与修饰、色彩与色调调整的基本方法； 4.掌握图层、蒙版、选区、路径、滤镜的概念和一般操作。 （二）图层 1.理解图层概念； 2.掌握图层的创建、删除方法，以及图层效果的设置方法。 （三）文字的应用 1.掌握文字的输入与编辑方法； 2.掌握文字层与图层的转换方法； 3.掌握文字效果的应用。 【**FLASH*】 （一）基础知识 1.了解Flash的应用领域,动画产生的基本原理和概念； 2.了解工作环境中各种面板和时间轴的用途； 3.了解场景的概念和使用； 4.理解Flash 动画的基本创作流程； 5.掌握矢量图形和像素图像之间的区别。 （二）绘图工具和图形对象 1.了解填充与边框线的区别，及其颜色、样式的设置方法； 2.掌握绘图工具及工具选项的使用； 3.掌握任意变形工具及变形面板的使用; 5.掌握静态文本的应用及对文本格式、文本的抗锯齿设置。 （三）元件 1.了解元件与实例的关系； 2.掌握元件和实例的创建方法，包括电影剪辑、按钮、图形； 3.掌握改变元件或实例的类型、交换元件； 5.掌握库面板和使用文件夹组织和管理库项目。 （四）动画 1.掌握创建补间动画，包括运动补间和形状补间的方法； 2.理解时间轴的使用，帧、关键帧、空白关键帧的使用； 3.掌握逐帧动画和补间动画区别及用途； 4.掌握使用引导线动画； 5.了解创建遮罩动画和各种相关知识。 （五）声音和视频 1.掌握声音与视频的导入方法； 2.掌握声音与视频的设置方法。 【**C语言程序设计】** （一）数据类型、常量、变量 1.掌握常用的数据类型int、char，理解不同数据类型的常量； 2.掌握变量的定义、赋值。 （二）运算符与表达式 1.掌握常见的运算符及其运算规则：加、减、乘、除、自加、自减、大于、小于、等于、不等于、与、或非； 2.理解表达式，能正确判定表达式的运算结果。 （三）数据的输入与输出 1.掌握输入函数scanf的使用方法； 2.掌握输出函数printf的使用方法。 （四）程序结构 1.掌握分支语句if…else…的使用方法； 2.掌握循环语句for的使用。 五、关于考试内容及参考教材的说明** 考试内容以考纲规定的内容为准，原则上不指定考试教材版本，参考教材如下： 1.《计算机文化基础》 2.《photoshop》 3.《Flash》 4.《网页设计》 5.《C语言程序设计》]]></content>
+      <tags>
+        <tag>计划学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[网线注意事项]]></title>
+    <url>%2Fpost%2Fd28bb4bd.html</url>
+    <content type="text"><![CDATA[网线一般只会用到4跟线2进2出！橙白、橙、绿白、绿 这4跟，线序是1、2、3、6 ，其他四根线是很少用到的！目前市场上的普通打印机都只有这4跟线的接口，其余4条线都被忽略了！所以我们拿测线仪测试交换机出来的线一般是1、2、3、6这四个灯会亮！也就是橙白、橙、绿白、绿 这4条线！网线一般能确保这4跳线通就能正常使用网络了！ 百M以下用1236，千M全用]]></content>
+      <tags>
+        <tag>技能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[跑步技巧]]></title>
+    <url>%2Fpost%2F9a6f37b3.html</url>
+    <content type="text"><![CDATA[跑得快、不受伤、恢复快]]></content>
+      <tags>
+        <tag>技能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[为什么现在很少有男生追女生了？]]></title>
+    <url>%2Fpost%2Faf948a69.html</url>
+    <content type="text"><![CDATA[我发了一个请求, 请求方式、参数、路径写的很清楚了，并且请求了很多次！她并没有响应数据，所以我不知道怎么显示数据，继续又发了请求，她响应了个404，我觉得我的路径有问题。 经她闺蜜指点，我应该先和她成为好朋友。 这次我换了个参数：情人节那天发了个520，这次给我响应了，登上主页面了，星巴克咖啡厅，当面了解了下，回家我对我各种状况进行了增删查改。 隔了几天又发了请求，这次她显示权限不足，我又在自身找bug。 不经意间发现有好几个人同时再给她发请求，且都得到回应了! 最后我知道我这样的初级程序猿无法直视这样的高并发的问题，不能保证线程安全! 作者：COAadmin链接：http://www.coaadmin.cn/life/why-are-few-boys-chasing-girls-now.html來源：逸香阁著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。]]></content>
+      <tags>
+        <tag>感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centso 7 安装Python3.6]]></title>
+    <url>%2Fpost%2Fb3421ccd.html</url>
+    <content type="text"><![CDATA[序言centos 7 默认版本是2.7版本现在要升级到3.6版本 yum方式安装Python3.612345678910111213 sudo yum install epel-releasesudo yum install https://centos7.iuscommunity.org/ius-release.rpm sudo yum install python36usudo ln -s /bin/python3.6 /bin/python3sudo yum install python36u-pipsudo ln -s /bin/pip3.6 /bin/pip3]]></content>
+      <tags>
+        <tag>Note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centso 7 安装Python3.6]]></title>
+    <url>%2Fpost%2F26344.html</url>
+    <content type="text"><![CDATA[序言centos 7 默认版本是2.7版本现在要升级到3.6版本 yum方式安装Python3.612345678910111213 sudo yum install epel-releasesudo yum install https://centos7.iuscommunity.org/ius-release.rpm sudo yum install python36usudo ln -s /bin/python3.6 /bin/python3sudo yum install python36u-pipsudo ln -s /bin/pip3.6 /bin/pip3]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 yum安装谷歌浏览器卸载火狐浏览器]]></title>
+    <url>%2Fpost%2Fe9a2c09b.html</url>
+    <content type="text"><![CDATA[研究了一下在没有代理的情况下在centos7下安装谷歌浏览器 过程 切换目录 1cd /etc/yum.repos.d/ 创建repo源 1vi google-chrome.repo 添加以下内容 123456[google-chrome]name=google-chromebaseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearchenabled=1gpgcheck=1gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub 安装google chrome浏览器 1yum -y install google-chrome-stable PS: Google官方源可能在中国无法使用，导致安装失败或者在国内无法更新，可以添加以下参数来安装：1yum -y install google-chrome-stable --nogpgcheck 版本123yum install google-chrome-stable #稳定版yum install google-chrome-beta #测试版yum install google-chrome-unstable #不稳定版 问题如果这个报错是因为qiang的原因1234.........从 https://dl-ssl.google.com/linux/linux_signing_key.pub 检索密钥获取 GPG 密钥失败：[Errno 14] curl#7 - &quot;Failed connect to dl-ssl.google.com:443; Operation now in progress&quot;.......... 卸载火狐浏览器12345671，首先查看安装的firefox版本输入命令：rpm -qa | grep firefox2，根据查找结果进行卸载输入命令：rpm -e firefox（对应结果的Firefox）]]></content>
+      <tags>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 yum安装Shadowsocks-Qt5]]></title>
+    <url>%2Fpost%2F6a587f4b.html</url>
+    <content type="text"><![CDATA[Shadowsocks-Qt5 是可以安装在centos系统中shadowsocks GUI客户端，参考官网的资料和广大群众的研究在centos7下亲测可行注意yum安装的 安装过程centos7123456cd ~ sudo yum install wget -y wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/ sudo yum update sudo yum install shadowsocks-qt5 安装过程centos6123456cd ~ sudo yum install wget -y wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-6/librehat-shadowsocks-epel-6.repo mv librehat-shadowsocks-epel-6.repo /etc/yum.repos.d/ sudo yum update sudo yum install shadowsocks-qt5 系统信息12345678910111213141516171819 .. qifcn@localhost.localdomain .PLTJ. OS: CentOS 7.5.1804 Core &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt; Kernel: x86_64 Linux 3.10.0-862.2.3.el7.x86_64 KKSSV&apos; 4KKK LJ KKKL.&apos;VSSKK Uptime: 41m KKV&apos; 4KKKKK LJ KKKKAL &apos;VKK Packages: 1467 V&apos; &apos; &apos;VKKKK LJ KKKKV&apos; &apos; &apos;V Shell: bash .4MA.&apos; &apos;VKK LJ KKV&apos; &apos;.4Mb. Resolution: 1920x1080 . KKKKKA.&apos; &apos;V LJ V&apos; &apos;.4KKKKK . DE: GNOME 3.26.2 .4D KKKKKKKA.&apos;&apos; LJ &apos;&apos;.4KKKKKKK FA. WM: Mutter&lt;QDD ++++++++++++ ++++++++++++ GFD&gt; WM Theme: &apos;VD KKKKKKKK&apos;.. LJ ..&apos;KKKKKKKK FV GTK Theme: Adwaita [GTK2/3] &apos; VKKKKK&apos;. .4 LJ K. .&apos;KKKKKV &apos; Icon Theme: Adwaita &apos;VK&apos;. .4KK LJ KKA. .&apos;KV&apos; Font: Cantarell 11 A. . .4KKKK LJ KKKKA. . .4 CPU: Intel Core i5-7200U @ 4x 3.1GHz [42.0°C] KKA. &apos;KKKKK LJ KKKKK&apos; .4KK GPU: Mesa DRI Intel(R) HD Graphics 620 (Kaby Lake GT2) KKSSA. VKKK LJ KKKV .4SSKK RAM: 1897MiB / 3734MiB &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt; &apos;MKKM&apos; &apos;&apos; ps：2018-5-14更新centos下一直有问题链接不上谷歌，有时候要重启系统才行，换到debian9环境可行，但第一次安装重启系统才行，蜜汁原因]]></content>
+      <tags>
+        <tag>centos7</tag>
+        <tag>linux</tag>
+        <tag>ss</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 yum安装谷歌浏览器卸载火狐浏览器]]></title>
+    <url>%2Fpost%2F51852.html</url>
+    <content type="text"><![CDATA[研究了一下在没有代理的情况下在centos7下安装谷歌浏览器 过程 切换目录 1cd /etc/yum.repos.d/ 创建repo源 1vi google-chrome.repo 添加以下内容 123456[google-chrome]name=google-chromebaseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearchenabled=1gpgcheck=1gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub 安装google chrome浏览器 1yum -y install google-chrome-stable PS: Google官方源可能在中国无法使用，导致安装失败或者在国内无法更新，可以添加以下参数来安装：1yum -y install google-chrome-stable --nogpgcheck 版本123yum install google-chrome-stable #稳定版yum install google-chrome-beta #测试版yum install google-chrome-unstable #不稳定版 问题如果这个报错是因为qiang的原因1234.........从 https://dl-ssl.google.com/linux/linux_signing_key.pub 检索密钥获取 GPG 密钥失败：[Errno 14] curl#7 - &quot;Failed connect to dl-ssl.google.com:443; Operation now in progress&quot;.......... 卸载火狐浏览器12345671，首先查看安装的firefox版本输入命令：rpm -qa | grep firefox2，根据查找结果进行卸载输入命令：rpm -e firefox（对应结果的Firefox）]]></content>
+      <tags>
+        <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 yum安装Shadowsocks-Qt5]]></title>
+    <url>%2Fpost%2F42105.html</url>
+    <content type="text"><![CDATA[Shadowsocks-Qt5 是可以安装在centos系统中shadowsocks GUI客户端，参考官网的资料和广大群众的研究在centos7下亲测可行注意yum安装的 安装过程centos7123456cd ~ sudo yum install wget -y wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/ sudo yum update sudo yum install shadowsocks-qt5 安装过程centos6123456cd ~ sudo yum install wget -y wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-6/librehat-shadowsocks-epel-6.repo mv librehat-shadowsocks-epel-6.repo /etc/yum.repos.d/ sudo yum update sudo yum install shadowsocks-qt5 系统信息12345678910111213141516171819 .. qifcn@localhost.localdomain .PLTJ. OS: CentOS 7.5.1804 Core &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt; Kernel: x86_64 Linux 3.10.0-862.2.3.el7.x86_64 KKSSV&apos; 4KKK LJ KKKL.&apos;VSSKK Uptime: 41m KKV&apos; 4KKKKK LJ KKKKAL &apos;VKK Packages: 1467 V&apos; &apos; &apos;VKKKK LJ KKKKV&apos; &apos; &apos;V Shell: bash .4MA.&apos; &apos;VKK LJ KKV&apos; &apos;.4Mb. Resolution: 1920x1080 . KKKKKA.&apos; &apos;V LJ V&apos; &apos;.4KKKKK . DE: GNOME 3.26.2 .4D KKKKKKKA.&apos;&apos; LJ &apos;&apos;.4KKKKKKK FA. WM: Mutter&lt;QDD ++++++++++++ ++++++++++++ GFD&gt; WM Theme: &apos;VD KKKKKKKK&apos;.. LJ ..&apos;KKKKKKKK FV GTK Theme: Adwaita [GTK2/3] &apos; VKKKKK&apos;. .4 LJ K. .&apos;KKKKKV &apos; Icon Theme: Adwaita &apos;VK&apos;. .4KK LJ KKA. .&apos;KV&apos; Font: Cantarell 11 A. . .4KKKK LJ KKKKA. . .4 CPU: Intel Core i5-7200U @ 4x 3.1GHz [42.0°C] KKA. &apos;KKKKK LJ KKKKK&apos; .4KK GPU: Mesa DRI Intel(R) HD Graphics 620 (Kaby Lake GT2) KKSSA. VKKK LJ KKKV .4SSKK RAM: 1897MiB / 3734MiB &lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt; &apos;MKKM&apos; &apos;&apos; ps：2018-5-14更新centos下一直有问题链接不上谷歌，有时候要重启系统才行，换到debian9环境可行，但第一次安装重启系统才行，蜜汁原因]]></content>
+      <tags>
+        <tag>ss linux centos7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[优雅的使用git命令行]]></title>
+    <url>%2Fpost%2F57186163.html</url>
+    <content type="text"><![CDATA[序言Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 克隆仓库 git clone http://XXX.XXX/sq-group/XXX.git 配置用户名与邮箱对应信息git config --global user.name &quot;qifcn&quot; git config --global user.email &quot;abc@outlook.com&quot; ps:注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置 查看一下远程项目的分支git branch –r 克隆远程分支 格式：git checkout –b 本地分支名 远程分支名 git checkout -b xxxx origin/xxxx 把本地分支推送到远程 git push origin 分支名 切换分支 git checkout 分支名 提交修改内容 git commit -m ‘填写提交内容’ 查看提交内容 git log –oneline 把本地的develop分支强制(-f)推送到远程master git push origin develop:master -f]]></content>
+      <tags>
+        <tag>Note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[诺言和背叛]]></title>
+    <url>%2Fpost%2Fff8da173.html</url>
+    <content type="text"><![CDATA[博客本就是记录我心情的地方，就算没有人来点赞，就算没有人来看，但自己知道曾经有一个地方那时候心情很糟糕，却没有人来指责自己。一直坚守自己的诺言，不曾放弃，守卫着自己的长城。但终究谁曾不珍惜勒，明明你口口声声说要珍惜，难道 漫漫长夜，我记得每次与你通话的开怀大笑，也记得独自饮泪的独处。 坚强的人是不需要护盾的，早已千疮百孔，还怕被被伤吗。 因为在乎，所以吃醋；因为在乎，所以紧张；因为在乎，所以多想；因为在乎，所以会痛。愿我们都能成为，那些一沾着枕头就能安睡的人！]]></content>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[TortoiseGit(乌龟git)免密推送]]></title>
+    <url>%2Fpost%2Ffce0bc94.html</url>
+    <content type="text"><![CDATA[今天遇到的TortoiseGit每次登陆推送都要输入密码设置一下免密 编辑仓库配置文件与编辑全局配置文件 设置 -&gt; git 编辑本地 .git/config 最后增加 12[credential] helper = store]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>免密</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[《公主与龙》]]></title>
+    <url>%2Fpost%2Fb12b5845.html</url>
+    <content type="text"><![CDATA[很久很久以前，王国里有一位公主，她拥有着白嫩的肌肤与俏皮的大眼睛。 嗯，这是所有公主的标配。她同时拥有一张贪吃的嘴与圆滚滚的身躯。 没错，这样就很有特色了。 王国的人们平日里总会拿他们的公主殿下取乐，例如把公主的手指称作十条胖毛毛虫，例如把公主肥嘟嘟的脸颊比作十五的月亮，包括公主的侍从也要参和一脚。 “我们的公主————哎，就连头发都是老气的亚麻色，绣坊的姑娘十个里有九个都是这个色，我们的公主，哎呀……” 公主听到后气得哭湿了枕头，一边哽咽地对着空气控诉那些肤浅的人类，一边吃了一盒子甜点压压惊。 时不时会传来这样的消息，邻国的公主今天早上又被邪恶法师绑架了，邻国的邻国的公主这个月第三次被恶龙抓走了，相似的是，总会有不计其数的英俊勇士前去解救她们。 可是却从来没人，也没任何生物打过她的主意，公主难过地想。 她怒气冲冲地来到高台上，对天空大喊：“有本事来绑架我啊你们这群小王八蛋！” 遥遥传来了一声龙吟，公主兴奋地抬头，朝着声音的方向继续卖力喊：“我看见你尾巴尖了！别怂！” 一条硕大的枣红巨龙从团团云层里飞到公主眼前，它甩了甩尾巴：“你怎么看到我尾巴尖的？” 公主蹦来蹦去，她说：“你离我近一些我就告诉你！” 巨龙闻言乖乖地凑近了些。 “不行，再近些！” 巨龙又往前凑了凑。 公主圆滚滚的身躯猛地弹起来，两条胖乎乎的手臂死死勒住巨龙一只脚。 巨龙吓得一飞冲天，又小心地抓着公主不让她滑下去，它委屈地指责：“你骗我，你刚刚肯定没有看到我的尾巴尖。” “没错，我是一个坏公主，所以现在你要惩罚我，比如把我带回你的家。” “我是一条宽宏大量的好龙，我原谅你，你不许跟我回家。” “不行！那我就黏在你的爪子上，还要在你的指甲上画好多好多的蘑菇！” “我讨厌蘑菇！” “除了蘑菇，我还要画萝卜！” “我也讨厌萝卜！”巨龙泄了气，“好吧，你这个小坏蛋，我会带你回家。” 于是公主成功地有生以来第一次被绑架了。 公主来到了巨龙的小岛，她每天眼睛亮晶晶地左顾右盼，盯着风平浪静的海面，却没有等来一支拯救自己的小船。 一星期后，公主泄气地蹲在地上哇哇大哭，巨龙被吵醒，它伸出尾巴尖蹭乱了公主毛茸茸的头发：“你别哭，你看，那边有一条小船。” 公主闻言破涕为笑，赶紧屁颠屁颠地跑带边上挥舞着双手：“我在这里！我在这里！” 船上的人问：“你是谁？” “我是一个公主，被龙抓过来，你们是来救我的吗？” “公主？”那人嗤笑：“为什么你没有金子一样的头发？” 公主委屈：“这，这是天生的啊。” “那为什么你的衣服又脏又破？” “因为我的侍女不在我身边呀。” “可我从来没有见过哪个公主像你一样胖。”那人毫不留情地嘲笑：“龙肯定是瞧你好吃才抓你。” “那你不救我吗？” “你又不是公主我为什么要救你？” 说完，船只渐渐远去。 公主愣在原地片刻，再次痛苦地趴在地上，不顾肮脏的泥沙弄脏她的脸颊，眼泪一颗一颗地往外蹦。 巨龙看着她，扑闪起翅膀，遮蔽了太阳，它飞向大海，抓着那条小船地桅杆掀翻在海浪里。 巨龙又飞回来，小心翼翼地说：“你看，我帮你欺负回去了。” 公主抬起来用袖子擦了擦鼻涕，继续埋头痛哭。 巨龙踱着步子，再次开口：“别哭了，我让你玩我的爪子好不好。” 公主抽泣：“你的爪子又硬又厚，有什么好玩的。” 巨龙摊开爪子，在海水中洗了洗：“你看，别的龙都是黑爪爪，我的是粉爪爪。” 公主转睛一看，发现巨龙的爪子中心真的柔软又粉嫩，于是也不哭了，整个人埋进巨龙的粉爪爪里睡着了。 公主放弃了被救援，她决定和这条有着粉爪爪的礼貌的巨龙一起生活。 “龙，为什么你对我这么好？”公主问：“人们都嘲笑我，他们嫌我胖乎乎，还嫌我的头发颜色像干枯的麦秆。” “可我就喜欢你圆圆的肚子，软软的胳膊，粉嫩嫩的下巴。”巨龙眨了眨眼，“你软得像棉花，我害怕碰坏你，还想让你更加的软绵绵。” “那头发呢？你们龙不是最喜欢金灿灿的东西了。” “这个我承认，可你就是你呀，假如我没有粉爪爪只有黑爪爪难道你就讨厌我了吗？” 公主喜滋滋地亲了亲巨龙的指甲盖：“才不会，别的龙就算有彩虹一样的爪爪我也只喜欢你的。” 巨龙对公主很好，但公主仍然日益瘦削，小岛上没有公主喜爱的糖果盒，没有公主吃惯了的蓝莓蛋糕，更没有大厨精心烹调的美味三餐。 岛上只有酸涩的果实，巨龙带回来的干枯的肉，和带着泥土味的清水。 公主郁郁寡欢，巨龙担忧地问：“我的公主，你想要什么，我去帮你带回来。” “我想要我柔软的枕头，香喷喷的被子，还有贴心的侍女。” “如果你希望的话，我可以送你回家。” “不！”公主虚弱地喊：“没人像你一样爱我，而且这么久了，我这么狼狈地回家，会变成所有人的嘲笑的对象。” 巨龙开始每天每天地飞离小岛，它带回一箱一箱的金银珠宝，各种各样的绸缎华服，那些金灿灿的珠宝首饰堆满了整个巢穴。 公主生气地坐在珠宝堆里：“你在做什么，这些不是我想要的！” 巨龙微笑：“这将会是你想要的。” 巨龙罪恶的强盗行为终于惹怒了多个王国，他们组织了一批英勇无畏的战士，由王子带领，前往小岛讨伐这只恶龙。 巨龙温柔地叼着公主的衣领，让她坐在自己的粉爪爪里洗了澡，又换上干净华丽的裙子，再带上金光灿灿的珠宝。 “你看我。”公主笑着说：“我以前从来没想过我能穿上腰这么细的裙子，可是我现在没有圆圆的肚子，软软的胳膊，和粉嫩嫩的下巴了。” 巨龙：“就像你也没有金色的毛发一样，即使你变得瘦巴巴，下巴像个小纺锤，脖子像一只白天鹅，我也依然爱你。” 巨龙带着公主飞出洞窟，对着前来讨伐自己的人们怒吼：“来吧，卑鄙的人类，我手中的是一位公主，看谁能救得了她！” 公主愣了愣，开始疯狂地挣扎，痛骂，并对着疯狂上前涌的人群大声辩解，但她那虚弱而细微的声音被淹没在了战争里。 巨龙死了。 它的头被王子亲自斩下，王子英俊，高大，金发碧眼，带着勇敢无畏的笑，这曾是公主所憧憬的。 王子带着纤细而美丽的公主，和三大船金银珠宝凯旋，公主终于回了家，她的人民再也不会嫌他们的公主圆滚滚。 人们在鲜花飘扬中赞美着公主的勇敢，公主宛如柳枝般纤美的手指，公主玉石般美丽的脸颊，公主仿佛绸缎般柔软的亚麻色长发。 公主拒绝了王子的求婚，也拒绝了自己香喷喷的大床，她想念巨龙那充满弹性的粉爪爪。 再也不会有人像它一样爱她了，无论她圆滚滚还是瘦巴巴。 多年后，公主成为了女王，她来到高台之上，看着碧蓝无波的天空，忍不住大喊：“来绑架我啊！” 没有东西回应她。 “来啊，别怂！” 有鸟儿飞过，白云悠悠。 公主哭着跪在地上，泣不成声。 龙死了。 番外 关于公主初来龙岛的时候—— 公主看着大海中央的岛屿，忍不住惊呼：“这是你的家吗？比我的城堡还要大！” “因为我是一条很大的龙。” 公主扒拉着巨龙的爪爪：“那你带着我飞一圈好不好。” 巨龙无奈：“只飞一圈。” “一圈！就一圈！” 巨龙带着圆滚滚的公主飞过了矮矮的山坡，飞过了涓涓的小溪，飞过了浅浅的沙滩。 公主指着地面，惊讶地问：“你明明说过你讨厌萝卜，可这些是什么？” 巨龙甩了甩尾巴：“萝卜。” “龙也会骗人吗？” “龙的骄傲让我学不会谎言。”巨龙傲气地扬起脖子：“可是那里住着一窝兔子，所以我留下了萝卜。” 公主有指向腐烂的树根旁：“那蘑菇呢？兔子也吃蘑菇吗？” “兔子不吃蘑菇，可蘑菇有什么错呢？它既难闻又奇怪，难道就该被我丢进大海吗？” 公主想了想，看着自己白白嫩嫩的小胖手：“那么我呢？我又胖又不可爱，所以你没有伤害我是因为我太可怜了吗？” 巨龙奇怪地眨了眨眼：“你在我手心轻盈得像天上的云朵，你闻起来还像甜甜的奶油，虽然我并没有吃过奶油。” 龙不会骗人，所以公主笑了：“我要和你道歉，我不该威胁要在你指甲上画画。” “没关系。” “那你平时吃什么呢？” 巨龙龇了龇牙：“兔子。]]></content>
+      <tags>
+        <tag>故事</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[无题]]></title>
+    <url>%2Fpost%2F9b44950b.html</url>
+    <content type="text"><![CDATA[越是年长 越是渴望 能有一个人 走进你心里 不露痕迹 倾听你岁月蹉跎的忧伤 只是 那人许是也不会再有了罢 只好无奈 道一声 弦断有谁听 再来一声 深深地 深深地叹息]]></content>
+      <tags>
+        <tag>感悟</tag>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo感悟与优雅的写作方法]]></title>
+    <url>%2Fpost%2F5c817db0.html</url>
+    <content type="text"><![CDATA[序言知道吗当我写这篇文章的时候其实内心是拒绝的，但看到还有那么多人还在用原始的办法实在看不下去了，我们要做的是优雅,优雅再优雅。 简介hexo这玩意就是一个网页生成器，但要玩得动它还是要下一定的苦功夫你需要了解npm 域名 空间 git 还有hexo的目录结构你都需要了解，一般来说玩得转都是高手，但高手是怎样炼成的了，是经过九九八十一难还是要去取经，一般来说网上找教程是最快的办法也可以参考别人的博客，想想他是怎么做的，慢慢的你就会发现成功不需要理由因为你已经做到了，一定要记住我们的初衷是什么，有一个良好的写作环境罢了，所以一定要原创高产哦。 玩法一 空间介绍前文说到我们hexo就是一个网页生成器，网页嘛就是一堆文件，所以我们hexo博客放的地方就很广泛了，虚拟空间(免费) coding空间 GitHub空间 gitlab空间 或者我们的vps上 现在常见的是放到github上与coding上吧 各有各的优点吧，什么你说大小，呵呵亲 生成的静态网页才多大没几M吧还没到那么多就想到这了，其实嘛我个人愿意托管到github上还有个人虚拟空间与vps上其实不知道是不是百度搜索引擎太辣鸡了还是怎么github拒绝百度爬虫来爬GitHub上的博客相反对谷歌搜索引擎很友好，我一个实验用的小hexo博客几个月了没管基本上文章都收录了，所以我想其实技术人员嘛，都搞技术了有一个自己的ss去谷歌搜索引擎看看，搜索关键字。hexo有很多提交插件不是要你把生成的静态网页复制粘贴到上面所说的空间，而是直接hexo d直接一键提交，ftp插件git插件还有一些同步插件 。在这里提一下国外有一个免费托管静态网站的公司，关键字 netlify 玩法二 域名介绍 域名一个博客访问的关键因素，好的域名有什么特点勒第一个好记，为什么我把这个排到第一，一个好记的域名是增加访问量的一个关键因素短好记寓意好，不要太复杂，一般就ok了 如果可以的话尽量要一个人一下就记住你的域名，简短好记，购买域名一般网上叫你买什么地方什么地方的域名，其实嘛国内也不错，只要你的网站托管到的地方放对位置就ok了再说备案的成本也很低，如果你不想买域名，免费的ml域名还有其他二级域名都可以，或者就用github给的二级域名还有免费的ssl。 玩法三 git的玩法 git是什么 要我们来看看官网介绍 Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。 代码管理软件高大上，去官网下载下来如果你傻傻的用命令行来用那真的佩服，一般来说上面都说了这个是一个版本控制系统，那是不是可以做一些灰灰的事情，别想歪了，告诉你哦git搭配可视化软件才是硬道理，不要傻傻的用命令行不然学习成本一下就大了起来，一般来说我用来做什么类，备份，修改博客源代码来版本控制，这样就算不小心改错了，或者不生效也可以在几秒钟内回到原来的版本，这对我们hexo博客美化党很有帮助。Tortoisegit我现在用的可视化软件小乌龟支持中文哦。 git的命令行可能在安装hexo的时候会用到，也推荐用git，好像内置了一些简单的bash命令，可以看看。 玩法四 优雅的写文章写文章，现在我更新hexo文章用的是moeditor这个软件可以在github上搜索一下，毕竟是前人造的轮子，有什么理由是我们不拿来用的吗！我现在写这篇文章就是用的这个编辑器，当然如果你愿意也可以用记事本来写，编辑器嘛有很多选择，但我最喜欢的还是新建文章后有预先写的东西就是Post，新建文章有预先的时间标题，还别说其他的了，可以看看github的介绍。 玩法五 优雅的备份与更新文章上面说到git可视化，或许对于经常用到git的程序员不以为然，可对于 刚接触这个玩意的萌萌哒的新人来说这是一个超级大的问题因为，也许可能会像我一样研究好久命令行，研究命令行对于一个新人来说太太残忍了，这么久我只是提供一个思路与办法，相信我，如果你听都没听过怎么会优雅啊，能简单就简单能自动化就自动化，如果你研究好了git的操作你想备份博客源代码就到哪，像网上教程说的样保存到分支还是新建一个仓库保存都是你想怎么弄而已，可视化git很简单的点点鼠标而已。更新文章，说实话hexo已经够简单了，但为什么我们还能不能更简单点啊，啥意思，这就要挤出我的法宝了Travis-ci，这个东西我们把源代码放到GitHub分支上，只要我们本地push到github仓库上自动的构建我们的hexo博客，这样就算身边没有计算机我们也可以优雅的更新文章了，就看哪个地方的源代码文章是最新的了，这是可行的方案，这些东西都是本萌实验过成功后的方案，还有提一句，其实还可以搭建到vps上基本上有一台远程的计算机就ok了，gitlab也可以构建，但我还是垂青于github，还有一个问题就是我没把hexo博客源代码放到分支而是放到一个新的仓库但问题是怎么也构建不成功，应该是我的travis配置文件有问题，有一次实验成功过不确定，但分支可行，就没有太折腾了。 ##后记 这就是我最近所接触的hexo需要学习的东西，所了解的如有错误的地方欢迎指出。]]></content>
+      <tags>
+        <tag>Note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[你好周末]]></title>
+    <url>%2Fpost%2Fcd00629e.html</url>
+    <content type="text"><![CDATA[你好世界你好，又是一个开心的周末啊，五一小长假放了3天，心情也还是不错不知道为啥，突然就想起了未来也许是兴起也许是感悟，那请君要我委婉到来说出我的故事。 出生我出生来自一个贫穷的小山村，几户人家组成了这个不大的村落，从出生开始我并不了解这个世界是怎样的，我知道如果天上有了星星明天就不会下雨，不知道为啥，从小我就不喜欢吃重口味的菜或肉，超级不喜欢，可能小的时候被不知轻重的母亲做的小零食给 ~毒害~ 了，从哇哇出生到现在已经这么多年了，我喜欢美好的事物，喜欢在这个世界上留下不可磨灭的印记。小学2年级我就开始接触手机，那时候我还拆了一个，嘿嘿想起那时候的我就搞笑，不知道过去的我看到我现在这个样子也会不会说，现在你好搞笑啊，长这么大去过最远的地方还是中国也不过是坐上火车去看望亲戚。 成长 小学时候我努力想长大，现在的我最缺的就是时间，知道吗我怕失去你，周末是无聊的，也是有趣的，没有成为你想要的样子的只能抱歉，有时候长大真的不是一件好事情，真的请相信我，不知道以后我的儿子看不看得到现在的我，真的好迷茫，不过你现在要相信你老爸还没有追到你老妈，每个人成长的道路上都是不平静的，没有风雨怎么会有彩虹，这也是需要一定的环境的吧，把一切的未知变成已知，等你长大后就会明白，其实真的不是什么好的事情，家里人努力要我在一个好的环境读书，可是还是一切还是原来的轨迹，未来是怎样的，我希望你的到来，未来只有你孤生一人扛着刀剑向未知的敌人发起勇敢的冲锋加油。]]></content>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[你好周末]]></title>
+    <url>%2Fpost%2Fcd00629e.html</url>
+    <content type="text"><![CDATA[你好世界你好，又是一个开心的周末啊，五一小长假放了3天，心情也还是不错不知道为啥，突然就想起了未来也许是兴起也许是感悟，那请君要我委婉到来说出我的故事。 出生我出生来自一个贫穷的小山村，几户人家组成了这个不大的村落，从出生开始我并不了解这个世界是怎样的，我知道如果天上有了星星明天就不会下雨，不知道为啥，从小我就不喜欢吃重口味的菜或肉，超级不喜欢，可能小的时候被不知轻重的母亲做的小零食给 ~毒害~ 了，从哇哇出生到现在已经这么多年了，我喜欢美好的事物，喜欢在这个世界上留下不可磨灭的印记。小学2年级我就开始接触手机，那时候我还拆了一个，嘿嘿想起那时候的我就搞笑，不知道过去的我看到我现在这个样子也会不会说，现在你好搞笑啊，长这么大去过最远的地方还是中国也不过是坐上火车去看望亲戚。 成长 小学时候我努力想长大，现在的我最缺的就是时间，知道吗我怕失去你，周末是无聊的，也是有趣的，没有成为你想要的样子的只能抱歉，有时候长大真的不是一件好事情，真的请相信我，不知道以后我的儿子看不看得到现在的我，真的好迷茫，不过你现在要相信你老爸还没有追到你老妈，每个人成长的道路上都是不平静的，没有风雨怎么会有彩虹，这也是需要一定的环境的吧，把一切的未知变成已知，等你长大后就会明白，其实真的不是什么好的事情，家里人努力要我在一个好的环境读书，可是还是一切还是原来的轨迹，未来是怎样的，我希望你的到来，未来只有你孤生一人扛着刀剑向未知的敌人发起勇敢的冲锋加油。]]></content>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 安装 (ღ˘⌣˘ღ)lnmp 环境]]></title>
+    <url>%2Fpost%2F88b5e2fc.html</url>
+    <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysqld.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
+      <tags>
+        <tag>B3log</tag>
+        <tag>CentOS</tag>
+        <tag>lnmp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 安装(ღ˘⌣˘ღ)lnmp环境]]></title>
+    <url>%2Fpost%2F7ef0a72b.html</url>
+    <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysql.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
+      <tags>
+        <tag>lnmp centos7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[感动的路人对话]]></title>
+    <url>%2Fpost%2Fc4024d3c.html</url>
+    <content type="text"><![CDATA[0x01病房里一个病人在跟她的丈夫吵架：“别以为我不知道，你就是想等我死了再找一个。”“老子为了治你这病都倾家荡产了，还他妈找个屁！”… … …“对不起…”“所以别死啊，我没钱再找老婆了…” 0x02当时是冬天，晚上又冷，那姑娘围了一条白色的围巾，男的好像着急要走的样子。那姑娘把围巾取下来围他脖子上：“天这么冷，非要现在去么？”那男的还拿着电话，捂着手机对她说：“我今天陪了你一天了，她身体不舒服我去看看她，你能别这么粘人吗？又不是小孩子了。”然后那女孩没说什么，拉着他胳膊的手也放开了。 那男的就打车走了，我当时在旁边买奶茶，看见那女孩站了一会儿去旁边买了个烤面筋，挺大一卷的，她一口给塞嘴里吞了，然后冻的跺跺脚也来买奶茶。就在我后面排着队，我个子比她高一点，她有刘海又一直低着头，不过我还是看到了她脸上有眼泪。 0x03有一回坐公交车，我旁边坐着个看上去二十七八岁的男人。 上车了十多二十分钟吧，他接了个电话：“好久不见。。。”“我还好，你怎么样?”“恭喜恭喜。。。”“婚礼我一定会去的。。。”“新婚快乐，再见。” 打了没几分钟，他就挂了电话，然后头斜向着窗外。我本来不以为意，可是没多久，感觉他拿了张纸在擦着什么。我侧头望去，发现他头靠着窗户上望着窗外，脸色悲戚，眼眶已经红了，一只手在擦着眼泪。 我想，或许电话那头的人，是他曾经暗恋过的女孩吧。 此情可待成追忆，只是当时已惘然。。。 0x04路上，一对父女。女儿指着地摊上大毛绒玩具说：爸爸，我想要。 她爸摸着她的头：爸爸没钱，咱不要了好不好？ 没想到小女孩很懂事的点点头：嗯！那等爸爸有钱了再买。爸爸抱着小女孩就走了。 走没几步，又听到小女孩的声音：爸爸，别哭。 没事没事，以后有钱了再买好多好多给我好不好？不哭了不哭了！乖。。。。 ps:网言侵删]]></content>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS 安装 Docker CE]]></title>
+    <url>%2Fpost%2Febf9b2cb.html</url>
+    <content type="text"><![CDATA[CentOS 安装 Docker CE系统要求Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 overlay2 存储层驱动）无法使用，并且部分功能可能不太稳定。ps: \是空格 执行以下命令安装依赖包： $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2 执行下面的命令添加 yum 国内软件源： $ sudo yum-config-manager –add-repo https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo 更新 yum 软件源缓存，并安装 docker-ce $ sudo yum makecache fast $ sudo yum install docker-ce 设置自启并启动 Docker CE $ sudo systemctl enable docker $ sudo systemctl start docker 建立 docker 用户组原因: 默认情况下， docker 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 root 用户和docker 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 root 用户。因此，更好地做法是将需要使用 docker 的用户加入 docker用户组。 建立 docker 组： $ sudo groupadd docker 将当前用户加入 docker 组： $sudo usermod -aG docker $USER 退出当前终端并重新登录，进行如下测试。 查看安装 docker version docker -v 安装海鸥容器控制面板 docker run -d -p 10086:10086 -v /var/run/docker.sock:/var/run/docker.sock tobegit3hub/seagull]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS 安装 Docker CE]]></title>
+    <url>%2Fpost%2Febf9b2cb.html</url>
+    <content type="text"><![CDATA[CentOS 安装 Docker CE系统要求Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 overlay2 存储层驱动）无法使用，并且部分功能可能不太稳定。ps: \是空格 执行以下命令安装依赖包： $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2 执行下面的命令添加 yum 国内软件源： $ sudo yum-config-manager –add-repo https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo 更新 yum 软件源缓存，并安装 docker-ce $ sudo yum makecache fast $ sudo yum install docker-ce 设置自启并启动 Docker CE $ sudo systemctl enable docker $ sudo systemctl start docker 建立 docker 用户组原因: 默认情况下， docker 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 root 用户和docker 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 root 用户。因此，更好地做法是将需要使用 docker 的用户加入 docker用户组。 建立 docker 组： $ sudo groupadd docker 将当前用户加入 docker 组： $sudo usermod -aG docker $USER 退出当前终端并重新登录，进行如下测试。 查看安装 docker version docker -v 安装海鸥容器控制面板 docker run -d -p 10086:10086 -v /var/run/docker.sock:/var/run/docker.sock tobegit3hub/seagull]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[潮5000升级ssd注意事项及配置]]></title>
+    <url>%2Fpost%2Fd40b3034.html</url>
+    <content type="text"><![CDATA[潮5000升级ssd注意事项及配置这次升级潮5000 可能是意料之内的，本来想机械硬盘先用用，但标配的机械硬盘5200转数的，但因为实际上没用过体验后速度实在是太慢，电脑反应速度实在太慢，也就是俗称电脑速度太慢。也导致这款电脑可能有许多的退货吧。 配置 联想潮5000 标配版本 固态硬盘三星850 (120g SATA3) 飞毛腿维修工具套装8件套（京东买的） IT-CEO 9.5mm笔记本光驱位sata硬盘托架 其实上面用到的最大的就两个，一个是飞毛腿工具与固态硬盘买这两个就可以了光驱托架买重了联想潮5000自带的光驱位本来就可以装一个2.5英寸的硬盘，就是需要4个硬盘螺丝固定，这个就看万能的淘宝有没有卖的了，买一个回来也需要几十块钱吧。看一下身边有没有多余的。 关于拆机工具在我买的时候网上就张大妈上有一篇教程，我就是按照他上的教程买的东西，升级需要的，可以说我这可能是他的补充版本，在我们的升级笔记本的时候最怕的是误拆，一不小心就把我们心爱的笔记本给毁掉，张大妈的那个教程上说他也不小心把边不小心拆出痕迹。所以我查阅了一些网上的资料，这个维修工具里有撬棒，等拆机工具，上面说是拆手机的，我想拆笔记本应该没问题，（第一次拆笔记本有些紧张）最后全过程都是，先把笔记本后盖螺丝取掉，然后用撬棒慢慢的沿着笔记本的缝隙慢慢的拆除。因为是塑料的撬棒可以说这是一次完美的拆机体验。没有对笔记本的缝隙造成凹痕影响外观。 所以说这个拆机工具是必备的东西网上有很多，淘宝京东都有卖。 关于硬盘固态硬盘现在鱼龙混杂，有便宜的有贵的，买东西嘛一般我想贵有贵的理由，便宜没好货，好货不便宜。 所以我选择了三星这个品牌我想这个硬盘不会用tlc颗粒来损坏自己的形象，这个硬盘没有测试过但说是mlc颗粒的硬盘所以使用寿命应该可以覆盖这个笔记本的寿命吧。 关于内存条潮5000的内存最大是12G 只有一个多于的内存插槽，这个插槽最大支持8G，标配版本的4G内存是焊接到主板上的，所以拆不了。我没买内存条因为加了固态硬盘系统速度本来就很快了。加上本来不玩大型游戏和高耗内存的应用所以不加了。内存价格参考京东价格。 关于系统在网上查资料说笔记本主板上嵌入了密匙直接装原版的系统联网激活就可以了，同样微软的办公软件也一样，不过我开始时候用微软的邮箱账户登录过也就是outlook邮箱账户好像关联了。同时说一下把系统装到ssd硬盘。我是直接在网上下载装微软的原版widows 10 系统。引导也是uefl引导，全程用微pe工具箱。 相关链接 张大妈的原创教程 京东硬盘链接]]></content>
+      <tags>
+        <tag>ssd</tag>
+        <tag>笔记本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos6.5 ssl]]></title>
+    <url>%2Fpost%2F79fe1679.html</url>
+    <content type="text"><![CDATA[今天备份 1python版本错误 yum install python-setuptoolseasy_install virtualenveasy_install pip 开启443端口 /sbin/iptables -I INPUT -p tcp –dport 443 -j ACCEPT #开启8080端口 server配置加密证书 ssl_certificate /etc/letsencrypt/live/域名/fullchain.pem; #Nginx 所需要 ssl_certificate 文件 ssl_certificate_key /etc/letsencrypt/live/域名/privkey.pem; #安全证书 KEY 文件 server配置http跳转https return 301 https://$server_name$request_uri; #非 http 跳转到 https Ps: 注意修改了nginx配置文件必须重启nginx Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. David LevithanWide Awake]]></content>
+      <tags>
+        <tag>ssl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos6.5 ssl]]></title>
+    <url>%2Fpost%2F79fe1679.html</url>
+    <content type="text"><![CDATA[今天备份 1python版本错误 yum install python-setuptoolseasy_install virtualenveasy_install pip 开启443端口 /sbin/iptables -I INPUT -p tcp –dport 443 -j ACCEPT #开启8080端口 server配置加密证书 ssl_certificate /etc/letsencrypt/live/域名/fullchain.pem; #Nginx 所需要 ssl_certificate 文件 ssl_certificate_key /etc/letsencrypt/live/域名/privkey.pem; #安全证书 KEY 文件 server配置http跳转https return 301 https://$server_name$request_uri; #非 http 跳转到 https Ps: 注意修改了nginx配置文件必须重启nginx Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. David LevithanWide Awake]]></content>
+      <tags>
+        <tag>ssl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos6.5 dns服务器搭建]]></title>
+    <url>%2Fpost%2Fdef6abe9.html</url>
+    <content type="text"><![CDATA[在今天老师的指导下成功在linux下搭建好了dns服务器做一下笔记 教程也为以后找一个好的方向。 环境 centos6.5 搭建的本地源 virtualBox虚拟机软件4.2.12版本 SElinux关闭 防火墙默认关闭 ip地址规划192.168.88.10 第一步搭建本地源1.创建系统上光盘挂载目录 mkdir /mnt/sr0 2 挂载光盘iso mount /dev/sr0/ /mnt/sr0 3 修改配置文件 cd /etc/yum.repos.d/ #切换目录mv CentOS-Base.repo CentOS-ase.repo.bak #重命名网络repo包源使其失效vi CentOS-Media.repo #编辑本地源repo ps:可以看到我们挂载的光盘已经挂载 编辑CentOS-Media.repo文件按下图编辑 修改成下图 ps: 需要修改的地方 baseurl=file:///media/CentOS/修改成baseurl=file:///mnt/sr0/enabled=0修改成enabled=1 保存修改本地源搭建成功第一步安装dns软件 yum安装软件bind 与bind-utils yum install -y bind bind-utils 第二步修改dns配置文件 配置named.conf文件 vi /etc/named.conf # 打开配置文件 原配置图要修改的地方 修改后的配置文件共3处 ps: 修改三个{ }内容为any 添加域区域1打开配置文件named.rfc1912.zones文件 vi /etc/named.rfc1912.zones ps: 2复制31行到41行这11行，把光标移动到31行在vi的按ESC进入命令行模式按11yy复制这11行如果7行就7yy灵活应用，复制后在终端左下角有一个11 lines yanked的提示， 光标移到配置文件最下面然后按大写的P粘贴 修改如下 ps: 变化如下这是容易出错的地方 "1.0.0.127.in-addr.arpa" IN &#123;12345678910 type master; file "named.loopback"; allow-update &#123; none; &#125;;&#125;;zone "0.in-addr.arpa" IN &#123; type master; file "named.empty"; allow-update &#123; none; &#125;;&#125;; 1234567891011zone &quot;88.168.192.in-addr.arpa&quot; IN &#123; type master; file &quot;88.168.192.rev&quot;; allow-update &#123; none; &#125;;&#125;;zone &quot;jnds.com&quot; IN &#123; type master; file &quot;jnds.com.zone&quot;; allow-update &#123; none; &#125;;&#125;; ps: 注意88.168.192实际上是192.168.88的反解 创建与修改正向和反向解析文件1进入模板目录 cd /var/named/ 2.复制正向解析模板文件 cp -p named.localhost jnds.com.zone 复制反向解析模板文件 cp -p named.loopback 88.168.192.rev ps:注意没有都是以上面代码file行对应的名字 编辑zone与rev文件 编辑zone文件 vi jnds.com.zone #添加A记录 ps:注意现在要写完整的ip地址了比如说上图的192.168.88.10 2编辑rev文件 vi 88.168.192.rev # 添加要解析的二级域名 ps: 注意www.jnds.com后面小点``.`` 最后启动服务1.service named restart #启动服务 chkconfig named on #设置开机启动 ps:启动时候遇到 输入下面命令 12rndc-confgen-r /dev/urandom -a ＃＃＃ 测试DNS服务是否正常 １. nslookup //查询工具]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos6.5 dns服务器搭建]]></title>
+    <url>%2Fpost%2Fdef6abe9.html</url>
+    <content type="text"><![CDATA[在今天老师的指导下成功在linux下搭建好了dns服务器做一下笔记 教程也为以后找一个好的方向。 环境 centos6.5 搭建的本地源 virtualBox虚拟机软件4.2.12版本 SElinux关闭 防火墙默认关闭 ip地址规划192.168.88.10 第一步搭建本地源1.创建系统上光盘挂载目录 mkdir /mnt/sr0 2 挂载光盘iso mount /dev/sr0/ /mnt/sr0 3 修改配置文件 cd /etc/yum.repos.d/ #切换目录mv CentOS-Base.repo CentOS-ase.repo.bak #重命名网络repo包源使其失效vi CentOS-Media.repo #编辑本地源repo ps:可以看到我们挂载的光盘已经挂载 编辑CentOS-Media.repo文件按下图编辑 修改成下图 ps: 需要修改的地方 baseurl=file:///media/CentOS/修改成baseurl=file:///mnt/sr0/enabled=0修改成enabled=1 保存修改本地源搭建成功第一步安装dns软件 yum安装软件bind 与bind-utils yum install -y bind bind-utils 第二步修改dns配置文件 配置named.conf文件 vi /etc/named.conf # 打开配置文件 原配置图要修改的地方 修改后的配置文件共3处 ps: 修改三个{ }内容为any 添加域区域1打开配置文件named.rfc1912.zones文件 vi /etc/named.rfc1912.zones ps: 2复制31行到41行这11行，把光标移动到31行在vi的按ESC进入命令行模式按11yy复制这11行如果7行就7yy灵活应用，复制后在终端左下角有一个11 lines yanked的提示， 光标移到配置文件最下面然后按大写的P粘贴 修改如下 ps: 变化如下这是容易出错的地方 "1.0.0.127.in-addr.arpa" IN &#123;12345678910 type master; file "named.loopback"; allow-update &#123; none; &#125;;&#125;;zone "0.in-addr.arpa" IN &#123; type master; file "named.empty"; allow-update &#123; none; &#125;;&#125;; 1234567891011zone &quot;88.168.192.in-addr.arpa&quot; IN &#123; type master; file &quot;88.168.192.rev&quot;; allow-update &#123; none; &#125;;&#125;;zone &quot;jnds.com&quot; IN &#123; type master; file &quot;jnds.com.zone&quot;; allow-update &#123; none; &#125;;&#125;; ps: 注意88.168.192实际上是192.168.88的反解 创建与修改正向和反向解析文件1进入模板目录 cd /var/named/ 2.复制正向解析模板文件 cp -p named.localhost jnds.com.zone 复制反向解析模板文件 cp -p named.loopback 88.168.192.rev ps:注意没有都是以上面代码file行对应的名字 编辑zone与rev文件 编辑zone文件 vi jnds.com.zone #添加A记录 ps:注意现在要写完整的ip地址了比如说上图的192.168.88.10 2编辑rev文件 vi 88.168.192.rev # 添加要解析的二级域名 ps: 注意www.jnds.com后面小点``.`` 最后启动服务1.service named restart #启动服务 chkconfig named on #设置开机启动 ps:启动时候遇到 输入下面命令 12rndc-confgen-r /dev/urandom -a ＃＃＃ 测试DNS服务是否正常 １. nslookup //查询工具]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos实验环境搭建]]></title>
+    <url>%2Fpost%2Ff7fb651d.html</url>
+    <content type="text"><![CDATA[关闭防火墙 /etc/init.d/iptables stop 关闭SElinux setenforce 0 临时修改ip地址重启系统失效ifconfig eth0 192.168.1.5 netmask 255.255.255.0 mkdir —创建目录chkconfig httpd on —-开机自启 mount -o loop -t iso9660 /dev/sr0 /mnt/sr0 —挂载例子 gpgcheck=1 —-启用包检查 enabled=1 —-启用这个仓库]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos实验环境搭建]]></title>
+    <url>%2Fpost%2Ff7fb651d.html</url>
+    <content type="text"><![CDATA[关闭防火墙 /etc/init.d/iptables stop 关闭SElinux setenforce 0 临时修改ip地址重启系统失效ifconfig eth0 192.168.1.5 netmask 255.255.255.0 mkdir —创建目录chkconfig httpd on —-开机自启 mount -o loop -t iso9660 /dev/sr0 /mnt/sr0 —挂载例子 gpgcheck=1 —-启用包检查 enabled=1 —-启用这个仓库]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2008系统域服务器注意事项]]></title>
+    <url>%2Fpost%2F87627a82.html</url>
+    <content type="text"><![CDATA[1安装命令 dcprom 2008系统安装，分区时候会有100M的保留容量，如果分区20G C盘话正确的分区容量应该是20583M 设置域服务器的密码策略需 开始 –&gt;管理工具 —&gt; 本地安全策略 –&gt; 安全设置 –&gt; 账户管理 –&gt; 密码策略 –&gt; 密码必须符合复杂性要求(需要设置成已禁用）设置域服务用户密码位数才不会报错。 Defadt Domain polic跟本地策略相关联（需要重启）Ps: 已验证]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2008系统域服务器注意事项]]></title>
+    <url>%2Fpost%2F87627a82.html</url>
+    <content type="text"><![CDATA[1安装命令 dcprom 2008系统安装，分区时候会有100M的保留容量，如果分区20G C盘话正确的分区容量应该是20583M 设置域服务器的密码策略需 开始 –&gt;管理工具 —&gt; 本地安全策略 –&gt; 安全设置 –&gt; 账户管理 –&gt; 密码策略 –&gt; 密码必须符合复杂性要求(需要设置成已禁用）设置域服务用户密码位数才不会报错。 Defadt Domain polic跟本地策略相关联（需要重启）Ps: 已验证]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[谢谢]]></title>
+    <url>%2Fpost%2Fc79c0cb2.html</url>
+    <content type="text"><![CDATA[从小到大一直以来，以为自己就是一个小小的一颗螺丝钉，不起眼，在一个固定的位置直至生锈。 谢谢你的礼物🎁，不一定要选择正确的，而应选择你不后悔的 邻国相望，鸡犬之声相闻，民至老死不相往来。 将来的你，一定会感谢现在拼命努力的自己，学姐! Ps: 像一名最初的墨者]]></content>
+      <tags>
+        <tag>“心情”</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[企业网搭建]]></title>
+    <url>%2Fpost%2F2145d965.html</url>
+    <content type="text"><![CDATA[分为3个部分P: 第一个部分，掌握配置路由器、交换机、防火墙、无线设备的相关命名。 第二部分：学习配置服务器的操作。服务器分为Server2003 Server2008 第三部分：linux服务器的配置。 第一部分重点：1 学会连接电脑跟路由器、交换机的come的知识点。2 查看台式电脑上是否有（超级终端）没有要去自己下载。3 学会查看是come那个端口计算机—–设备管理器—4 名称可以随便给，确定是哪个COM口，位/秒还原成为9600 2、开始学习设备的命令配置 (1）、查看USB连接线是否插对到设备上面console口。 (2）、拿到比赛题是要分析拓扑图注意事项—交换机的缩写（SW–Switch）、路由器的缩写（R-Router）.送分的必须得分，看图连接不能出错。 命名开始学习理解VLAN的概念：vlan是一个物理网络上划分出来的逻辑网络。1、 几种用户模式看懂&gt;用户模式#特权模式是查看配置情况（config）全局模式是配置设备的模式?是帮助命名 Tab是英文补全命名 language语言设置翻译为中文&gt;下输入en 进入特权模式可查看配置情况，再次输入config进入全局模式开始配置 认识基本的操作命名：1、 更改设备的名称 hostname 后输入设备名称2、 创建VLAN 直接输入vlan 空格 vlan号 vlan也可以设备名称 name 取名为JSB3、 将端口划分到vlan中去方法一：如果vlan10已经创建好了先进入端口号int e1/0/2-3 回车 sw ac vlan 10方法二：vlan 10回车 sw int e1/0/4-104、在特权模式下恢复出厂设置命名Set default 回车Y ,要保存 write 重启命名reload回车y 保存命名write回车Y5、ctrl+z退出到特权模式下查看配置命名show vlan或者show int e1/0/10 实训一:单台交换机配置vlan实训目的：相同的VLAN之间可以通信。 不同的VLAN之间不能通信。 实训二：跨交换机实现相同vlan能通信，不同的 VLAN之间不能通信1236、干线配置Trunk1)int e1/0/24 回车 sw mode trunk 设置中继模式 sw trunk all vlan all 表示意思所有的VLAN都通过2）查看PING命令——在开始菜单下—–运行输入CMD 回车 ping 192.168.1.10 -t 实训三：三层交换机实现vlan之间能通信命名：1）vlan 10 2)int vlan 10 进入vlan10 3)ip add 192.168.1.1 255.255.255.0注意：要想不同的vlan之间可以通信就必须要设置VLAN的IP地址 实训四：三层交换机跨交换机实现vlan之间的通信命名：1）vlan 10 2)int vlan 10 进入vlan10 3)ip add 192.168.1.1 255.255.255.0 4)int e1/0/24 进入24号口 sw mo trunk 设置干线注意：跨交换机只要设置了干线，两台交换机的vlan 可以互相访问 实训五：单臂路由器实现VLAN之间互访命令：交换机—1)vlan 10 sw int e1/0/1-5 Vlan 20 sw int e1/0/6-10 Int e1/0/24 sw mo trunk 路由器：1) int f0/0.1 encapsulation dot1q 10 封装vlan 10 Ip add 192.168.1.1 255.255.255.0 设置vlan 10的网关int f0/0.2 encapsulation dot1q 20 封装vlan 20 Ip add 192.168.21 255.255.255.0 设置vlan 20关注意：一定不能在F0/0端口上配置IP地址 实训六：链路聚合命令：port-group 1 创建聚合端口组 Int e1/0/1-2 进入端口需两个23 Port-group 1 mode on{静态} 第二种 active 主 passive 被 不能同时使用 只能一主一被 实训七：端口安全绑定1) 静态绑定MAC— 一个端口绑定一台电脑只能这台电脑使用 Int e1/0/1 进入端口 sw port—security 打开端口安全防护 Sw port-security mac-add ff-ff-ff-ff-ff-ff 2) 静态绑定两个MAC地址Int e1/0/1 进入端口 sw port—security 打开端口安全防护 Sw port-security maximum 2 端口最大数Sw port-security mac-add ff-ff-ff-ff-ff-ff 3）MAC地址和IP地址同时绑定到端口Am enable 启动访问管理功能 int e10/1Am port 对端口进行访问管理Am mac-ip –pool ff-ff-ff-ff-ff-ff 192.168.1.10 3) 绑定IP地址区间范围Am enable 启动访问管理功能 int e10/1Am port 对端口进行访问管理Am ip –pool 192.168.1.10 2 表示从10过后的2个地址 实训八：三层交换机上配置DHCP服务也叫自动分配IP地址]]></content>
+      <tags>
+        <tag>企业网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win2008 r2分区安装时间]]></title>
+    <url>%2Fpost%2Fcade9844.html</url>
+    <content type="text"><![CDATA[window2008 r2 分区系统默认要保留100M的容量，如果你30G的硬盘分区20G的主分区默认以M为单位的话是20580M，注意硬盘的单位1G=1024m window2008r2 在vm10虚拟机下安装要10分钟。]]></content>
+      <tags>
+        <tag>window服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos经验密码]]></title>
+    <url>%2Fpost%2Ff457213e.html</url>
+    <content type="text"><![CDATA[centos6.9密码位数必须6位数，纯数字也可以，但不推荐。在实验环境下可以纯数字，但在生产环境必须夹杂大小写字母 数字及符号位数越高越好]]></content>
+      <tags>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos经验安装错误]]></title>
+    <url>%2Fpost%2F1f7abf42.html</url>
+    <content type="text"><![CDATA[在虚拟机下安装出现Error processing drive错误这个错误是虚拟机调的内存太小不支持图形界面，分配我的是512m内存调大一点内存1G就可以了]]></content>
+      <tags>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win2008 r2分区安装时间]]></title>
+    <url>%2Fpost%2Fca8cedd8.html</url>
+    <content type="text"><![CDATA[window2008 r2 分区系统默认要保留100M的容量，如果你30G的硬盘分区20G的主分区默认以M为单位的话是20580M，注意硬盘的单位1G=1024m window2008r2 在vm10虚拟机下安装要10分钟。]]></content>
+      <tags>
+        <tag>window服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一个电脑两个github帐号报错快速解决办法]]></title>
+    <url>%2Fpost%2F1b5efe41.html</url>
+    <content type="text"><![CDATA[关于原因，是我今天遇到的麻烦，我需要把已经不好的github环境换一个帐号，结果git push时候遇到了报错The requested URL returned error: 403 解决办法没办法只能百度谷歌呗，前面已经折腾的差不多了，百度到一条git命令rundll32.exe keymgr.dll,KRShowKeyMgr 过程 1 已经把git公私匙重新部署了把新公匙部署到新的github帐号下 2 已经把目录下的.git目录删除掉重新git init了 3 在执行git push -u origin master命令时候还是报错403 4 然后我在bash下执行rundll32.exe keymgr.dll,KRShowKeyMgr命令会弹出一个窗口，我把里面的帐号信息全部都删除了。 5 重新执行git push 命令会弹出窗口叫你输入帐号密码我就知道有戏。其实在帐号界面可以添加的但是我没成功应该是格式问题 6 执行git push -u origin master完美成功 Ps:儿啊，今年你老爸还没追到你老妈，今年的七夕节，就这样吧。]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo next的主题评论]]></title>
+    <url>%2Fpost%2F4b40a3e3.html</url>
+    <content type="text"><![CDATA[网站的评论系统评论系统是Valine -- 一款极简的评论系统是群里大佬开发的 安装教程：https://ioliu.cn/2017/add-valine-comments-to-your-blog/ Github：https://github.com/xCss/Valine 最新版本地址：https://github.com/xCss/Valine/releases 注意事项Valine.min.js文件在下载的文件dist目录下放到大佬说的指定位置就行了ok]]></content>
+      <tags>
+        <tag>Valine</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo next的主题评论]]></title>
+    <url>%2Fpost%2F4b40a3e3.html</url>
+    <content type="text"><![CDATA[网站的评论系统评论系统是Valine -- 一款极简的评论系统是群里大佬开发的 安装教程：https://ioliu.cn/2017/add-valine-comments-to-your-blog/ Github：https://github.com/xCss/Valine 最新版本地址：https://github.com/xCss/Valine/releases 注意事项Valine.min.js文件在下载的文件dist目录下放到大佬说的指定位置就行了ok]]></content>
+      <tags>
+        <tag>Valine，hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[netlify hexo网站搭建 多电脑更新hexo]]></title>
+    <url>%2Fpost%2Fc073d51.html</url>
+    <content type="text"><![CDATA[netlify介绍首先我们来简述一下什么是netlify，Netlify是一个统一的平台，可自动执行代码，创建高性能，易于维护的站点和Web应用程序。这是官网上的介绍。当然你可以百度一下这个是什么玩意。总的来说这是个静态网站托管平台。 支持的功能有 1 Netlify CDN 2 一键式SSL 3 持续部署 4 逐渐迁移 5 Infinite Scale 6 Prerendering 7 Atomic Deploys 8 Instant Cache Invalidation 9 Instant Rollbacks 10 CLI 11 Programmable API 12 Instant Passwords 其中ssl可能是我们必须使用的一个功能了 注意： 默认你已经安装好了git程序和NodeJs环境 我的环境如下 1 win7x64位 2 Git-2.13.2-64-bit 3 node-v8.1.3-x64 4 npp_7.4.2_Installer（选安） 安装hexo（可跳过过）第一步安装hexo命令 1 $ npm install -g hexo-cli 第二步安装hexo注意使用下面的命令会在你的E盘创建一个hexo目录在使用这个命令前确保在E盘没有hexo这个目录 2 $ hexo init /e/hexo 第三步用cd命令切换到e盘的hexo目录下注意空格 3 $ cd /e/hexo 四步安装插件及所有必要的配置文件 4 npm install 第五步就是启动网站了确保4000端口没有被占用 5 hexo s 就这样我们的网站顺利的搭建起来了可以可以通过提示的地址访问我们的博客了注意我们所有的过程都是在git bash下操作的 准备部署其实新版本的hexo已经为我们git上传准备好策略了不信你可以看在hexo根目录下的.gitignore文件注意文件是隐藏的，打开看是不是已经有了/public和/node_modules其中/public是hexo g命令生成的静态网页的目录不用上传到github/node_modules目录是插件目录不用上传在github上准备仓库名字随便为避免错误，请勿使用README，许可证或gitignore文件初始化新的存储库。您可以在将项目推送到GitHub之后添加这些文件。第一步切换到hexo目录下 1 $ cd /e/hexo 第二步将本地目录初始化为Git仓库 2 $ git init 第三步提交修改 2 $ git add . 第四步提交您在本地存储库中上上传的文件 3 $ git commit -m ‘提交说明可任意修改’ 第五步配置要上传的仓库地址url 4 $ git remote add origin 仓库链接URL可以用git remote -v命令查看链接 第六步将本地存储库中的更改推送到GitHub 5 $ git push origin master 注意事项我没有说怎样配置ssh密匙可以百度一下这是必须的一步 现在你的hexo博客程序源代码已经在github上了登录netlify官网然后在右上角选择github的帐号登录然后就开始点击下面的加号创建创建网站了吧。 2017826 16:22更新这次是关于创建网站的教程 第一步 登录官网 在浏览器上输入官网的地址https://www.netlify.com/登录 第二步 登录帐号 第三步 选择一个帐号登录可以是github的帐号也可以是gitlab的帐号 理论上如果选择一个你保存hexo源文件的是哪个仓库就用哪个 帐号有四种选择，至于哪一种就看你的选择了 第四步 登录帐号过后添加网站点击下图的按钮 添加网站 第五步 选择你hexo源文件的仓库的地址可以看到有github，gitlan，还有 Bitbucket 第六步 选择你放hexo源文件的仓库 第七步照着我的填就行了要填的地方我已经打了箭头然后点击Deploy site,后就看机器人自动搭建你的hexo网站了，需要点时间 Ps: 如果没有成功可以给我留言或则发邮件都可以，还有绑定自定义域名没写就到这里吧]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>netlify</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[netlify hexo网站搭建 多电脑更新hexo]]></title>
+    <url>%2Fpost%2Fc073d51.html</url>
+    <content type="text"><![CDATA[netlify介绍首先我们来简述一下什么是netlify，Netlify是一个统一的平台，可自动执行代码，创建高性能，易于维护的站点和Web应用程序。这是官网上的介绍。当然你可以百度一下这个是什么玩意。总的来说这是个静态网站托管平台。 支持的功能有 1 Netlify CDN 2 一键式SSL 3 持续部署 4 逐渐迁移 5 Infinite Scale 6 Prerendering 7 Atomic Deploys 8 Instant Cache Invalidation 9 Instant Rollbacks 10 CLI 11 Programmable API 12 Instant Passwords 其中ssl可能是我们必须使用的一个功能了 注意： 默认你已经安装好了git程序和NodeJs环境 我的环境如下 1 win7x64位 2 Git-2.13.2-64-bit 3 node-v8.1.3-x64 4 npp_7.4.2_Installer（选安） 安装hexo（可跳过过）第一步安装hexo命令 1 $ npm install -g hexo-cli 第二步安装hexo注意使用下面的命令会在你的E盘创建一个hexo目录在使用这个命令前确保在E盘没有hexo这个目录 2 $ hexo init /e/hexo 第三步用cd命令切换到e盘的hexo目录下注意空格 3 $ cd /e/hexo 四步安装插件及所有必要的配置文件 4 npm install 第五步就是启动网站了确保4000端口没有被占用 5 hexo s 就这样我们的网站顺利的搭建起来了可以可以通过提示的地址访问我们的博客了注意我们所有的过程都是在git bash下操作的 准备部署其实新版本的hexo已经为我们git上传准备好策略了不信你可以看在hexo根目录下的.gitignore文件注意文件是隐藏的，打开看是不是已经有了/public和/node_modules其中/public是hexo g命令生成的静态网页的目录不用上传到github/node_modules目录是插件目录不用上传在github上准备仓库名字随便为避免错误，请勿使用README，许可证或gitignore文件初始化新的存储库。您可以在将项目推送到GitHub之后添加这些文件。第一步切换到hexo目录下 1 $ cd /e/hexo 第二步将本地目录初始化为Git仓库 2 $ git init 第三步提交修改 2 $ git add . 第四步提交您在本地存储库中上上传的文件 3 $ git commit -m ‘提交说明可任意修改’ 第五步配置要上传的仓库地址url 4 $ git remote add origin 仓库链接URL可以用git remote -v命令查看链接 第六步将本地存储库中的更改推送到GitHub 5 $ git push origin master 注意事项我没有说怎样配置ssh密匙可以百度一下这是必须的一步 现在你的hexo博客程序源代码已经在github上了登录netlify官网然后在右上角选择github的帐号登录然后就开始点击下面的加号创建创建网站了吧。 2017826 16:22更新这次是关于创建网站的教程 第一步 登录官网 在浏览器上输入官网的地址https://www.netlify.com/登录 第二步 登录帐号 第三步 选择一个帐号登录可以是github的帐号也可以是gitlab的帐号 理论上如果选择一个你保存hexo源文件的是哪个仓库就用哪个 帐号有四种选择，至于哪一种就看你的选择了 第四步 登录帐号过后添加网站点击下图的按钮 添加网站 第五步 选择你hexo源文件的仓库的地址可以看到有github，gitlan，还有 Bitbucket 第六步 选择你放hexo源文件的仓库 第七步照着我的填就行了要填的地方我已经打了箭头然后点击Deploy site,后就看机器人自动搭建你的hexo网站了，需要点时间 Ps: 如果没有成功可以给我留言或则发邮件都可以，还有绑定自定义域名没写就到这里吧]]></content>
+      <tags>
+        <tag>netlify，hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[暑假学习计划]]></title>
+    <url>%2Fpost%2F722bb71a.html</url>
+    <content type="text"><![CDATA[这个暑假这个暑假不可能一直都是玩耍下去吧，总要干些什么呢，所以勒，饭要一口一口吃，计划也要一步一步的来，不是吗！ 计划1把smb服务器的熟练掌握。在不看任何的参考资料的情况下能把服务器搭建起来。smb服务器的配置文件详解要一定的记牢。计划10天 计划2详细的熟练掌握centos6系列的磁盘分区，磁盘配额，有点难度，但已经了解分区结构的我不是什么问题，要求在不借助任何的参考资料的情况下熟练掌握分区。创建lvm和rald，如果我把这个掌握了，我想在命令行安装系统的最大障碍就会去除了吧。计划5天 计划3搭建ftp服务器，要求在匿名上的安全性，用户管理上。全面学习。熟练掌握各种ftp的架构。计划5天 计划4centos的系统服务管理，虽说centos7已经换成systemd但6的版本还是要学习的。熟练掌握要求2天 计划5centos的用户管理，要求熟练的牢记命令和各种参数。这是通用的要求1天。 ####### 待续]]></content>
+      <tags>
+        <tag>“学习计划”</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[参考一下多机hexo部署]]></title>
+    <url>%2Fpost%2Fa651f7ca.html</url>
+    <content type="text"><![CDATA[在一个网站下看到的多机更新hexo博客放链接链接 说到更新博客其实在网上写文章然后上传了，现在就是 在本地上部署一模一样的环境不知道可不可以，其实还 有一个方法就是把本地博客部署到虚拟机虚拟机部署是 不是很快啊，直接一个U盘打包带走当然这这只是一个想 法需要新的实验但，你先要把环境搭建起来啊。其实虚拟 机搭建起来还是有些庞大怎么说也有几十个G的容量吧不管 怎么说还是先把实验环境搭建起来再说]]></content>
+      <tags>
+        <tag>参考</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo 国外国内分流]]></title>
+    <url>%2Fpost%2F67d4f91.html</url>
+    <content type="text"><![CDATA[hexo 国外国内分流 碰到几次坑但是在空空不倦的撸力下还是把这个难关给过了bash下我输入的命令报错，因为是第一次嘛，想不到hexo的配置文件还是好难搞的一点点也不能错。[官方解决办法地址][1][1]http://hexo.io/docs/deployment.html我也把这个deploy配置文件贴出来 12345deploy:- type: git repo:- type: heroku repo: 详解选项 描述repo GitHub / Bitbucket / Coding / GitLab存储库URL]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客建造历程二 标签]]></title>
+    <url>%2Fpost%2F48f71961.html</url>
+    <content type="text"><![CDATA[#next主题的标签 其实标签是我遇到好坑的一件事按照知乎上的热心好友的教程转了一个圈子 附上[链接地址][1][1]: https://www.zhihu.com/question/29017171我遇到的现象根本不是写的文章的问题。当然也有可能是有人遇到过这个原因我是点击主页上的标签，网页就变成 Cannot GET /tags/ 这个鬼样子整个网页就显示在左上角就这个路径。 ##解决方案一步一步来 1打开你的bash cd到你的hexo网站根目录下 2、在命令行中输入$ hexo new page tags 3、这时会在网站根目录sources/tags目录里面有个index.md的文件，打开这个文件编辑 三个短横线title: tagsdate: 2017-7-7 19:54:32type: “tags”三个短横线把type: 改成tags:然后保存注意如果可以不用window的笔记本来编辑最好不要用 4、在主题配置文件中，在menu项下，要把tags页打开如下 menu: home: / categories: /categories #about: /about archives: /archives tags: /tags #确保标签页已打开 #schedule: /schedule #commonweal:/404.html 注意一个冒号后面的一个空格当然这个情况是进入文章里面点击标签有效果而在主页上点击主页上的标签没效果的解决方案ok]]></content>
+      <tags>
+        <tag>博客建造历程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[建了一个新博客]]></title>
+    <url>%2Fpost%2Fc7c3121d.html</url>
+    <content type="text"><![CDATA[不知道为什么在三蛋空间老是出问题，查了论坛说是升级ssd现在好咯一些了，但有时会数据库出现问题，所以嘞建了一个Git博客，呵呵 过程1 1其中需要注意的是空格问题 2编码问题 3一些美化了 4推荐使用Notepas++工具来修改配 置文件 5过程使用的是yilia主题坑已经填 完 6慢慢改进其中网站统计还有待提 高 7写文章的地方在网上了[网站地址][1][1]: https://www.zybuluo.com]]></content>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客建造历程一搭建]]></title>
+    <url>%2Fpost%2F52078ffc.html</url>
+    <content type="text"><![CDATA[这次建造博客可以说是经历了波折，没有其他的人感觉这样累吧但也是收获了不少东西， #选择主题1一般来说一开始搭建我是按照教程开始的主题也是选择yiliy的但毕竟有一些小众对于大白来说修改或添加一些东西还是不怎么方便最后我选择的是next这个主题官方也有许多的教程也很方便修改，官方有很好的教程安装这个主题可以说我们现在是没有教怎么安装hexo这个静态博客程序而是直奔主题怎么优化给一个思路附上next主题官方教程地址[next中文地址][1][1]: http://theme-next.iissnan.com/官方有许多好东西写的也比我们这些时间一过没有维护文章的误人子弟强多了]]></content>
+      <tags>
+        <tag>博客建造历程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客建造历程一搭建]]></title>
+    <url>%2Fpost%2F52078ffc.html</url>
+    <content type="text"><![CDATA[这次建造博客可以说是经历了波折，没有其他的人感觉这样累吧 但也是收获了不少东西， #选择主题1一般来说一开始搭建我是按照教程开始的主题也是选择yiliy的但毕竟有一些小众对于大白来说修改或添加一些东西还是不怎么方便最后我选择的是next这个主题官方也有许多的教程也很方便修改，官方有很好的教程安装这个主题可以说我们现在是没有教怎么安装hexo这个静态博客程序而是直奔主题怎么优化给一个思路附上next主题官方教程地址[next中文地址][1][1]: http://theme-next.iissnan.com/官方有许多好东西写的也比我们这些时间一过没有维护文章的误人子弟强多了]]></content>
+      <tags>
+        <tag>博客建造历程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[debian 系统老旧版本]]></title>
+    <url>%2Fpost%2F61c7f65a.html</url>
+    <content type="text"><![CDATA[debian官方默认只提供最新的版本下载，有时需要找一些旧的版本的debian，着实费用。下面这个debian iso镜像站可以下载各个版本的[链接地址][1][1]: http://cdimage.debian.org/cdimage/archive/]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux 版迅雷固件安装]]></title>
+    <url>%2Fpost%2Fda41be7f.html</url>
+    <content type="text"><![CDATA[1下载固件2安装固件最好新建一个用户安装，3迅雷固件需要挂载一个目录才会识别到硬盘，迅雷固件会自动识别。 2018年6月3日更新辣鸡迅雷实验完就关闭第三方固件]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[网络经验（2）]]></title>
+    <url>%2Fpost%2Fdfc88137.html</url>
+    <content type="text"><![CDATA[经过试验，centos7安装起后boot分区启动不能自动启动，去、fs文件下注释掉这个boot，可以启动经过试验应该，是系统版本太高，驱动太新，对这个电脑不支持，（长城定制电脑）其他电脑可以正常安装，最后centos6.9正常安装启动已经安装了轻量级桌面xfce。打个备忘]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[华为路由器]]></title>
+    <url>%2Fpost%2F77d696.html</url>
+    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
+      <tags>
+        <tag>经验,待验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7搭建dhcp服务器]]></title>
+    <url>%2Fpost%2F62e11409.html</url>
+    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下： TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
+    <url>%2Fpost%2F7889c636.html</url>
+    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux 安装zerotier]]></title>
+    <url>%2Fpost%2Fdce2de1b.html</url>
+    <content type="text"><![CDATA[介绍一下zerotier一切都是云 ZeroTier可以轻松地将设备，服务器，云虚拟机，容器和应用程序安全地连接到各地，并对其进行规模化管理。 1下载wget https://download.zerotier.com/zerotier-one-x64.rpm2安装 yum install zerotier-one-x64.rpm3加人网络zerotier-cli join 网络ID4登陆zerotier 官方网站同意加人网络注意是打“钩”注意要允许以太网桥接5ip a 查看ip地址6ping ip地址看互通不 ZeroTier One服务将其配置和状态信息保留在其工作目录中。默认情况下在以下位置找到：视窗： C:\ProgramData\ZeroTier\One苹果： /Library/Application Support/ZeroTier/OneLinux的： /var/lib/zerotier-one FreeBSD的/ OpenBSD系统： /var/db/zerotier-one 我搭建时候的环境1centos7百度云开启了防火墙关闭了SELinux2win7安装了客户端注意win7要安装net 3手机OPPO 不同的网络端，win7ping手机时ping的回复时间不稳定，win7ping 百度云centos7时ping回话时间稳定。]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7关闭防火墙和selinux]]></title>
+    <url>%2Fpost%2F74201e82.html</url>
+    <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
+      <tags>
+        <tag>linux资料</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7安装webmin]]></title>
+    <url>%2Fpost%2F4c082866.html</url>
+    <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
+      <tags>
+        <tag>linux软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[n2nrpm包安装centos 安装]]></title>
+    <url>%2Fpost%2F38d9a526.html</url>
+    <content type="text"><![CDATA[这是官网翻译过来是该目录包含用于RedHat / CentOS（最新操作系统版本）的64位二进制包的稳定版本（SVN代码）。请使用rpm-stable.ntop.org进行稳定的构建。为了使用这个存储库做（作为root）：cd /etc/yum.repos.d/wget http://packages.ntop.org/centos-stable/ntop.repo -O ntop.repoCentOS 6wget http://packages.ntop.org/centos-stable/epel-6.repo -O epel.repowget https://copr.fedoraproject.org/coprs/saltstack/zeromq4/repo/epel-6/saltstack-zeromq4-epel-6.reporpm -ivh http://packages.ntop.org/rpm6/extra/hiredis-0.10.1-3.el6.x86_64.rpm http://packages.ntop.org/rpm6/extra/hiredis-devel-0.10.1-3.el6.x86_64.rpmCentOS 7wget http://packages.ntop.org/centos/epel-7.repo -O epel.repo然后做：yum erase zeromq3 （这样做一次以确保没有安装zeromq3）yum clean allyum updateyum install pfring n2disk nprobe ntopng ntopng-data centoPF_RING现在打包没有ZC驱动程序，所以你可以选择安装它们：yum install pfring-drivers-zc-dkms大多数软件没有许可证。但是有些组件需要许可证。他们包括：PF_RING ZC / DNA用户空间库nProbe（NetFlow / IPFIX探针）n2disk（数据包到磁盘应用程序）您可以在ntop网站上找到更多信息，或在ntop电子商店获取许可。]]></content>
+      <tags>
+        <tag>linux软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[唉出错了]]></title>
+    <url>%2Fpost%2F14f837ec.html</url>
+    <content type="text"><![CDATA[经验教训啊，幸亏没有造成太大的损失。xp系统激活，结果造成伪激活，虽然在不久前无意间看到这个问题，但是还是下意识的忽视了。果然还是太嫩了。]]></content>
+      <tags>
+        <tag>教训</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[几种nas硬件方案]]></title>
+    <url>%2Fpost%2F4cf0d6b6.html</url>
+    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
+      <tags>
+        <tag>方案</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
+    <url>%2Fpost%2F104acc17.html</url>
+    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
+    <url>%2Fpost%2F597c0af.html</url>
+    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[今天心情很好]]></title>
+    <url>%2Fpost%2F1076a63b.html</url>
+    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于华为交换机端口批量加入错误问题]]></title>
+    <url>%2Fpost%2Fc4197f0f.html</url>
+    <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的 第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
+      <tags>
+        <tag>交换机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux安装btsync]]></title>
+    <url>%2Fpost%2Fb8706160.html</url>
+    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
+      <tags>
+        <tag>Linux 系统教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[测试文章]]></title>
+    <url>%2Fpost%2F7a6a6b5a.html</url>
+    <content type="text"></content>
+      <tags>
+        <tag>Note</tag>
+      </tags>
+  </entry>
+</search>
