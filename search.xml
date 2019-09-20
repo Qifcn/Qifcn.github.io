@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[“白墨黑群晖搭建记录”]]></title>
     <url>%2Fpost%2F918a0011.html</url>
-    <content type="text"><![CDATA[序言为自己搭建黑群晖nas的一个经验性的一个总结，从2017年2月开始了解nas这个系统性的“玩具”可以说还是有一些经验吧。 !–more–&gt; 内容配置 配置清单及报价如下 CPU：i3 4代 自带 散热：大镰刀S950m 43.8包邮 主板：华硕H81i plus 228包邮 内存：DDR3 2G 旧电脑拆下 电源：益衡 小1u电源 240元 机箱：蜗牛星际拆机B款机箱 59包邮 总价：570.8 元 cpu自带拆机的，4代i3 内存条拆机，其实nas就算是二手的也需要一点小钱钱的，所以尽量有拆机的，就尽量吧。节约钱。 机箱蜗牛星际的b款机箱发过来的时候，怎么说嘞，成色确实没有太好，而且因为担心像网上说的硬盘板有问题，所以说拆了，3但这有一个问题面板虽然拆了，但这样就造成了硬盘插上去后直插主板上会造成 硬盘不紧很松]]></content>
+    <content type="text"><![CDATA[序言为自己搭建黑群晖nas的一个经验性的一个总结，从2017年2月开始了解nas这个系统性的“玩具”可以说还是有一些经验吧。 !–more–&gt; 内容配置 配置清单及报价如下 CPU：i3 4代 自带 散热：大镰刀S950m 43.8包邮 主板：华硕H81i plus 228包邮 内存：DDR3 2G 旧电脑拆下 电源：益衡 小1u电源 240元 机箱：蜗牛星际拆机B款机箱 59包邮 总价：570.8 元 cpu自带拆机的，4代i3 内存条拆机，其实nas就算是二手的也需要一点小钱钱的，所以尽量有拆机的，就尽量吧。节约钱 机箱蜗牛星际的b款机箱发过来的时候，怎么说嘞，成色确实没有太好，而且因为担心像网上说的硬盘板有问题，所以说拆了，但这有一个问题面板虽然拆了，但这样就造成了硬盘插上去后直插主板上会造成 硬盘不紧很松 思维导图]]></content>
       <tags>
         <tag>黑群晖</tag>
       </tags>
@@ -583,14 +583,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7 安装(ღ˘⌣˘ღ)lnmp环境]]></title>
-    <url>%2Fpost%2F7ef0a72b.html</url>
-    <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysql.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
-      <tags>
-        <tag>lnmp centos7</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[centos7 安装 (ღ˘⌣˘ღ)lnmp 环境]]></title>
     <url>%2Fpost%2F88b5e2fc.html</url>
     <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysqld.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
@@ -598,6 +590,14 @@
         <tag>B3log</tag>
         <tag>CentOS</tag>
         <tag>lnmp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7 安装(ღ˘⌣˘ღ)lnmp环境]]></title>
+    <url>%2Fpost%2F7ef0a72b.html</url>
+    <content type="text"><![CDATA[这次安装centos7 安装环境遇到的问题差不多，就是nginx配置文件出错nginx没有与php链接默认的配置文件如果只是把php配置的那段注释去掉不能生效。 0x01安装yum源 1234567yum install wgetwget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmwget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpmrpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpmrpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 0x02安装软件 123yum install -y mysql-serveryum install -y nginxyum install -y php70w php70w-fpm php70w-mysql.x86_64 0x03修改nginx与php-frp配置文件1修改 /etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的代码示例：示例代码：/etc/nginx/conf.d/default.conf```12345678910111213141516171819202122```server &#123; listen 80 default_server; # listen [::]:80 default_server; server_name _; root /usr/share/nginx/html; # Load configuration files for the default server block. include /etc/nginx/default.d/*.conf; location / &#123; &#125; error_page 404 /404.html; location = /40x.html &#123; &#125; error_page 500 502 503 504 /50x.html; location = /50x.html &#123; &#125;&#125; 2在 /etc/nginx/conf.d 目录中新建一个名为 php.conf 的文件，并配置 Nginx 端口 ，配置示例如下：示例代码：/etc/nginx/conf.d/php.conf```123456789101112```server &#123; listen 8000; # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 location ~ .php$ &#123; root /usr/share/php; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; include fastcgi_params; &#125;&#125; ps:注意路径哦 3修改php-fpm配置文件php-fpm配置文件位置：（/etc/php-fpm.d/www.conf） 示例代码：/etc/php-fpm.d/www.conf```123```user =apache -&gt;nginx​group=apache -&gt;nginx 修改后123```user= nginx​group= nginx 0x04 启动服务并开机自启 1234567systemctl restart mysql.servicesystemctl restart nginx.servicesystemctl restart php-fpm.service systemctl enable mysql.service systemctl enable nginx.service systemctl enable php-fpm.service 0x05测试这时候，我们就可以在/usr/share/php 目录下新建一个 info.php 文件来检查 php 是否安装成功了，文件内容参考如下：示例代码：vi /usr/share/php/info.php 12mkdir /usr/share/phpvi /usr/share/php/info.php 12&lt;?php phpinfo(); ?&gt;]]></content>
+      <tags>
+        <tag>lnmp centos7</tag>
       </tags>
   </entry>
   <entry>
@@ -852,17 +852,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7搭建dhcp服务器]]></title>
-    <url>%2Fpost%2F62e11409.html</url>
-    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下： TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
+    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
+    <url>%2Fpost%2F7889c636.html</url>
+    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
-    <url>%2Fpost%2F7889c636.html</url>
-    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
+    <title><![CDATA[centos7搭建dhcp服务器]]></title>
+    <url>%2Fpost%2F62e11409.html</url>
+    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下： TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
@@ -916,6 +916,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[今天心情很好]]></title>
+    <url>%2Fpost%2F1076a63b.html</url>
+    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
+    <url>%2Fpost%2F597c0af.html</url>
+    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[几种nas硬件方案]]></title>
+    <url>%2Fpost%2F4cf0d6b6.html</url>
+    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
+      <tags>
+        <tag>方案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于华为交换机端口批量加入错误问题]]></title>
     <url>%2Fpost%2Fc4197f0f.html</url>
     <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的 第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10 第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
@@ -929,30 +953,6 @@
     <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
       <tags>
         <tag>Linux 系统教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[几种nas硬件方案]]></title>
-    <url>%2Fpost%2F4cf0d6b6.html</url>
-    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
-      <tags>
-        <tag>方案</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
-    <url>%2Fpost%2F597c0af.html</url>
-    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
-      <tags>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[今天心情很好]]></title>
-    <url>%2Fpost%2F1076a63b.html</url>
-    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
-      <tags>
-        <tag>经验</tag>
       </tags>
   </entry>
   <entry>
