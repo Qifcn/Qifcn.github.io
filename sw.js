@@ -24,15 +24,15 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/post/4b40a3e3.html');
+  precacheUrls.push('/post/f0f212bb.html');
+
+  precacheUrls.push('/post/b12b5845.html');
+
+  precacheUrls.push('/post/eb7680ff.html');
 
   precacheUrls.push('/post/b140841c.html');
 
-  precacheUrls.push('/post/f3f9ab14.html');
-
   precacheUrls.push('/post/73cc8cfd.html');
-
-  precacheUrls.push('/post/f82e4eee.html');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":5};
