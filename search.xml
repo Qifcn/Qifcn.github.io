@@ -836,19 +836,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[华为路由器]]></title>
-    <url>%2Fpost%2F77d696.html</url>
-    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
-      <tags>
-        <tag>经验,待验证</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[网络经验（2）]]></title>
     <url>%2Fpost%2Fdfc88137.html</url>
     <content type="text"><![CDATA[经过试验，centos7安装起后boot分区启动不能自动启动，去、fs文件下注释掉这个boot，可以启动经过试验应该，是系统版本太高，驱动太新，对这个电脑不支持，（长城定制电脑）其他电脑可以正常安装，最后centos6.9正常安装启动已经安装了轻量级桌面xfce。打个备忘]]></content>
       <tags>
         <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[华为路由器]]></title>
+    <url>%2Fpost%2F77d696.html</url>
+    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
+      <tags>
+        <tag>经验,待验证</tag>
       </tags>
   </entry>
   <entry>
