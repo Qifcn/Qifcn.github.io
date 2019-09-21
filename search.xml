@@ -554,8 +554,8 @@
     <url>%2Fpost%2F9b44950b.html</url>
     <content type="text"><![CDATA[越是年长 越是渴望 能有一个人 走进你心里 不露痕迹 倾听你岁月蹉跎的忧伤 只是 那人许是也不会再有了罢 只好无奈 道一声 弦断有谁听 再来一声 深深地 深深地叹息]]></content>
       <tags>
-        <tag>心情</tag>
         <tag>感悟</tag>
+        <tag>心情</tag>
       </tags>
   </entry>
   <entry>
@@ -751,15 +751,6 @@
     <url>%2Fpost%2Fc073d51.html</url>
     <content type="text"><![CDATA[netlify介绍首先我们来简述一下什么是netlify，Netlify是一个统一的平台，可自动执行代码，创建高性能，易于维护的站点和Web应用程序。这是官网上的介绍。当然你可以百度一下这个是什么玩意。总的来说这是个静态网站托管平台。 支持的功能有 1 Netlify CDN 2 一键式SSL 3 持续部署 4 逐渐迁移 5 Infinite Scale 6 Prerendering 7 Atomic Deploys 8 Instant Cache Invalidation 9 Instant Rollbacks 10 CLI 11 Programmable API 12 Instant Passwords 其中ssl可能是我们必须使用的一个功能了 注意： 默认你已经安装好了git程序和NodeJs环境 我的环境如下 1 win7x64位 2 Git-2.13.2-64-bit 3 node-v8.1.3-x64 4 npp_7.4.2_Installer（选安） 安装hexo（可跳过过）第一步安装hexo命令 1 $ npm install -g hexo-cli 第二步安装hexo注意使用下面的命令会在你的E盘创建一个hexo目录在使用这个命令前确保在E盘没有hexo这个目录 2 $ hexo init /e/hexo 第三步用cd命令切换到e盘的hexo目录下注意空格 3 $ cd /e/hexo 四步安装插件及所有必要的配置文件 4 npm install 第五步就是启动网站了确保4000端口没有被占用 5 hexo s 就这样我们的网站顺利的搭建起来了可以可以通过提示的地址访问我们的博客了注意我们所有的过程都是在git bash下操作的 准备部署其实新版本的hexo已经为我们git上传准备好策略了不信你可以看在hexo根目录下的.gitignore文件注意文件是隐藏的，打开看是不是已经有了/public和/node_modules其中/public是hexo g命令生成的静态网页的目录不用上传到github/node_modules目录是插件目录不用上传在github上准备仓库名字随便为避免错误，请勿使用README，许可证或gitignore文件初始化新的存储库。您可以在将项目推送到GitHub之后添加这些文件。第一步切换到hexo目录下 1 $ cd /e/hexo 第二步将本地目录初始化为Git仓库 2 $ git init 第三步提交修改 2 $ git add . 第四步提交您在本地存储库中上上传的文件 3 $ git commit -m ‘提交说明可任意修改’ 第五步配置要上传的仓库地址url 4 $ git remote add origin 仓库链接URL可以用git remote -v命令查看链接 第六步将本地存储库中的更改推送到GitHub 5 $ git push origin master 注意事项我没有说怎样配置ssh密匙可以百度一下这是必须的一步 现在你的hexo博客程序源代码已经在github上了登录netlify官网然后在右上角选择github的帐号登录然后就开始点击下面的加号创建创建网站了吧。 2017826 16:22更新这次是关于创建网站的教程 第一步 登录官网 在浏览器上输入官网的地址https://www.netlify.com/登录 第二步 登录帐号 第三步 选择一个帐号登录可以是github的帐号也可以是gitlab的帐号 理论上如果选择一个你保存hexo源文件的是哪个仓库就用哪个 帐号有四种选择，至于哪一种就看你的选择了 第四步 登录帐号过后添加网站点击下图的按钮 添加网站 第五步 选择你hexo源文件的仓库的地址可以看到有github，gitlan，还有 Bitbucket 第六步 选择你放hexo源文件的仓库 第七步照着我的填就行了要填的地方我已经打了箭头然后点击Deploy site,后就看机器人自动搭建你的hexo网站了，需要点时间 Ps: 如果没有成功可以给我留言或则发邮件都可以，还有绑定自定义域名没写就到这里吧]]></content>
       <tags>
-        <tag>hexo</tag>
-        <tag>netlify</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[netlify hexo网站搭建 多电脑更新hexo]]></title>
-    <url>%2Fpost%2Fc073d51.html</url>
-    <content type="text"><![CDATA[netlify介绍首先我们来简述一下什么是netlify，Netlify是一个统一的平台，可自动执行代码，创建高性能，易于维护的站点和Web应用程序。这是官网上的介绍。当然你可以百度一下这个是什么玩意。总的来说这是个静态网站托管平台。 支持的功能有 1 Netlify CDN 2 一键式SSL 3 持续部署 4 逐渐迁移 5 Infinite Scale 6 Prerendering 7 Atomic Deploys 8 Instant Cache Invalidation 9 Instant Rollbacks 10 CLI 11 Programmable API 12 Instant Passwords 其中ssl可能是我们必须使用的一个功能了 注意： 默认你已经安装好了git程序和NodeJs环境 我的环境如下 1 win7x64位 2 Git-2.13.2-64-bit 3 node-v8.1.3-x64 4 npp_7.4.2_Installer（选安） 安装hexo（可跳过过）第一步安装hexo命令 1 $ npm install -g hexo-cli 第二步安装hexo注意使用下面的命令会在你的E盘创建一个hexo目录在使用这个命令前确保在E盘没有hexo这个目录 2 $ hexo init /e/hexo 第三步用cd命令切换到e盘的hexo目录下注意空格 3 $ cd /e/hexo 四步安装插件及所有必要的配置文件 4 npm install 第五步就是启动网站了确保4000端口没有被占用 5 hexo s 就这样我们的网站顺利的搭建起来了可以可以通过提示的地址访问我们的博客了注意我们所有的过程都是在git bash下操作的 准备部署其实新版本的hexo已经为我们git上传准备好策略了不信你可以看在hexo根目录下的.gitignore文件注意文件是隐藏的，打开看是不是已经有了/public和/node_modules其中/public是hexo g命令生成的静态网页的目录不用上传到github/node_modules目录是插件目录不用上传在github上准备仓库名字随便为避免错误，请勿使用README，许可证或gitignore文件初始化新的存储库。您可以在将项目推送到GitHub之后添加这些文件。第一步切换到hexo目录下 1 $ cd /e/hexo 第二步将本地目录初始化为Git仓库 2 $ git init 第三步提交修改 2 $ git add . 第四步提交您在本地存储库中上上传的文件 3 $ git commit -m ‘提交说明可任意修改’ 第五步配置要上传的仓库地址url 4 $ git remote add origin 仓库链接URL可以用git remote -v命令查看链接 第六步将本地存储库中的更改推送到GitHub 5 $ git push origin master 注意事项我没有说怎样配置ssh密匙可以百度一下这是必须的一步 现在你的hexo博客程序源代码已经在github上了登录netlify官网然后在右上角选择github的帐号登录然后就开始点击下面的加号创建创建网站了吧。 2017826 16:22更新这次是关于创建网站的教程 第一步 登录官网 在浏览器上输入官网的地址https://www.netlify.com/登录 第二步 登录帐号 第三步 选择一个帐号登录可以是github的帐号也可以是gitlab的帐号 理论上如果选择一个你保存hexo源文件的是哪个仓库就用哪个 帐号有四种选择，至于哪一种就看你的选择了 第四步 登录帐号过后添加网站点击下图的按钮 添加网站 第五步 选择你hexo源文件的仓库的地址可以看到有github，gitlan，还有 Bitbucket 第六步 选择你放hexo源文件的仓库 第七步照着我的填就行了要填的地方我已经打了箭头然后点击Deploy site,后就看机器人自动搭建你的hexo网站了，需要点时间 Ps: 如果没有成功可以给我留言或则发邮件都可以，还有绑定自定义域名没写就到这里吧]]></content>
-      <tags>
         <tag>netlify，hexo</tag>
       </tags>
   </entry>
@@ -852,17 +843,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
-    <url>%2Fpost%2F7889c636.html</url>
-    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
+    <title><![CDATA[centos7搭建dhcp服务器]]></title>
+    <url>%2Fpost%2F62e11409.html</url>
+    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下：TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7搭建dhcp服务器]]></title>
-    <url>%2Fpost%2F62e11409.html</url>
-    <content type="text"><![CDATA[1、配置DHCP服务 首先当然是配置网卡IP地址了，可以编辑网卡配置文件/etc/sysconfig/network-script/ifcfg-eth0，如下：TYPE=”Ethernet” //网络BOOTPROTO=”static” //是否开启dhcpIPADDR=”192.168.10.254” //ip地址NETMASK=”255.255.255.0” //掩码DNS1=”202.98.190.60” //dns1DNS2=”110.110.110.9” //dns2GATEWAY=”192.168.10.1” //网关NAME=”eth0”DEVICE=”eth0” ONBOOT=”yes” //是否开机自起DHCP的配置文件： 位置 /etc/dhcp/dhcpd.conf DHCP文件的配置语法： &lt;参数名称&gt; &lt;设定内容&gt; ； option &lt;参数名称&gt; &lt;设定内容&gt;； DHCP配置内容：subnet 192.168.10.0 netmask 255.255.255.0 {range 192.168.10.101 192.168.10.200;ddns-update-style none;ignore client-updates;default-lease-time 86400;max-lease-time 518400;option routers 192.168.10.1;option domain-name-servers 202.98.190.60,110.110.110.9;}host xp{ //对于该主机分配一个固定的IP地址给他hardware ethernet 00:0c:29:5a:f9:c6;fixed-address 192.168.10.199;} 当配置完成后，保存退出，这时需要重启一下dhcp服务 systemctl restart dhcpd.service 如果配置文件中有语法错误，在重启dhcp服务时，就会有如下提示 [root@MT ~]# systemctl restart dhcpd.serviceJob for dhcpd.service failed because the control process exitedwith error code. See “systemctl status dhcpd.service” and “journalctl -xe” for details. 这时我们根据提示命令去查询错误所在 命令journalctl -xe[root@MT ~]# journalctl -xe………………………………….10月 20 16:04:19 MT dhcpd[23672]: Internet Systems Consortium DHCP Server 4.2.510月 20 16:04:19 MT dhcpd[23672]: Copyright 2004-2013 Internet Systems Consortium.10月 20 16:04:19 MT dhcpd[23672]: All rights reserved.10月 20 16:04:19 MT dhcpd[23672]: For info, please visit https://www.isc.org/software/dhcp/10月 20 16:04:19 MT dhcpd[23672]: /etc/dhcp/dhcpd.conf line 14: semicolon expected.10月 20 16:04:19 MT dhcpd[23672]: option domain-name-servers 202.98.190.60 110.10月 20 16:04:19 MT dhcpd[23672]: ^10月 20 16:04:19 MT dhcpd[23672]: Configuration file errors encountered – exiting…………………………………. ###########从上述可知，110前面有误法错误，那这是什么错误呢，当然是两个DNS地址之间少一个逗号了“，”，我们将其修改后，再次执行重启服务命令，就不会提示错误了。 如果配置文件都没有错误，重启服务命令将什么也不会提示，然后可以用命令查看服务端口是否开启； [root@MT ~]# netstat -tulnp | grep 67udp 0 0 0.0.0.0:67 0.0.0.0:* 24338/dhcpd 在此DHCP基础配置就完成了，可以去用一台机器进行测试了；]]></content>
+    <title><![CDATA[经验我网络之间的通顺（1）]]></title>
+    <url>%2Fpost%2F7889c636.html</url>
+    <content type="text"><![CDATA[#环境1路由器家用2交换机百兆3 PC电脑若干今天晚上在2楼机房花了几个小时，排查的原因有几个，网线口环接，路由器已经恢复出厂设置，最终实验结果网络时断时续。原因ip地址起冲突因为是路由器上所以无法判断固定ip是否有人在经排查果然是ip地址起冲突，判断原因如果在路由器上设置固定ip上网，进行2级小型局域网搭建获取ip无法上网，网络时断时续结果，ip地址起冲突]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
@@ -876,19 +867,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7关闭防火墙和selinux]]></title>
-    <url>%2Fpost%2F74201e82.html</url>
-    <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
-      <tags>
-        <tag>linux资料</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[centos7安装webmin]]></title>
     <url>%2Fpost%2F4c082866.html</url>
     <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
       <tags>
         <tag>linux软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7关闭防火墙和selinux]]></title>
+    <url>%2Fpost%2F74201e82.html</url>
+    <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
+      <tags>
+        <tag>linux资料</tag>
       </tags>
   </entry>
   <entry>
@@ -908,6 +899,30 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[今天心情很好]]></title>
+    <url>%2Fpost%2F1076a63b.html</url>
+    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于华为交换机端口批量加入错误问题]]></title>
+    <url>%2Fpost%2Fc4197f0f.html</url>
+    <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
+      <tags>
+        <tag>交换机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
+    <url>%2Fpost%2F597c0af.html</url>
+    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
+      <tags>
+        <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux安装btsync]]></title>
     <url>%2Fpost%2Fb8706160.html</url>
     <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
@@ -924,33 +939,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于华为交换机端口批量加入错误问题]]></title>
-    <url>%2Fpost%2Fc4197f0f.html</url>
-    <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
-      <tags>
-        <tag>交换机</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
     <url>%2Fpost%2F104acc17.html</url>
     <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
-      <tags>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
-    <url>%2Fpost%2F597c0af.html</url>
-    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
-      <tags>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[今天心情很好]]></title>
-    <url>%2Fpost%2F1076a63b.html</url>
-    <content type="text"><![CDATA[嘿嘿今天心情很好，为了心中的Linux加油。]]></content>
       <tags>
         <tag>经验</tag>
       </tags>
