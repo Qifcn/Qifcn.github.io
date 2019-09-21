@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>白墨笔记</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://Qifcn.Github.io/"/>
+  <updated>2019-09-20T15:30:56.418Z</updated>
+  <id>https://Qifcn.Github.io/</id>
+  
+  <author>
+    <name>白墨</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>“白墨黑群晖搭建记录”</title>
+    <link href="https://Qifcn.Github.io/post/918a0011.html"/>
+    <id>https://Qifcn.Github.io/post/918a0011.html</id>
+    <published>2019-09-19T15:44:14.000Z</published>
+    <updated>2019-09-20T15:30:56.418Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>为自己搭建黑群晖nas的一个经验性的一个总结，从2017年2月开始了解nas这个系统性的“玩具”可以说还是有一些经验吧。</p><hr><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><img src="https://Qifcn.Github.io/wp-content/黑群晖搭建记录/IMG_20190919_234756.jpg" alt="配置"></p><p>配置清单及报价如下</p><p>CPU：i3 4代 自带</p><p>散热：<a href="https://pinpai.smzdm.com/47213/" target="_blank" rel="noopener">大镰刀</a>S950m 43.8包邮</p><p>主板：<a href="https://pinpai.smzdm.com/1681/" target="_blank" rel="noopener">华硕</a>H81i plus 228包邮</p><p>内存：DDR3 2G 旧电脑拆下</p><p>电源：益衡 小1u电源  240元</p><a id="more"></a><p>机箱：蜗牛星际拆机B款机箱 59包邮</p><p>总价：570.8 元</p><p>cpu自带拆机的，4代i3  内存条拆机，其实nas就算是二手的也需要一点小钱钱的，所以尽量有拆机的，就尽量吧。节约钱</p><h3 id="机箱"><a href="#机箱" class="headerlink" title="机箱"></a>机箱</h3><p>蜗牛星际的b款机箱发过来的时候，怎么说嘞，成色确实没有太好，而且因为担心像网上说的硬盘板有问题，所以说拆了，但这有一个问题面板虽然拆了，但这样就造成了硬盘插上去后直插主板上会造成</p><p>`硬盘不紧很松</p><h3 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="https://Qifcn.github.io/wp-content/黑群晖搭建记录/123.png" alt="流程图"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;为自己搭建黑群晖nas的一个经验性的一个总结，从2017年2月开始了解nas这个系统性的“玩具”可以说还是有一些经验吧。&lt;/p&gt;&lt;hr&gt;&lt;h1 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; class=&quot;headerlink&quot; title=&quot;内容&quot;&gt;&lt;/a&gt;内容&lt;/h1&gt;&lt;h2 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://Qifcn.Github.io/wp-content/黑群晖搭建记录/IMG_20190919_234756.jpg&quot; alt=&quot;配置&quot;&gt;&lt;/p&gt;&lt;p&gt;配置清单及报价如下&lt;/p&gt;&lt;p&gt;CPU：i3 4代 自带&lt;/p&gt;&lt;p&gt;散热：&lt;a href=&quot;https://pinpai.smzdm.com/47213/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;大镰刀&lt;/a&gt;S950m 43.8包邮&lt;/p&gt;&lt;p&gt;主板：&lt;a href=&quot;https://pinpai.smzdm.com/1681/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;华硕&lt;/a&gt;H81i plus 228包邮&lt;/p&gt;&lt;p&gt;内存：DDR3 2G 旧电脑拆下&lt;/p&gt;&lt;p&gt;电源：益衡 小1u电源  240元&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="黑群晖" scheme="https://Qifcn.Github.io/tags/%E9%BB%91%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>N1媒体中心搭建常见问题自用</title>
+    <link href="https://Qifcn.Github.io/post/98570041.html"/>
+    <id>https://Qifcn.Github.io/post/98570041.html</id>
+    <published>2019-08-01T04:34:42.000Z</published>
+    <updated>2019-09-19T05:05:25.841Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="刷入系统"><a href="#刷入系统" class="headerlink" title="刷入系统"></a>刷入系统</h1><ul><li>可以不用线刷刷入系统</li><li>CoreELEC必须是修改的镜像，官方的会引导不成功</li></ul><h2 id="播放4k视频卡"><a href="#播放4k视频卡" class="headerlink" title="播放4k视频卡"></a>播放4k视频卡</h2><p>可能是缓存原因</p><p>安装“Ares Wizard”插件，在里面设置缓存，选第二个模式，点启用就可以了，然后重启，不需要另外建什么缓存文件。</p><h2 id="关于Jellyfin相关设置"><a href="#关于Jellyfin相关设置" class="headerlink" title="关于Jellyfin相关设置"></a>关于Jellyfin相关设置</h2><p>有字幕相关的设置，实在找了许久做一个记录</p><p><a href="https://post.smzdm.com/p/a99vlpmp/?send_by=5558505576&from=other" target="_blank" rel="noopener noreferrer">安卓TV端Kodi部署Jellyfin，使用Jellyfin打造最强媒体中心（篇二）</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;刷入系统&quot;&gt;&lt;a href=&quot;#刷入系统&quot; class=&quot;headerlink&quot; title=&quot;刷入系统&quot;&gt;&lt;/a&gt;刷入系统&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;可以不用线刷刷入系统&lt;/li&gt;
+&lt;li&gt;CoreELEC必须是修改的镜像，官方的会引导不成功&lt;/li&gt;
+&lt;/ul
+      
+    
+    </summary>
+    
+    
+      <category term="BT" scheme="https://Qifcn.Github.io/categories/BT/"/>
+    
+    
+      <category term="N1" scheme="https://Qifcn.Github.io/tags/N1/"/>
+    
+      <category term="媒体中心" scheme="https://Qifcn.Github.io/tags/%E5%AA%92%E4%BD%93%E4%B8%AD%E5%BF%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>群晖查看储存库占用空间命令</title>
+    <link href="https://Qifcn.Github.io/post/ad2142eb.html"/>
+    <id>https://Qifcn.Github.io/post/ad2142eb.html</id>
+    <published>2019-07-07T10:00:54.000Z</published>
+    <updated>2019-09-19T05:05:25.841Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>使用download station进行PT下载时，如果缓存目录和下载目录没有设置在同一个磁盘 ，在任务完成时缓存将不会自动删除，相当于占用了两份空间。而且这个时候想把缓存删掉也比较麻烦，因为这个缓存文件夹“@download”是不能直接查看到的，所以使用群晖NAS使用download station下载时一定要把缓存目录和下载目录设置在同一个空间。</p><a id="more"></a><hr><p>(2) 使用终端机软件，例如 putty (Windows) 或 Terminal (Mac，又称终端机)连上DSM，登入账号密码使用管理员admin，密码也是admin的密码。</p><p>使用root身份需要键入一下指令</p><p>sudo -i（注意空格）</p><p>要求输入密码，输入admin的密码即可</p><p>(3) 输入以下的指令，它会计算出您各文件夹下的用量</p><p>du -sh /volume1/*</p><p>(若您的储存空间为2，则改成volume2，依此类推)</p><p>这个过程可能会需要数分钟到数十分钟不等，依您的文件数及空间大小而定。</p><p>若您想要进一步的了解各文件夹下的子文件夹的容量，则您可以更进一步的使用指令查看</p><p>例如 储存空間下的 photo 文件夹</p><p>du -sh /volume1/photo</p><p>或是 Cloud Station的隐藏文件夹</p><p>du -sh /volume1/@cloudstation</p><p>（4）删除文件夹命令</p><p>rm -rf /volume1/@download [说明：这里是删除下载中心download station的缓存文件夹]</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;使用download station进行PT下载时，如果缓存目录和下载目录没有设置在同一个磁盘 ，在任务完成时缓存将不会自动删除，相当于占用了两份空间。而且这个时候想把缓存删掉也比较麻烦，因为这个缓存文件夹“@download”是不能直接查看到的，所以使用群晖NAS使用download station下载时一定要把缓存目录和下载目录设置在同一个空间。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="未分类" scheme="https://Qifcn.Github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OSFMount群晖镜像修改软件</title>
+    <link href="https://Qifcn.Github.io/post/6fbcd38d.html"/>
+    <id>https://Qifcn.Github.io/post/6fbcd38d.html</id>
+    <published>2019-06-30T11:08:00.000Z</published>
+    <updated>2019-09-19T05:05:25.825Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>OSFMount 是一个支持光盘镜像和内存虚拟盘创建装载实用小工具。OSFMount这个软件特色在于，既可以加载光盘镜像，也可以创建内存虚拟盘。</code></pre><p>在创建黑群晖引导盘的时候我们需要把img文件写入U盘后才修改<code>VID</code>和<code>PID</code>但用这个软件可以提前修改img文件，然后保存后直接写入U盘。</p><h2 id="1-215-01打开软件"><a href="#1-215-01打开软件" class="headerlink" title="1&#215;01打开软件"></a>1&#215;01打开软件</h2><a id="more"></a><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/3438242077.png" alt="打开软件" title="打开软件"></p><h2 id="1-215-02-主界面"><a href="#1-215-02-主界面" class="headerlink" title="1&#215;02 主界面"></a>1&#215;02 主界面</h2><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/1724437279.png" alt="主界面" title="主界面"></p><h2 id="1-215-02参照设置-特别注意-Read-only-drvie-只读模式不能打勾"><a href="#1-215-02参照设置-特别注意-Read-only-drvie-只读模式不能打勾" class="headerlink" title="1&#215;02参照设置 特别注意 Read-only drvie(只读模式不能打勾)"></a>1&#215;02参照设置 特别注意 Read-only drvie(只读模式不能打勾)</h2><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/623207642.png" alt="参照设置" title="参照设置"></p><p>确认无误 点击<code>确认</code></p><p>这时候多出一个虚拟驱动器</p><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/97524126.png" alt="驱动器" title="驱动器"></p><p>进入驱动器目录<code>/grub/</code>找到<code>grub.cfg</code>文件<code>使用Notepad++（推荐）</code></p><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/2552694952.png" alt="找到文件" title="找到文件"></p><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/520432049.png" alt="使用Notepad++相关参数" title="使用Notepad++相关参数"></p><pre><code>set vid=0x0DD8     //修改 0DD8 为你U盘的VID 保留前面的0xset pid=0x0C00     //修改 0C00 为你U盘的PID 保留前面的0xset sn=C7LWN09761    //此处为序列号 如你有的洗白需求的话可修改set mac1=00113207DCBD //此处为网卡MAC修改为和你NAS一致的MAC 洗白的话需要001132开头 需要该硬件MAC                       顺便说一句如果有远程唤醒的需求的话也得改mac地址和真实实体网卡mac地址一样</code></pre><p>然后保存文件。在 OSFMount软件主界面点击<code>卸载全部并退出</code></p><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/129337732.png" alt="卸载全部并退出" title="卸载全部并退出"></p><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/3684137571.png" alt="点确认" title="点确认"></p><h2 id="就这样就修改完成了然后写入U盘就可以了。"><a href="#就这样就修改完成了然后写入U盘就可以了。" class="headerlink" title="就这样就修改完成了然后写入U盘就可以了。"></a>就这样就修改完成了然后写入U盘就可以了。</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;OSFMount 是一个支持光盘镜像和内存虚拟盘创建装载实用小工具。OSFMount这个软件特色在于，既可以加载光盘镜像，也可以创建内存虚拟盘。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在创建黑群晖引导盘的时候我们需要把img文件写入U盘后才修改&lt;code&gt;VID&lt;/code&gt;和&lt;code&gt;PID&lt;/code&gt;但用这个软件可以提前修改img文件，然后保存后直接写入U盘。&lt;/p&gt;&lt;h2 id=&quot;1-215-01打开软件&quot;&gt;&lt;a href=&quot;#1-215-01打开软件&quot; class=&quot;headerlink&quot; title=&quot;1&amp;#215;01打开软件&quot;&gt;&lt;/a&gt;1&amp;#215;01打开软件&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="默认分类" scheme="https://Qifcn.Github.io/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>民间版群晖   相关问题集合与解决</title>
+    <link href="https://Qifcn.Github.io/post/f3f9ab14.html"/>
+    <id>https://Qifcn.Github.io/post/f3f9ab14.html</id>
+    <published>2019-06-22T09:57:00.000Z</published>
+    <updated>2019-09-19T05:05:25.825Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>常见问题集合</strong></p><ol><li><p><a href="https://wp.gxnas.com/2450.html" target="_blank" rel="noopener">黑群晖常见问题【不定时更新，最后更新2019-5-25】</a></p></li><li><p><a href="https://www.qzkyl.cn/post-228.html" target="_blank" rel="noopener">群晖最新版DSM 6.2.1的U盘安装方法</a></p></li><li><p><a href="http://www.gebi1.com/forum.php?mod=viewthread&amp;tid=278311&amp;page=1&amp;_dsign=ef0eafdc" target="_blank" rel="noopener">玩法/技巧 黑群终于搞定远程唤醒</a></p></li><li><p><a href="https://post.m.smzdm.com/p/a07mqwd9/" target="_blank" rel="noopener">矿难无情 人间有情 蜗牛NAS硬改MAC补充篇</a></p></li><li><p><a href="https://www.qzkyl.cn/post-257.html" target="_blank" rel="noopener">黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具）</a></p></li><li><p><a href="http://www.leftso.com/blog/560.html" target="_blank" rel="noopener">黑群晖6.17半洗白教程</a></p></li><li><p><a href="https://post.smzdm.com/p/623268/" target="_blank" rel="noopener">群晖NAS进阶使用Audio Station网易歌词插件</a></p></li><li><p><a href="https://b.gx86.cn/?id=33" target="_blank" rel="noopener noreferrer">SSH在线修改黑群晖DS3617 DS918+的SN/MAC</a></p></li><li><p><a href="http://www.nasyun.com/forum.php?mod=viewthread&amp;tid=67121&amp;extra=page%3D9&amp;mobile=2?reload=true" target="_blank" rel="noopener">DSM 5.x / 6.x CPU名称和核心信息更改工具</a></p></li><li><p><a href="https://www.tenlonstudio.com/4302.html" target="_blank" rel="noopener">物理机安装黑群晖DSM6.1.7系统推荐的</a></p></li></ol><a id="more"></a><p><strong>系统折腾</strong></p><ol><li><p>去掉黑辉更新与小红点</p><p>问：我的群晖不想升级，但是看到小红点又不爽，怎样办？</p><p>答：以root用户登录SSH，编辑/etc/hosts文件，在最下面一行写入127.0.0.1  update.synology.com，然后保存退出即可（无需重启）。</p></li></ol><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/1838592892.png" alt="效果图1" title="效果图1"></p><pre><code>问： 去掉桌面小红点# 1、处理控制面板里面系统升级的小红点cp /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png.bakcp /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png.bakwget -O /usr/syno/synoman/webman/modules/AdminCenter/images/default/1x/badge_control_panel.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.pngwget -O /usr/syno/synoman/webman/modules/AdminCenter/images/default/2x/badge_control_panel.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png# 2、处理控制面板里面系统升级的小红点（侧栏提示）cp /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png.bakcp /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png.bakwget -O /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_notification_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.pngwget -O /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_notification_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png# 3、直接把桌面的小红点提示也都撸掉cp /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png.bakcp /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png.bakwget -O /usr/syno/synoman/synoSDSjslib/images/default/1x/dsm5_badge_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.pngwget -O /usr/syno/synoman/synoSDSjslib/images/default/2x/dsm5_badge_num.png https://raw.githubusercontent.com/xzxiaoshan/files/master/transparent.png</code></pre><p><img src="https://Qifcn.github.io/wp-content/uploads/2019/06/3539109073.png" alt="效果图2" title="效果图2"></p><p><strong>简单问题</strong></p><ol><li><p>关于洗白</p><p>答： [scode type=&#8221;blue&#8221;]只有SN的话只能半洗白，全洗白必须要SN和mac且必须对应[/scode]</p></li><li><p>918+对黑裙邮件有什么要求吗？必须是intel的网卡吗？如果用918+的引导，是不是在装pat的时候可以点击自动安装？另外3615和3617有啥区别？</p><p>答： [scode type=&#8221;blue&#8221;]918需要CPU是四代以后的包含四代，可以是其他网卡，但是对英特尔的支持最好，其他的可能需要几分钟启动，可以在线安装。 2、3615和3617软件上没有什么区别[/scode]</p></li><li><p>关于黑裙晖远程唤醒</p><p>答:</p></li></ol><p>[scode type=&#8221;blue&#8221;]需要公网IP</p><p>需要在bios设置网卡网络唤醒</p><p>需要路由器设置端口转发远程唤醒包走端口9</p><p>需要黑群晖引导mac地址和网络网卡地址一样</p><p>需要绑定arp[/scode]</p><blockquote><p>ARP映射表的功能是定义mac地址与ip地址的映射关系，即使设备不在线时路由器也能知道这个设备的存在。理论上说唤醒包是通过广播方式发送的，与ip地址没什么关系，但在实测中发现，如果不定义ARP映射，则路由器不会向局域网广播唤醒包，所以定义ARP映射还是必要的。</p></blockquote><p>&nbsp;</p><h1 id="速度问题"><a href="#速度问题" class="headerlink" title="速度问题"></a>速度问题</h1><p>我在2台黑群晖之间对拷数据15G后速度就从100m的速度掉到20左右的速度了还不稳定，猜测是拷ssd的硬盘缓存没有了的原因。做一个记录</p><p><img class="alignnone size-medium" src="https://Qifcn.github.io/wp-content/uploads/2019/07/QQ截图20190728110816.png" width="937" height="561"></p><p>2019年8月4日更新</p><p>环境远程群晖nas 3机械硬盘raid0 固态读缓存本地三星固态硬盘</p><p>读下载到本地速度</p><p><img class="alignnone size-medium wp-image-123" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035-300x164.png" alt width="300" height="164" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035-300x164.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194035.png 495w" sizes="(max-width: 300px) 100vw, 300px"><img class="alignnone size-medium wp-image-122" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233-300x197.png" alt width="300" height="197" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233-300x197.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194233.png 416w" sizes="(max-width: 300px) 100vw, 300px"><img class="alignnone size-medium wp-image-121" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324-300x197.png" alt width="300" height="197" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324-300x197.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194324.png 416w" sizes="(max-width: 300px) 100vw, 300px">可以看到到后面就慢了</p><p>从本地到nas&nbsp; 速度</p><p> <img class="alignnone size-medium wp-image-120" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-300x224.png" alt width="300" height="224" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-300x224.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538-768x573.png 768w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194538.png 938w" sizes="(max-width: 300px) 100vw, 300px"> <img class="alignnone size-medium wp-image-119" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-300x224.png" alt width="300" height="224" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-300x224.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921-768x573.png 768w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804194921.png 938w" sizes="(max-width: 300px) 100vw, 300px"><img class="alignnone size-medium wp-image-118" src="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-300x224.png" alt width="300" height="224" srcset="https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-300x224.png 300w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019-768x573.png 768w, https://Qifcn.github.io/wp-content/uploads/2019/08/QQ截图20190804195019.png 938w" sizes="(max-width: 300px) 100vw, 300px"></p><p><span style="color: #ff9900;"><strong>群晖之间对拷不知道是什么原因反正很慢</strong></span></p><p><a href="https://zhuanlan.zhihu.com/p/76804146" target="_blank" rel="noopener noreferrer">千兆网络的传输速度能超过125MB/s么?</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;常见问题集合&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://wp.gxnas.com/2450.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;黑群晖常见问题【不定时更新，最后更新2019-5-25】&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.qzkyl.cn/post-228.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;群晖最新版DSM 6.2.1的U盘安装方法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.gebi1.com/forum.php?mod=viewthread&amp;amp;tid=278311&amp;amp;page=1&amp;amp;_dsign=ef0eafdc&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;玩法/技巧 黑群终于搞定远程唤醒&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://post.m.smzdm.com/p/a07mqwd9/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;矿难无情 人间有情 蜗牛NAS硬改MAC补充篇&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.qzkyl.cn/post-257.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;黑群晖硬改英特尔网卡MAC实现网络唤醒（附工具）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.leftso.com/blog/560.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;黑群晖6.17半洗白教程&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://post.smzdm.com/p/623268/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;群晖NAS进阶使用Audio Station网易歌词插件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://b.gx86.cn/?id=33&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;SSH在线修改黑群晖DS3617 DS918+的SN/MAC&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.nasyun.com/forum.php?mod=viewthread&amp;amp;tid=67121&amp;amp;extra=page%3D9&amp;amp;mobile=2?reload=true&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;DSM 5.x / 6.x CPU名称和核心信息更改工具&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.tenlonstudio.com/4302.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;物理机安装黑群晖DSM6.1.7系统推荐的&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="Centos7" scheme="https://Qifcn.Github.io/categories/Centos7/"/>
+    
+      <category term="Linux" scheme="https://Qifcn.Github.io/categories/Centos7/Linux/"/>
+    
+    
+      <category term="KMS" scheme="https://Qifcn.Github.io/tags/KMS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KMS激活服务器搭建自用版本</title>
+    <link href="https://Qifcn.Github.io/post/11817a8a.html"/>
+    <id>https://Qifcn.Github.io/post/11817a8a.html</id>
+    <published>2019-06-04T12:25:11.000Z</published>
+    <updated>2019-09-19T05:05:25.822Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="快速搭建"><a href="#快速搭建" class="headerlink" title="快速搭建"></a>快速搭建</h1><pre><code>yum install git gcc make -ygit clone https://github.com/Wind4/vlmcsd.gitcd vlmcsdmakecp bin/vlmcsd /usr/binvlmcsd</code></pre><h2 id="激活方法"><a href="#激活方法" class="headerlink" title="激活方法"></a>激活方法</h2><p>Windows 激活方式</p><p>1.使用 命令提示符（CMD）管理员模式 执行命令导入对应版本的密钥(请参见附录)</p><a id="more"></a><p>slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</p><p>2.执行命令设置Windows的KMS服务器地址</p><p>slmgr /skms 地址</p><p>3.执行命令激活Windows</p><p>slmgr /ato</p><h2 id="密匙"><a href="#密匙" class="headerlink" title="密匙"></a>密匙</h2><p>附录（KMS 客户端安装密钥）</p><p>Windows 10</p><p>专业版 &#8211; Pro</p><p>W269N-WFGWX-YVC9B-4J6C9-T83GX</p><p>专业版N &#8211; Pro N</p><p>MH37W-N47XK-V7XM9-C7227-GCQG9</p><p>企业版 &#8211; Enterprise</p><p>NPPR9-FWDCX-D2C8J-H872K-2YT43</p><p>企业版N &#8211; Enterprise N</p><p>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4</p><p>教育版 &#8211; Education</p><p>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2</p><p>教育版N &#8211; Education N</p><p>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ</p><p>企业版2015LTSB &#8211; Enterprise 2015 LTSB</p><p>WNMTR-4C88C-JK8YV-HQ7T2-76DF9</p><p>企业版2015LTSB N &#8211; Enterprise 2015 LTSB N</p><p>2F77B-TNFGY-69QQF-B8YKP-D69TJ</p><p>企业版2016LTSB &#8211; Enterprise 2016 LTSB</p><p>DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ</p><p>企业版2016LTSB N &#8211; Enterprise 2016 LTSB N</p><p>QFFDN-GRT3P-VKWWX-X7T3R-8B639</p><p>Windows Server 2016</p><p>数据中心版 &#8211; Datacenter</p><p>CB7KF-BWN84-R7R2Y-793K2-8XDDG</p><p>标准版 &#8211; Standard</p><p>WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY</p><p>精华版 &#8211; Essentials</p><p>JCKRF-N37P4-C2D82-9YXRT-4M63B</p><p>Windows 8.1</p><p>专业版 &#8211; Pro</p><p>GCRJD-8NW9H-F2CDX-CCM8D-9D6T9</p><p>专业版N &#8211; Pro N</p><p>HMCNV-VVBFX-7HMBH-CTY9B-B4FXY</p><p>企业版 &#8211; Enterprise</p><p>MHF9N-XY6XB-WVXMC-BTDCT-MKKG7</p><p>企业版N &#8211; Enterprise N</p><p>TT4HM-HN7YT-62K67-RGRQJ-JFFXW</p><p>Windows Server 2012 R2</p><p>标准版 &#8211; Server Standard</p><p>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</p><p>数据中心版 &#8211; Datacenter</p><p>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9</p><p>精华版 &#8211; Essentials</p><p>KNC87-3J2TX-XB4WP-VCPJV-M4FWM</p><p>Windows 8</p><p>专业版 &#8211; Pro</p><p>NG4HW-VH26C-733KW-K6F98-J8CK4</p><p>专业版N &#8211; Pro N</p><p>XCVCF-2NXM9-723PB-MHCB7-2RYQQ</p><p>企业版 &#8211; Enterprise</p><p>32JNW-9KQ84-P47T8-D8GGY-CWCK7</p><p>企业版N &#8211; Enterprise N</p><p>JMNMF-RHW7P-DMY6X-RF3DR-X2BQT</p><p>Windows Server 2012</p><p>标准版 &#8211; Server Standard</p><p>XC9B7-NBPP2-83J2H-RHMBY-92BT4</p><p>数据中心版 &#8211; Datacenter</p><p>48HP8-DN98B-MYWDG-T2DCC-8W83P</p><p>Windows 7</p><p>专业版 &#8211; Pro</p><p>FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4</p><p>专业版N &#8211; Pro N</p><p>MRPKT-YTG23-K7D7T-X2JMM-QY7MG</p><p>专业版E &#8211; Pro E</p><p>W82YF-2Q76Y-63HXB-FGJG9-GF7QX</p><p>企业版 &#8211; Enterprise</p><p>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</p><p>企业版N &#8211; Enterprise N</p><p>YDRBP-3D83W-TY26F-D46B2-XCKRJ</p><p>企业版E &#8211; Enterprise E</p><p>C29WB-22CC8-VJ326-GHFJW-H9DH4</p><p>Windows Server 2008 R2</p><p>站点版 &#8211; Web</p><p>6TPJF-RBVHG-WBW2R-86QPH-6RTM4</p><p>标准版 &#8211; Standard</p><p>YC6KT-GKW9T-YTKYR-T4X34-R7VHC</p><p>企业版 &#8211; Enterprise</p><p>489J6-VHDMP-X63PK-3K798-CPX3Y</p><p>数据中心版 &#8211; Datacenter</p><p>74YFP-3QFB3-KQT8W-PMXWJ-7M648</p><h2 id="自启设置"><a href="#自启设置" class="headerlink" title="自启设置"></a>自启设置</h2><p>传vlmcsd文件到/usr/bin/目录下并设置755的权限：</p><p>chmod 755 /usr/bin/vlmcsd</p><p>添加vlmcsd服务，新建一个空的文件保存，用来存放PID的文件，便于后来添加service时要用到</p><p>vi /var/run/vlmcsd.pid</p><p>新建vlmcsd.service的文档，并添加以下内容</p><p>vi /lib/systemd/system/vlmcsd.service</p><pre><code>[Unit]Description=KMS Server By vlmcsdAfter=network.target[Service]Type=forkingPIDFile=/var/run/vlmcsd.pidExecStart=/usr/bin/vlmcsd -p /var/run/vlmcsd.pidExecStop=/bin/kill -HUP $MAINPIDPrivateTmp=true[Install]WantedBy=multi-user.target</code></pre><p>重载服务： systemctl daemon-reload</p><p>启动vlmcsd：systemctl start vlmcsd</p><p>设置开机启动：systemctl enable vlmcsd</p><p>查看运行状态：systemctl status vlmcsd</p><h2 id="防火墙设置"><a href="#防火墙设置" class="headerlink" title="防火墙设置"></a>防火墙设置</h2><p>vlmcsd 使用 tcp 协议的 1688 端口进行通信，所以必须打开 1688 端口，否则客户机将无法连接至</p><p>KMS 服务器，步骤及命令如下：</p><p>CentOS 6：</p><p>添加规则：iptables -I INPUT -p tcp -m tcp &#8211;dport 1688 -j ACCEPT</p><p>保存规则：service iptables save</p><p>重启 CentOS：shutdown -h now</p><p>CentOS 7：</p><p>停止自带防火墙：systemctl stop firewalld.service</p><p>禁止自带防火墙开机自启动：systemctl disable firewalld.service</p><p>安装 iptables：yum install iptables-services</p><p>安装其间可能会有 1-2 次确认，输入 y 后回车即可。</p><p>若已安装 iptables 则忽略此步骤，可通过检查 /etc/sysconfig 目录下是否存在 iptables 文件来确</p><p>定，命令如下：</p><p>ls -l /etc/sysconfig | grep iptables，结果如图：</p><p>iptables 是否存在</p><p>打开 /etc/sysconfig/iptables 文件：vi /etc/sysconfig/iptables</p><p>在 -A INPUT -p tcp -m state –state NEW -m tcp –dport 22 -j ACCEPT 行后添加以下内容：</p><h1 id="vlmcsd-port"><a href="#vlmcsd-port" class="headerlink" title="vlmcsd port"></a>vlmcsd port</h1><p>-A INPUT -p tcp -m state –state NEW -m tcp –dport 1688 -j ACCEPT</p><p>重启 iptables 使配置生效：systemctl restart iptables.service</p><p>设置 iptables 开机自启动：systemctl enable iptables.service</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;快速搭建&quot;&gt;&lt;a href=&quot;#快速搭建&quot; class=&quot;headerlink&quot; title=&quot;快速搭建&quot;&gt;&lt;/a&gt;快速搭建&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;yum install git gcc make -y
+git clone https://github.com/Wind4/vlmcsd.git
+cd vlmcsd
+make
+cp bin/vlmcsd /usr/bin
+vlmcsd
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;激活方法&quot;&gt;&lt;a href=&quot;#激活方法&quot; class=&quot;headerlink&quot; title=&quot;激活方法&quot;&gt;&lt;/a&gt;激活方法&lt;/h2&gt;&lt;p&gt;Windows 激活方式&lt;/p&gt;&lt;p&gt;1.使用 命令提示符（CMD）管理员模式 执行命令导入对应版本的密钥(请参见附录)&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="默认分类" scheme="https://Qifcn.Github.io/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于我学习的接触Linux操作系统的生涯</title>
+    <link href="https://Qifcn.Github.io/post/e9f32458.html"/>
+    <id>https://Qifcn.Github.io/post/e9f32458.html</id>
+    <published>2019-05-22T09:24:00.000Z</published>
+    <updated>2019-09-19T05:05:25.818Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>序言</strong></p><p>挖了这么大一个坑给自己，怎么说也得把这个坑给填完，从14年中学图书馆开始，或许大部分人都是从网上开始接触Linux这个服务器网络操作系统，但博主可以肯定的说，我是从书本上开始接触的</p><h2 id="中学"><a href="#中学" class="headerlink" title="中学"></a>中学</h2><p>博主来自一个其貌不扬的镇上中学，中学不这么说大部分人都知道一周放一次假，再加上本身没有什么娱乐活动，可以说除了学习还是学习，很幸运每周四学校图书馆可以开，再加上管理员是一个很善良的女老师，就这样我与图书馆结下了<em>不解之缘</em></p><a id="more"></a><p>哪一个星期四快结束时候还有10分钟就要上晚自习，匆匆的我在一本入门电脑的书籍上翻到怎么一个系统的简介，在简介旁边还有一幅图是一个老式显示器黑压压的显示，旁边简介说Linux服务器专用系统，非常稳定几年不关机都可以。这对我非常惊奇，那时候我不知道我与它有了走不开的联系。</p><h2 id="高中"><a href="#高中" class="headerlink" title="高中"></a>高中</h2><p>高中时候因为兴趣释然，再加上我满了16岁，申请了人生中第一张银行卡，镇上的农业银行，关联了支付宝。买了人生中第一本盗版书籍<strong>鹩哥的私房菜第三版</strong>20几块钱包邮，真香，至于为什么买这个，因为他<strong>厚实</strong>就这样网上流传的入门级神书被我看到了最后面内核，就没看了，原因有一点，Linux对于我来说是一个全新的概念，很多知识在当时我看来，是第一次接触。当时我连Windows都没接触过，硬件什么的更没有，电脑对于一个农村户口的孩子来说是很遥远的事，所以对于我来说入门从Linux开始是一个全新的体验，也对我操作系统理解对比其他人不同的想法。我接触Linux就的原因有很多，都有些偶然性。大部分人买了鹩哥的私房菜都嫌他啰嗦，但这种啰嗦反而成全了我。</p><p>[scode type=&#8221;blue&#8221;]萌芽阶段[/scode]</p><h2 id="职中"><a href="#职中" class="headerlink" title="职中"></a>职中</h2><p>因为家庭因数，和几种不可抗拒的原因，博主走上了中职的道路，高中就读了一学期就没有读了，中职生涯里是我全面学习Linux操作系统的阶段，在这3年里，我想我应该把Linux常用的东西都入门了吧，其实大部分人应该都看不起中职生，在我周围觉得中职生其实就是差生去的地方，初中时候我的班主任建议我去他推荐的职业学校，我没去，现在想来很幸运当时没去，不然我又是另一个命运了，已经毕业的职业学校叫<strong>遂宁市职业技术学校</strong>是一所百年学校，职业学校最好初中就进去上3+2的大专，这是最好的选择，也是不浪费宝贵的时间。不然你想从职业学校上大学只有几种途径。</p><ul><li>技能大赛省一等奖</li><li>单招考试</li><li>3+2五年大专</li><li>技能比赛获奖进行特长生单招</li></ul><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>省一等奖可以在四川省内在单招时候获得专科学院的免试资格，我记得是59所专科学院，就是说你随意进。但也是最难的，第一，你上的职业学校有比赛，而且比赛有省赛。第二，你得在全省内有这个项目比赛的职校里，在省比赛拿第一。并不比高考差多少，（╯‵□′）╯︵┴─┴你要在参加之前有基础更好。</p><p>单招考试，第一你得高考报名，在每年3月底进行单招考试，单招考试是国家认可的，也说<strong>春季高考</strong>有2次报名，第一次是高考报名，第二次是单招考试报名，报了高考报名你才能报单招考试报名。</p><blockquote><p>不过小道消息，我毕业前一个学长，他没有高考报名，在毕业后想单招，就找市教育局，好像获取了报名号，如果错过的同学可以试试。这是我遇到过的，因为那个学长就是我前一届的学长，本来3年学习，提前半年实习的，后遇到学校通知必须读满三年，没有高考报名，直接去市教育局问，具体过程不得而知了。不过博主也是要毕业那年但3月单招考试已经过了，去问市教育局的，办公室的值班人员说<em>为什么你们不早点，单招考试都过了。</em>也就是说可行的</p></blockquote><p>5年制大专基本上是最好拿大专文凭的，节约时间不做评价，读满3年后进大学读，有一个转录考试，很好过</p><p>中职生涯获奖，必须是市教育局盖章的奖状，也就是地级市的，这是一个很好的加分项，叫特长生，能走特长生走特长生，走不了就普通单招考试。因为每一个学院的特长生不一样，不予评价</p><h2 id="中职生涯"><a href="#中职生涯" class="headerlink" title="中职生涯"></a>中职生涯</h2><p>好了啰嗦完了，在中职生涯里，很幸运，遇到了几个好老师，这是我的幸运，我最开始的班主任是王老师，是一个很漂亮的女老师，开始几学期很严，但后来就会发现其实王老师是一个很善良的老师，在第二学期我就开始技能比赛的学习了，这也是我入门实际操作Linux系统的实战阶段，还记得在centos下搭建dhcp服务器一周都卡到哪的窘迫，指导老师不怎么了解这个系统。所以只能自学，在其中书本是我了解Linux知识一个重要来源。虽然开始用搜索引擎来搜索知识了，但在国内的大环境下，懂的都懂。开始班主任很纵容我，这也是我放心比赛的原因。也很感谢她。就这样1 到 2年后我基本把电脑从零开始学习了一个遍，掌握的都是运维方面的知识。希望后面有所帮助。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;序言&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;挖了这么大一个坑给自己，怎么说也得把这个坑给填完，从14年中学图书馆开始，或许大部分人都是从网上开始接触Linux这个服务器网络操作系统，但博主可以肯定的说，我是从书本上开始接触的&lt;/p&gt;&lt;h2 id=&quot;中学&quot;&gt;&lt;a href=&quot;#中学&quot; class=&quot;headerlink&quot; title=&quot;中学&quot;&gt;&lt;/a&gt;中学&lt;/h2&gt;&lt;p&gt;博主来自一个其貌不扬的镇上中学，中学不这么说大部分人都知道一周放一次假，再加上本身没有什么娱乐活动，可以说除了学习还是学习，很幸运每周四学校图书馆可以开，再加上管理员是一个很善良的女老师，就这样我与图书馆结下了&lt;em&gt;不解之缘&lt;/em&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="未分类" scheme="https://Qifcn.Github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>freenas  ZFS级别</title>
+    <link href="https://Qifcn.Github.io/post/84fddb57.html"/>
+    <id>https://Qifcn.Github.io/post/84fddb57.html</id>
+    <published>2019-04-27T00:06:00.000Z</published>
+    <updated>2019-09-19T05:05:25.815Z</updated>
+    
+    <content type="html"><![CDATA[<p>Stripe：与RAID0类似，磁盘带条，至少需要一个磁盘；<br>Mirror：与RAID1类似，磁盘镜像，至少需要两个磁盘；<br>RAIDZ1：与RAID5类似，一重奇偶校验，至少需要三个磁盘；<br>RAIDZ2：与RAID6类似，双重奇偶校验，至少需要四个磁盘；<br>RAIDZ3：ZFS特有的，三重奇偶校验，至少需要五个磁盘；<br>Log(ZIL)：高速写缓存设备，至少需要一个专用设备，建议使用具有停电保护的SSD；<br>Cache(L2ARC)：高速读缓存设备，需要至少一个专用设备，建议使用具有停电保护的SSD；<br>Spare：热备磁盘，当正在使用的磁盘发生故障后，Spare磁盘将马上代替此故障盘。<br>性能对比<br>Stripe &gt; Mirror</p><a id="more"></a><p>Stripe &gt; RAIDZ1 &gt; RAIDZ2 &gt; RAIDZ3</p><p>数据可靠性<br>Mirror &gt; Stripe</p><p>RAIDZ3 &gt; RAIDZ2 &gt; RAIDZ1 &gt; Stripe</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Stripe：与RAID0类似，磁盘带条，至少需要一个磁盘；&lt;br&gt;Mirror：与RAID1类似，磁盘镜像，至少需要两个磁盘；&lt;br&gt;RAIDZ1：与RAID5类似，一重奇偶校验，至少需要三个磁盘；&lt;br&gt;RAIDZ2：与RAID6类似，双重奇偶校验，至少需要四个磁盘；&lt;br&gt;RAIDZ3：ZFS特有的，三重奇偶校验，至少需要五个磁盘；&lt;br&gt;Log(ZIL)：高速写缓存设备，至少需要一个专用设备，建议使用具有停电保护的SSD；&lt;br&gt;Cache(L2ARC)：高速读缓存设备，需要至少一个专用设备，建议使用具有停电保护的SSD；&lt;br&gt;Spare：热备磁盘，当正在使用的磁盘发生故障后，Spare磁盘将马上代替此故障盘。&lt;br&gt;性能对比&lt;br&gt;Stripe &amp;gt; Mirror&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Centos7" scheme="https://Qifcn.Github.io/categories/Centos7/"/>
+    
+      <category term="Linux" scheme="https://Qifcn.Github.io/categories/Centos7/Linux/"/>
+    
+    
+      <category term="fedora" scheme="https://Qifcn.Github.io/tags/fedora/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ProxmoxVE 安装后初始化操作</title>
+    <link href="https://Qifcn.Github.io/post/49d87ad4.html"/>
+    <id>https://Qifcn.Github.io/post/49d87ad4.html</id>
+    <published>2019-03-30T10:23:00.000Z</published>
+    <updated>2019-09-19T05:05:25.809Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: ProxmoxVE 安装后初始化操作<br>tags: Proxmox<br>abbrlink: 49d87ad4</p><h2 id="date-2019-03-08-20-19-24"><a href="#date-2019-03-08-20-19-24" class="headerlink" title="date: 2019-03-08 20:19:24"></a>date: 2019-03-08 20:19:24</h2><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>重要！！！更改软件源，默认是订阅版，如果不做修改，在使用pveceph init进行ceph初始化安装的时候会将整个环境破坏，切记！更改为非订阅版</p><a id="more"></a><p><a href="https://github.com/gzzchh/pve_knife" target="_blank" rel="noopener">一些让操作Proxmox更简单的JIO本</a></p><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><pre><code>rm -f /etc/apt/sources.list.d/pve-enterprise.list echo &quot;deb http://download.proxmox.com/debian/pve stretch pve-no-subscription&quot; &gt;/etc/apt/sources.list.d/pve-install-repo.list wget http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-5.x.gpg apt update &amp;&amp; apt dist-upgrade</code></pre><p>安装ntp。ceph集群对时间同步的要求很高，需要安装ntp服务：</p><pre><code>apt-get install ntp -y安装完成之后会自动启动并同步debian的时间服务器，注意，是联网的情况下，如果不连接外网，需要设定内网的ntp服务，这里不赘述。apt-get install ntpdate ntpdate 120.25.108.11 echo &quot;0 * * * * /usr/sbin/ntpdate 120.25.108.11 &gt; /dev/null 2&gt;&amp;1&quot; &gt;&gt; /etc/crontab消除“No valid subscription”提示的方法参考下面的网址：https://johnscs.com/remove-proxmox51-subscription-notice/即，ssh登录服务器后执行下面的指令：sed -i.bak &quot;s/data.status !== &apos;Active&apos;/false/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js &amp;&amp; systemctl restart pveproxy.service</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;p&gt;title: ProxmoxVE 安装后初始化操作&lt;br&gt;tags: Proxmox&lt;br&gt;abbrlink: 49d87ad4&lt;/p&gt;&lt;h2 id=&quot;date-2019-03-08-20-19-24&quot;&gt;&lt;a href=&quot;#date-2019-03-08-20-19-24&quot; class=&quot;headerlink&quot; title=&quot;date: 2019-03-08 20:19:24&quot;&gt;&lt;/a&gt;date: 2019-03-08 20:19:24&lt;/h2&gt;&lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;重要！！！更改软件源，默认是订阅版，如果不做修改，在使用pveceph init进行ceph初始化安装的时候会将整个环境破坏，切记！更改为非订阅版&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="BT" scheme="https://Qifcn.Github.io/categories/BT/"/>
+    
+      <category term="Centos7" scheme="https://Qifcn.Github.io/categories/BT/Centos7/"/>
+    
+    
+      <category term="Tracker服务器" scheme="https://Qifcn.Github.io/tags/Tracker%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fedora29安装后操作</title>
+    <link href="https://Qifcn.Github.io/post/5c690de.html"/>
+    <id>https://Qifcn.Github.io/post/5c690de.html</id>
+    <published>2019-03-24T11:43:00.000Z</published>
+    <updated>2019-09-19T05:05:25.806Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><pre><code>sudo dnf upgrade</code></pre><h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><h3 id="安装谷歌浏览器"><a href="#安装谷歌浏览器" class="headerlink" title="安装谷歌浏览器"></a>安装谷歌浏览器</h3><p>20190324更新</p><p>实际上是我插件问题，安装地址</p><p><a href="https://github.com/haotian-wang/google-access-helper" target="_blank" rel="noopener">我是地址</a></p><p>安装后播放视频没有问题，但在线播放音乐有问题，目前找不到问题所在。</p><p>谷歌浏览器安装后插件安装有问题，实际上Chromium浏览器一样的，对谷歌账号书签同步一样的。在应用中心安装。</p><pre><code>添加chrome源#cd /etc/yum.repos.d#wget  http://repo.fdzh.org/chrome/google-chrome-mirrors.repo安装Chrome#dnf install -y google-chrome-stable卸载sudo dnf -y remove google-chrome-stable</code></pre><a id="more"></a><h2 id="写作工具"><a href="#写作工具" class="headerlink" title="写作工具"></a>写作工具</h2><h3 id="安装Typora"><a href="#安装Typora" class="headerlink" title="安装Typora"></a>安装Typora</h3><h3 id="安装图片上传工具"><a href="#安装图片上传工具" class="headerlink" title="安装图片上传工具"></a>安装图片上传工具</h3><pre><code>wget https://github.com/Molunerfinn/PicGo/releases/download/v2.0.4/picgo-2.0.4-x86_64.AppImage</code></pre><h2 id="播放软件"><a href="#播放软件" class="headerlink" title="播放软件"></a>播放软件</h2><pre><code>sudo dnf install vlc </code></pre><h3 id="安装ffmpeg解码器"><a href="#安装ffmpeg解码器" class="headerlink" title="安装ffmpeg解码器"></a>安装ffmpeg解码器</h3><pre><code>sudo dnf install ffmpeg ffmpeg-libs gstreamer-ffmpeg xvidcore libdvdread libdvdnav lsdvd gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg libmatroska xvidcore</code></pre><h2 id="主题安装"><a href="#主题安装" class="headerlink" title="主题安装"></a>主题安装</h2><pre><code>cd /tmp &amp;&amp; rm -rf flat-remix &amp;&amp;git clone https://github.com/daniruiz/flat-remix &amp;&amp;mkdir -p ~/.icons &amp;&amp; cp -r flat-remix/Flat-Remix* ~/.icons/ &amp;&amp;gsettings set org.gnome.desktop.interface icon-theme &quot;Flat-Remix-Blue&quot;</code></pre><h3 id="字体安装"><a href="#字体安装" class="headerlink" title="字体安装"></a>字体安装</h3><pre><code># clonegit clone https://github.com/powerline/fonts.git --depth=1# installcd fonts./install.sh# clean-up a bitcd ..rm -rf fonts</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;更新系统&quot;&gt;&lt;a href=&quot;#更新系统&quot; class=&quot;headerlink&quot; title=&quot;更新系统&quot;&gt;&lt;/a&gt;更新系统&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;sudo dnf upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;浏览器&quot;&gt;&lt;a href=&quot;#浏览器&quot; class=&quot;headerlink&quot; title=&quot;浏览器&quot;&gt;&lt;/a&gt;浏览器&lt;/h2&gt;&lt;h3 id=&quot;安装谷歌浏览器&quot;&gt;&lt;a href=&quot;#安装谷歌浏览器&quot; class=&quot;headerlink&quot; title=&quot;安装谷歌浏览器&quot;&gt;&lt;/a&gt;安装谷歌浏览器&lt;/h3&gt;&lt;p&gt;20190324更新&lt;/p&gt;&lt;p&gt;实际上是我插件问题，安装地址&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/haotian-wang/google-access-helper&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;我是地址&lt;/a&gt;&lt;/p&gt;&lt;p&gt;安装后播放视频没有问题，但在线播放音乐有问题，目前找不到问题所在。&lt;/p&gt;&lt;p&gt;谷歌浏览器安装后插件安装有问题，实际上Chromium浏览器一样的，对谷歌账号书签同步一样的。在应用中心安装。&lt;/p&gt;&lt;pre&gt;&lt;code&gt;添加chrome源
+#cd /etc/yum.repos.d
+#wget  http://repo.fdzh.org/chrome/google-chrome-mirrors.repo
+安装Chrome
+#dnf install -y google-chrome-stable
+卸载
+sudo dnf -y remove google-chrome-stable
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="默认分类" scheme="https://Qifcn.Github.io/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/"/>
+    
+    
+      <category term="ed2k" scheme="https://Qifcn.Github.io/tags/ed2k/"/>
+    
+      <category term="电骡" scheme="https://Qifcn.Github.io/tags/%E7%94%B5%E9%AA%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos7 使用OpenTracker自建高性能Tracker服务器</title>
+    <link href="https://Qifcn.Github.io/post/c2bc3eba.html"/>
+    <id>https://Qifcn.Github.io/post/c2bc3eba.html</id>
+    <published>2019-03-19T04:53:43.000Z</published>
+    <updated>2019-09-19T05:05:25.798Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: centos7 使用OpenTracker自建高性能Tracker服务器<br>date: 2019-03-18 20:52:32</p><h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。</p><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>1 特点<br>2 所用技术<br>3 使用情况<br>4 外部链接<br>5 参考<br>特点<br>opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半<a href="https://blog.csdn.net/qq1784855023/article/details/85332267" target="_blank" rel="noopener">1</a>。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。</p><a id="more"></a><p>所用技术<br>opentracker可以完全在内存中运行，这就是它速度快的原因。它完全由C语言写成，使用libowfat库管理网络连接。</p><p>使用情况<br>程序的作者运营着全球第二大的BitTorrent服务器denis.stalker.h3q.com，而全球最大的BitTorrent服务器海盗湾也在2007年底开始使用opentracker之前他们使用自己的Hypercube。挪威的挪威广播公司也用opentracker来发布自己的电视剧。<br><a href="https://blog.csdn.net/qq1784855023/article/details/85332267" target="_blank" rel="noopener">教程参考链接</a></p><pre><code>以上摘自维基百科</code></pre><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><pre><code>yum -y install epel-releaseyum -y groupinstall &quot;Development Tools&quot;yum -y install openssl-devel zlib-devel</code></pre><h2 id="下载相关文件编译"><a href="#下载相关文件编译" class="headerlink" title="下载相关文件编译"></a>下载相关文件编译</h2><p>文件已经上传到了国内的github上这样，虽然速度不咋地，胜在稳定。</p><pre><code>git clone https://github.com/Qifcn/OpenTracker.gitcd OpenTrackertar -xzvf libowfat.tar.gztar -xzvf opentracker.tar.gz</code></pre><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><pre><code>cd libowfatmakecd ..cd opentrackermake</code></pre><p>按照步骤做，不用make install</p><h2 id="二进制文件移动到-usr-bin："><a href="#二进制文件移动到-usr-bin：" class="headerlink" title="二进制文件移动到/usr/bin："></a>二进制文件移动到/usr/bin：</h2><pre><code>cp opentracker /usr/bin</code></pre><h2 id="一个服务文件："><a href="#一个服务文件：" class="headerlink" title="一个服务文件："></a>一个服务文件：</h2><pre><code>vim /usr/lib/systemd/system/opentracker.service[Unit]Description=opentracker server[Service]User=rootExecStart=/usr/bin/opentracker -p 1337 -P 1337Restart=on-abort[Install]WantedBy=multi-user.target</code></pre><p>我这里监听的端口是1337，这个端口可以自行更改，并且opentracker支持同时监听多端口。<br>-p（小写p）指TCP端口，-P（大写P）指UDP端口。</p><h2 id="设置开机启动并自启动"><a href="#设置开机启动并自启动" class="headerlink" title="设置开机启动并自启动"></a>设置开机启动并自启动</h2><pre><code>systemctl enable opentracker.service  systemctl start opentracker.service</code></pre><h2 id="其他管理命令"><a href="#其他管理命令" class="headerlink" title="其他管理命令"></a>其他管理命令</h2><pre><code>systemctl status opentracker.servicesystemctl stop opentracker.servicesystemctl restart opentracker.service</code></pre><p>制作种子的时候，我们添加Tracker服务器时，可以这么写：</p><pre><code>http://你的服务器公网IP:1337/announce</code></pre><p>或者：</p><pre><code>udp://你的服务器公网IP:1337/announce</code></pre><p>当然也可以同时添加http和udp，这个不受影响。</p><p>OpenTracker还有一个自带的统计功能：</p><pre><code>http://你的服务器公网IP:1337/stats</code></pre><p>更详细的统计信息访问：</p><blockquote><p><a href="http://你的服务器公网IP" target="_blank" rel="noopener">http://你的服务器公网IP</a>:1337/stats?mode=everything</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;p&gt;title: centos7 使用OpenTracker自建高性能Tracker服务器&lt;br&gt;date: 2019-03-18 20:52:32&lt;/p&gt;&lt;h2 id=&quot;tags&quot;&gt;&lt;a href=&quot;#tags&quot; class=&quot;headerlink&quot; title=&quot;tags:&quot;&gt;&lt;/a&gt;tags:&lt;/h2&gt;&lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。&lt;/p&gt;&lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;p&gt;1 特点&lt;br&gt;2 所用技术&lt;br&gt;3 使用情况&lt;br&gt;4 外部链接&lt;br&gt;5 参考&lt;br&gt;特点&lt;br&gt;opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半&lt;a href=&quot;https://blog.csdn.net/qq1784855023/article/details/85332267&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;1&lt;/a&gt;。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="未分类" scheme="https://Qifcn.Github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>centos7 使用OpenTracker自建高性能Tracker服务器</title>
+    <link href="https://Qifcn.Github.io/post/c2bc3eba.html"/>
+    <id>https://Qifcn.Github.io/post/c2bc3eba.html</id>
+    <published>2019-03-18T12:52:32.000Z</published>
+    <updated>2019-09-19T05:05:25.888Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。</p><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>1    特点<br>2    所用技术<br>3    使用情况<br>4    外部链接<br>5    参考<br>特点<br>opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半[1]。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。</p><p>所用技术<br>opentracker可以完全在内存中运行，这就是它速度快的原因。它完全由C语言写成，使用libowfat库管理网络连接。</p><p>使用情况<br>程序的作者运营着全球第二大的BitTorrent服务器denis.stalker.h3q.com，而全球最大的BitTorrent服务器海盗湾也在2007年底开始使用opentracker之前他们使用自己的Hypercube。挪威的挪威广播公司也用opentracker来发布自己的电视剧。<br><a href="https://blog.csdn.net/qq1784855023/article/details/85332267" target="_blank" rel="noopener">教程参考链接</a> </p><pre><code>以上摘自维基百科</code></pre><a id="more"></a> <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum -y groupinstall &quot;Development Tools&quot;</span><br><span class="line">yum -y install openssl-devel zlib-devel</span><br></pre></td></tr></table></figure><h2 id="下载相关文件编译"><a href="#下载相关文件编译" class="headerlink" title="下载相关文件编译"></a>下载相关文件编译</h2><p>文件已经上传到了国内的github上这样，虽然速度不咋地，胜在稳定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Qifcn/OpenTracker.git</span><br><span class="line">cd OpenTracker</span><br><span class="line">tar -xzvf libowfat.tar.gz</span><br><span class="line">tar -xzvf opentracker.tar.gz</span><br></pre></td></tr></table></figure></p><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd libowfat</span><br><span class="line">make</span><br><span class="line">cd ..</span><br><span class="line">cd opentracker</span><br><span class="line">make</span><br></pre></td></tr></table></figure><p>按照步骤做，不用make install</p><h2 id="二进制文件移动到-usr-bin："><a href="#二进制文件移动到-usr-bin：" class="headerlink" title="二进制文件移动到/usr/bin："></a>二进制文件移动到/usr/bin：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp opentracker /usr/bin</span><br></pre></td></tr></table></figure><h2 id="一个服务文件："><a href="#一个服务文件：" class="headerlink" title="一个服务文件："></a>一个服务文件：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/opentracker.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=opentracker server</span><br><span class="line">    </span><br><span class="line">[Service]</span><br><span class="line">User=root</span><br><span class="line">ExecStart=/usr/bin/opentracker -p 1337 -P 1337</span><br><span class="line">Restart=on-abort</span><br><span class="line">    </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><p>我这里监听的端口是1337，这个端口可以自行更改，并且opentracker支持同时监听多端口。<br>-p（小写p）指TCP端口，-P（大写P）指UDP端口。</p><h2 id="设置开机启动并自启动"><a href="#设置开机启动并自启动" class="headerlink" title="设置开机启动并自启动"></a>设置开机启动并自启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable opentracker.service  </span><br><span class="line">systemctl start opentracker.service</span><br></pre></td></tr></table></figure><h2 id="其他管理命令"><a href="#其他管理命令" class="headerlink" title="其他管理命令"></a>其他管理命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status opentracker.service</span><br><span class="line">systemctl stop opentracker.service</span><br><span class="line">systemctl restart opentracker.service</span><br></pre></td></tr></table></figure><p>制作种子的时候，我们添加Tracker服务器时，可以这么写：</p><pre><code>http://你的服务器公网IP:1337/announce</code></pre><p>或者：</p><pre><code>udp://你的服务器公网IP:1337/announce</code></pre><p>当然也可以同时添加http和udp，这个不受影响。</p><p>OpenTracker还有一个自带的统计功能：</p><pre><code>http://你的服务器公网IP:1337/stats</code></pre><p>更详细的统计信息访问：</p><blockquote><p>http://你的服务器公网IP:1337/stats?mode=everything</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;opentracker是一个BitTorrent伺服软件，是一个啤酒软件，其特点是快速性和低系统资源消耗。&lt;/p&gt;
+&lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;p&gt;1    特点&lt;br&gt;2    所用技术&lt;br&gt;3    使用情况&lt;br&gt;4    外部链接&lt;br&gt;5    参考&lt;br&gt;特点&lt;br&gt;opentracker的速度比其他的伺服软件快很多，占用内存也更少，就连在嵌入式系统中都运行自如。程序的实例可以在集群中同时运行，因为不同实例间可以相互同步。opentracker同时支持HTTP协议和UDP协议，后者的负载仅为前者的一半[1]。同时，opentracker还支持IPv6[2]、gzip压缩和黑名单[3]。因为曾有人的IP地址暴露在伺服列表中而以侵害著作权被起诉[4]，opentracker可以生成随机IP地址而避免以上情况。&lt;/p&gt;
+&lt;p&gt;所用技术&lt;br&gt;opentracker可以完全在内存中运行，这就是它速度快的原因。它完全由C语言写成，使用libowfat库管理网络连接。&lt;/p&gt;
+&lt;p&gt;使用情况&lt;br&gt;程序的作者运营着全球第二大的BitTorrent服务器denis.stalker.h3q.com，而全球最大的BitTorrent服务器海盗湾也在2007年底开始使用opentracker之前他们使用自己的Hypercube。挪威的挪威广播公司也用opentracker来发布自己的电视剧。&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/qq1784855023/article/details/85332267&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;教程参考链接&lt;/a&gt; &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;以上摘自维基百科
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>centos7   smb共享快速设置</title>
+    <link href="https://Qifcn.Github.io/post/f82e4eee.html"/>
+    <id>https://Qifcn.Github.io/post/f82e4eee.html</id>
+    <published>2019-03-17T12:07:00.000Z</published>
+    <updated>2019-09-19T05:05:25.795Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: centos7 smb共享快速设置<br>date: 2019-03-17 19:08:44</p><h2 id="tags-centos7"><a href="#tags-centos7" class="headerlink" title="tags: centos7"></a>tags: centos7</h2><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><pre><code>本文的目的是在centso7下快速设置一个共享，有一个思路。</code></pre><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote><p>yum install samba vim -y</p></blockquote><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><blockquote><p>systemctl start smb nmb</p></blockquote><a id="more"></a><p>systemctl enable smb nmb</p><h3 id="配置匿名"><a href="#配置匿名" class="headerlink" title="配置匿名"></a>配置匿名</h3><blockquote><p>vim /etc/samba/smb.conf</p></blockquote><p>在全局配置<code>global</code>添加以下行 参数意思是<code>允许匿名访问</code><br>centos7里smb版本包不再支持share</p><pre><code>map to guest = bad user</code></pre><h3 id="添加共享目录"><a href="#添加共享目录" class="headerlink" title="添加共享目录"></a>添加共享目录</h3><pre><code>[share]                              comment = 共享描述     path = /share                         writable  = yes                     browseable = yes              guest ok  = yes       [share]                              comment = 共享描述     path = /share               #共享的文件路径             writable  = yes             #是否可写           browseable = yes        #是否可被浏览            guest ok  = yes            #是否允许匿名访问</code></pre><h3 id="配置权限"><a href="#配置权限" class="headerlink" title="配置权限"></a>配置权限</h3><blockquote><p>chmod -R 755<br>chown -R 用户:root /share<br>chown -R nobody:root sd1/<br>chcon -t samba_share /share #进一步配置Selinux</p></blockquote><h3 id="配置Selinux"><a href="#配置Selinux" class="headerlink" title="配置Selinux"></a>配置Selinux</h3><blockquote><p>setenforce 0 临时关闭<br>systemctl stop firewalld # 临时关闭防火墙</p></blockquote><h3 id="为samba开放特定端口"><a href="#为samba开放特定端口" class="headerlink" title="为samba开放特定端口"></a>为samba开放特定端口</h3><pre><code>firewall-cmd --zone=public --add-port=139/tcp --permanentfirewall-cmd --zone=public --add-port=445/tcp --permanentfirewall-cmd --zone=public --add-port=137/udp --permanentfirewall-cmd --zone=public --add-port=138/udp --permanentfirewall-cmd --reloadsystemctl restart firewalld.service</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;p&gt;title: centos7 smb共享快速设置&lt;br&gt;date: 2019-03-17 19:08:44&lt;/p&gt;&lt;h2 id=&quot;tags-centos7&quot;&gt;&lt;a href=&quot;#tags-centos7&quot; class=&quot;headerlink&quot; title=&quot;tags: centos7&quot;&gt;&lt;/a&gt;tags: centos7&lt;/h2&gt;&lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;本文的目的是在centso7下快速设置一个共享，有一个思路。
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; class=&quot;headerlink&quot; title=&quot;内容&quot;&gt;&lt;/a&gt;内容&lt;/h1&gt;&lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;yum install samba vim -y&lt;/p&gt;
+&lt;/blockquote&gt;&lt;h3 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;systemctl start smb nmb&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="默认分类" scheme="https://Qifcn.Github.io/categories/%E9%BB%98%E8%AE%A4%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>centos7   smb共享快速设置</title>
+    <link href="https://Qifcn.Github.io/post/f82e4eee.html"/>
+    <id>https://Qifcn.Github.io/post/f82e4eee.html</id>
+    <published>2019-03-17T11:08:44.000Z</published>
+    <updated>2019-09-19T05:05:25.919Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><pre><code>本文的目的是在centso7下快速设置一个共享，有一个思路。</code></pre><a id="more"></a> <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote><p>yum install samba vim -y</p></blockquote><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><blockquote><p> systemctl start smb nmb</p></blockquote><h3 id="配置匿名"><a href="#配置匿名" class="headerlink" title="配置匿名"></a>配置匿名</h3><blockquote><p>vim /etc/samba/smb.conf</p></blockquote><p>在全局配置<code>global</code>添加以下行 参数意思是<code>允许匿名访问</code><br>centos7里smb版本包不再支持share<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">map to guest = bad user</span><br></pre></td></tr></table></figure></p><h3 id="添加共享目录"><a href="#添加共享目录" class="headerlink" title="添加共享目录"></a>添加共享目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[share]                          </span><br><span class="line">    comment = 共享描述 </span><br><span class="line">    path = /share                 </span><br><span class="line">    writable  = yes                 </span><br><span class="line">    browseable = yes          </span><br><span class="line">    guest ok  = yes</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[share]                          </span><br><span class="line">    comment = 共享描述 </span><br><span class="line">    path = /share               #共享的文件路径     </span><br><span class="line">    writable  = yes             #是否可写       </span><br><span class="line">    browseable = yes        #是否可被浏览        </span><br><span class="line"></span><br><span class="line">    guest ok  = yes            #是否允许匿名访问</span><br></pre></td></tr></table></figure><h3 id="配置权限"><a href="#配置权限" class="headerlink" title="配置权限"></a>配置权限</h3><blockquote><p>chmod -R 755<br>chown -R 用户:root /share<br>chcon -t samba_share /share  #进一步配置Selinux</p></blockquote><h3 id="配置Selinux"><a href="#配置Selinux" class="headerlink" title="配置Selinux"></a>配置Selinux</h3><blockquote><p>setenforce 0  临时关闭<br>systemctl  stop firewalld   # 临时关闭防火墙</p></blockquote><h3 id="为samba开放特定端口"><a href="#为samba开放特定端口" class="headerlink" title="为samba开放特定端口"></a>为samba开放特定端口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=139/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=445/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=137/udp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=138/udp --permanent</span><br><span class="line"> </span><br><span class="line">firewall-cmd --reload</span><br><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;本文的目的是在centso7下快速设置一个共享，有一个思路。
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="centos7" scheme="https://Qifcn.Github.io/tags/centos7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS7安装qbittorrent 最新版</title>
+    <link href="https://Qifcn.Github.io/post/73cc8cfd.html"/>
+    <id>https://Qifcn.Github.io/post/73cc8cfd.html</id>
+    <published>2019-03-16T03:16:00.000Z</published>
+    <updated>2019-09-19T05:05:25.779Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: Compiling qbittorrent nox for CentOS from source<br>date: 2019-03-15 20:51:36</p><h2 id="tags-qbittorrent"><a href="#tags-qbittorrent" class="headerlink" title="tags: qbittorrent"></a>tags: qbittorrent</h2><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be8cb367.jpg" alt="1" title="1"></p><h1 id="依赖版本"><a href="#依赖版本" class="headerlink" title="依赖版本"></a>依赖版本</h1><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be9505e1.jpg" alt></p><h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>qBittorrent的源代码库有200M多兆所以如果不是追求最新版本与网速不理想的话建议下载打包好的源代码。 现在 qBittorrent在我写文章的时候已经发展到4.15这个版本了。<br>libtorrent-1.1.10 最低<br>Gcc版本要新版本</p><a id="more"></a><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="一-环境准备"><a href="#一-环境准备" class="headerlink" title="一 环境准备"></a>一 环境准备</h2><p>1.安装依赖项</p><pre><code>yum -y groupinstall &quot;Development Tools&quot;yum -y install qt-devel boost-devel openssl-devel qt5-qtbase-devel qt5-linguist</code></pre><p>2.libtorrent版本1.1.12</p><pre><code>wget https://github.com/arvidn/libtorrent/releases/download/libtorrent_1_1_12/libtorrent-rasterbar-1.1.12.tar.gz</code></pre><p>3.升级GCC编译器CentOS 7 升级gcc 7<br>升级时候因个人网速快慢。</p><pre><code>sudo yum install centos-release-sclsudo yum install devtoolset-7-gcc*scl enable devtoolset-7 bashwhich gccgcc --version</code></pre><p>这种方法同样适用于安装gcc6，只需要将上面命令中7改成6即可。详情请参考： <a href="https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/" target="_blank" rel="noopener">https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/</a></p><p>centos7默认gcc版本<br>  <img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be997944.jpg" alt="gcc版本图片" title="gcc版本图片"><br>cnetos7升级后的版本 </p><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bea1eab2.jpg" alt="升级后的gcc" title="升级后的gcc"></p><h2 id="二-编译安装"><a href="#二-编译安装" class="headerlink" title="二 编译安装"></a>二 编译安装</h2><p>此时你的目录下应该有这些文件，<code>libtorrent-rasterbar-1.1.12.tar.gz</code>与<code>qBittorrent</code>qBittorren为什么是一个目录嘞，我下的仓库源码包有200m多兆，哭</p><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bea88a72.jpg" alt="mu" title="mu"></p><h3 id="编译libtorrent"><a href="#编译libtorrent" class="headerlink" title="编译libtorrent"></a>编译libtorrent</h3><pre><code>tar -zxf libtorrent-rasterbar-1.1.12.tar.gzcd libtorrent-rasterbar-1.1.12./configure --prefix=/usr CXXFLAGS=-std=c++11makemake installln -s /usr/lib/pkgconfig/libtorrent-rasterbar.pc /usr/lib64/pkgconfig/libtorrent-rasterbar.pcln -s /usr/lib/libtorrent-rasterbar.so.9 /usr/lib64/libtorrent-rasterbar.so.9cd ~</code></pre><p>0x1执行make<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42beb0a93e.jpg" alt="make" title="make"><br>0x2执行make install<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42beb8f3bd.jpg" alt="make install" title="make install"></p><p>0x3别忘记创建链接<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bec2187a.jpg" alt="链接" title="链接"></p><h3 id="编译qBittorrent"><a href="#编译qBittorrent" class="headerlink" title="编译qBittorrent"></a>编译qBittorrent</h3><pre><code>cd qBittorrent./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5makemake installcd ~</code></pre><p>0x1执行./configure省略后<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bec8fe08.jpg" alt="configure" title="configure"><br>0x2执行make后<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bed20519.jpg" alt="make" title="make"><br>0x3执行make install<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bedd0e02.jpg" alt></p><p>默认我是用root这个用户编译的文件也下载到root的家目录</p><h1 id="编译后的收尾"><a href="#编译后的收尾" class="headerlink" title="编译后的收尾"></a>编译后的收尾</h1><h2 id="打开防火墙"><a href="#打开防火墙" class="headerlink" title="打开防火墙"></a>打开防火墙</h2><pre><code>firewall-cmd --zone=public --add-port=8080/tcp --permanentfirewall-cmd --zone=public --add-port=8080/udp --permanentfirewall-cmd --reload</code></pre><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42bee87d83.jpg" alt="firewall" title="firewall"></p><h2 id="先执行一遍程序"><a href="#先执行一遍程序" class="headerlink" title="先执行一遍程序"></a>先执行一遍程序</h2><p>在#下输入<code>qbittorrent-nox</code><br>Press &#8216;y&#8217; key to accept and continue&#8230;<br>输入<code>y</code>回车同意<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42beed6414.jpg" alt="qbittorrent-nox" title="qbittorrent-nox"></p><h2 id="设置成systemctl-服务"><a href="#设置成systemctl-服务" class="headerlink" title="设置成systemctl 服务"></a>设置成systemctl 服务</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;p&gt;title: Compiling qbittorrent nox for CentOS from source&lt;br&gt;date: 2019-03-15 20:51:36&lt;/p&gt;&lt;h2 id=&quot;tags-qbittorrent&quot;&gt;&lt;a href=&quot;#tags-qbittorrent&quot; class=&quot;headerlink&quot; title=&quot;tags: qbittorrent&quot;&gt;&lt;/a&gt;tags: qbittorrent&lt;/h2&gt;&lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://Qifcn.github.io/wp-content/uploads/sina/5ce42be8cb367.jpg&quot; alt=&quot;1&quot; title=&quot;1&quot;&gt;&lt;/p&gt;&lt;h1 id=&quot;依赖版本&quot;&gt;&lt;a href=&quot;#依赖版本&quot; class=&quot;headerlink&quot; title=&quot;依赖版本&quot;&gt;&lt;/a&gt;依赖版本&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://Qifcn.github.io/wp-content/uploads/sina/5ce42be9505e1.jpg&quot; alt&gt;&lt;/p&gt;&lt;h2 id=&quot;版本&quot;&gt;&lt;a href=&quot;#版本&quot; class=&quot;headerlink&quot; title=&quot;版本&quot;&gt;&lt;/a&gt;版本&lt;/h2&gt;&lt;p&gt;qBittorrent的源代码库有200M多兆所以如果不是追求最新版本与网速不理想的话建议下载打包好的源代码。 现在 qBittorrent在我写文章的时候已经发展到4.15这个版本了。&lt;br&gt;libtorrent-1.1.10 最低&lt;br&gt;Gcc版本要新版本&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="未分类" scheme="https://Qifcn.Github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Compiling qbittorrent nox for CentOS from source</title>
+    <link href="https://Qifcn.Github.io/post/e8279405.html"/>
+    <id>https://Qifcn.Github.io/post/e8279405.html</id>
+    <published>2019-03-15T12:51:36.000Z</published>
+    <updated>2019-09-19T05:05:26.029Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14cd9loikj31010h0gon.jpg" alt="1"></p><h1 id="依赖版本"><a href="#依赖版本" class="headerlink" title="依赖版本"></a>依赖版本</h1><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14hqo2tvwj30fa0a23yo.jpg" alt></p><h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>  qBittorrent的源代码库有200M多兆所以如果不是追求最新版本与网速不理想的话建议下载打包好的源代码。  现在 qBittorrent在我写文章的时候已经发展到4.15这个版本了。<br>libtorrent-1.1.10 最低<br>Gcc版本要新版本</p><a id="more"></a> <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="一-环境准备"><a href="#一-环境准备" class="headerlink" title="一 环境准备"></a>一 环境准备</h2><p>1.安装依赖项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development Tools&quot;</span><br><span class="line">yum -y install qt-devel boost-devel openssl-devel qt5-qtbase-devel qt5-linguist</span><br></pre></td></tr></table></figure></p><p>2.libtorrent版本1.1.12<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/arvidn/libtorrent/releases/download/libtorrent_1_1_12/libtorrent-rasterbar-1.1.12.tar.gz</span><br></pre></td></tr></table></figure></p><p>3.升级GCC编译器CentOS 7 升级gcc 7<br>升级时候因个人网速快慢。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install centos-release-scl</span><br><span class="line">sudo yum install devtoolset-7-gcc*</span><br><span class="line">scl enable devtoolset-7 bash</span><br><span class="line">which gcc</span><br><span class="line">gcc --version</span><br></pre></td></tr></table></figure></p><p>这种方法同样适用于安装gcc6，只需要将上面命令中7改成6即可。详情请参考： <a href="https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/" target="_blank" rel="noopener">https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/</a></p><p>centos7默认gcc版本<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14dj1rc7jj30ow06i3zx.jpg" alt="gcc版本图片"><br>cnetos7升级后的版本  </p><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14drg58swj30fe048t9a.jpg" alt="升级后的gcc"></p><h2 id="二-编译安装"><a href="#二-编译安装" class="headerlink" title="二 编译安装"></a>二 编译安装</h2><p>此时你的目录下应该有这些文件，<code>libtorrent-rasterbar-1.1.12.tar.gz</code>与<code>qBittorrent</code>qBittorren为什么是一个目录嘞，我下的仓库源码包有200m多兆，哭</p><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14dw90pxfj30ho03sq3c.jpg" alt="mu"></p><h3 id="编译libtorrent"><a href="#编译libtorrent" class="headerlink" title="编译libtorrent"></a>编译libtorrent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tar -zxf libtorrent-rasterbar-1.1.12.tar.gz</span><br><span class="line">cd libtorrent-rasterbar-1.1.12</span><br><span class="line">./configure --prefix=/usr CXXFLAGS=-std=c++11</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">ln -s /usr/lib/pkgconfig/libtorrent-rasterbar.pc /usr/lib64/pkgconfig/libtorrent-rasterbar.pc</span><br><span class="line">ln -s /usr/lib/libtorrent-rasterbar.so.9 /usr/lib64/libtorrent-rasterbar.so.9</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure><p>0x1执行make<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14ezc8opfj30te0lqafn.jpg" alt="make"><br>0x2执行make install<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14f0w05gaj30te0lo44j.jpg" alt="make install"></p><p>0x3别忘记创建链接<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14f2iuzh8j30pg031dga.jpg" alt="链接"></p><h3 id="编译qBittorrent"><a href="#编译qBittorrent" class="headerlink" title="编译qBittorrent"></a>编译qBittorrent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd qBittorrent</span><br><span class="line">./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure><p>0x1执行./configure省略后<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14f4aj1e7j30te0i1aes.jpg" alt="configure"><br>0x2执行make后<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14f938nchj30te0lo0xf.jpg" alt="make"><br>0x3执行make install<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14fawcgsnj30te0logqp.jpg" alt></p><p>默认我是用root这个用户编译的文件也下载到root的家目录</p><h1 id="编译后的收尾"><a href="#编译后的收尾" class="headerlink" title="编译后的收尾"></a>编译后的收尾</h1><h2 id="打开防火墙"><a href="#打开防火墙" class="headerlink" title="打开防火墙"></a>打开防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=8080/udp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14g4dbq6pj30gv044q3b.jpg" alt="firewall"></p><h2 id="先执行一遍程序"><a href="#先执行一遍程序" class="headerlink" title="先执行一遍程序"></a>先执行一遍程序</h2><p>在#下输入<code>qbittorrent-nox</code><br>Press ‘y’ key to accept and continue…<br>输入<code>y</code>回车同意<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14g2ud30wj30pi07xdgq.jpg" alt="qbittorrent-nox"></p><h2 id="设置成systemctl-服务"><a href="#设置成systemctl-服务" class="headerlink" title="设置成systemctl 服务"></a>设置成systemctl 服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF | sudo tee /usr/lib/systemd/system/qbittorrent.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=qbittorrent torrent server</span><br><span class="line">    </span><br><span class="line">[Service]</span><br><span class="line">User=root</span><br><span class="line">ExecStart=/usr/bin/qbittorrent-nox</span><br><span class="line">Restart=on-abort</span><br><span class="line">    </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.targe</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14g8476qzj30gz09zjs6.jpg" alt="systemctl"><br>复制全部然后粘贴回车，然后执行以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart qbittorrent</span><br><span class="line">systemctl enable qbittorrent</span><br></pre></td></tr></table></figure></p><p><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14gpw494uj30eg05jgly.jpg" alt="systemctl "><br>不知道为什么启动重启停止没有问题，开机启动反而有问题。<a href="https://github.com/qbittorrent/qBittorrent/wiki/Setting-up-qBittorrent-as-a-daemon-on-CentOS-7" target="_blank" rel="noopener">参考</a></p><h1 id="后期结尾"><a href="#后期结尾" class="headerlink" title="后期结尾"></a>后期结尾</h1><p>然后在浏览器里输入<a href="http://ip:端口" target="_blank" rel="noopener">http://ip:端口</a> 访问控制端<br>用户名admin密码adminadmin<br><img src="https://ws1.sinaimg.cn/large/007fbMWcgy1g14gumag6jj31020qjwi5.jpg" alt="qbittorrent"></p><p>对于qbittorrent仓库大国内下载速度慢，可以下载已经打包好的源代码，如果追求最新，可以，我记得国内coding托管可以克隆GitHub仓库，克隆后再在coding上下载，迂回办法，有条件的同学可以试试其他的，道路千万条，安全第一条，行车不规范，亲人两行泪。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/007fbMWcgy1g14cd9loikj31010h0gon.jpg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;依赖版本&quot;&gt;&lt;a href=&quot;#依赖版本&quot; class=&quot;headerlink&quot; title=&quot;依赖版本&quot;&gt;&lt;/a&gt;依赖版本&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/007fbMWcgy1g14hqo2tvwj30fa0a23yo.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;h2 id=&quot;版本&quot;&gt;&lt;a href=&quot;#版本&quot; class=&quot;headerlink&quot; title=&quot;版本&quot;&gt;&lt;/a&gt;版本&lt;/h2&gt;&lt;p&gt;  qBittorrent的源代码库有200M多兆所以如果不是追求最新版本与网速不理想的话建议下载打包好的源代码。  现在 qBittorrent在我写文章的时候已经发展到4.15这个版本了。&lt;br&gt;libtorrent-1.1.10 最低&lt;br&gt;Gcc版本要新版本&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="qbittorrent" scheme="https://Qifcn.Github.io/tags/qbittorrent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Transmission2.94</title>
+    <link href="https://Qifcn.Github.io/post/33168d82.html"/>
+    <id>https://Qifcn.Github.io/post/33168d82.html</id>
+    <published>2019-03-15T02:24:49.000Z</published>
+    <updated>2019-09-19T05:05:26.169Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a> <p>510902199907166715</p><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line">rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/city-fan.org-release-1-13.rhel7.noarch.rpm</span><br><span class="line">yum groupinstall &quot;Development tools&quot; -y</span><br><span class="line">yum install vim wget xz m4 expat openssl-devel perl-libwww-perl perl-XML-Parser curl libcurl-devel libidn-devel zlib-devel which intltool miniupnpc-devel -y</span><br><span class="line"> </span><br><span class="line">cd /opt</span><br><span class="line">wget https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz</span><br><span class="line">tar xzf libevent-2.1.8-stable.tar.gz</span><br><span class="line">cd libevent-2.1.8-stable</span><br><span class="line">./configure --prefix=/usr</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"> </span><br><span class="line">export PKG_CONFIG_PATH=/usr/lib/pkgconfig</span><br><span class="line">cd /opt</span><br><span class="line">wget https://github.com/transmission/transmission-releases/raw/master/transmission-2.84.tar.xz</span><br><span class="line">tar xJf transmission-2.84.tar.xz</span><br><span class="line">cd transmission-2.94</span><br><span class="line">./configure --prefix=/usr</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="bt" scheme="https://Qifcn.Github.io/tags/bt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>电骡ed2k服务器搭建</title>
+    <link href="https://Qifcn.Github.io/post/b140841c.html"/>
+    <id>https://Qifcn.Github.io/post/b140841c.html</id>
+    <published>2019-03-13T00:06:44.000Z</published>
+    <updated>2019-09-19T05:05:25.764Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: 电骡ed2k服务器搭建<br>tags: 电骡，ed2k，服务器，p2p<br>abbrlink: b140841c</p><h2 id="date-2019-03-03-15-12-51"><a href="#date-2019-03-03-15-12-51" class="headerlink" title="date: 2019-03-03 15:12:51"></a>date: 2019-03-03 15:12:51</h2><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p><strong>Lugdunum</strong>是一个<a href="https://zh.wikipedia.org/wiki/EDonkey%E7%BD%91%E7%BB%9C" target="_blank" rel="noopener">eDonkey网络</a><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">服务器</a><a href="https://zh.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">软件</a>，也是一个<a href="https://zh.wikipedia.org/wiki/%E9%96%89%E6%BA%90%E8%BB%9F%E9%AB%94" target="_blank" rel="noopener">闭源</a><a href="https://zh.wikipedia.org/wiki/%E5%85%8D%E8%B4%B9%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">免费</a>的<a href="https://zh.wikipedia.org/wiki/%E4%B8%93%E6%9C%89%E8%BD%AF%E4%BB%B6" target="_blank" rel="noopener">专有软件</a>。</p><p>创建eDonkey协议与<a href="https://zh.wikipedia.org/wiki/EDonkey2000" target="_blank" rel="noopener">eDonkey2000</a>软件的<a href="https://zh.wikipedia.org/w/index.php?title=MetaMachine&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">MetaMachine</a>公司编写了最早的eD2k服务器软件，名字叫做<strong>DSERVER</strong>，一直更新到版本16。之后交由法国的Lugdunum小组维护，最后版本为17.15。Lugdunum也称<strong>eserver</strong>[<a href="[https://zh.wikipedia.org/wiki/Lugdunum\_(%E8%BD%AF%E4%BB%B6">1]\</a>#cite_note-1)]<a href="https://zh.wikipedia.org/wiki/Lugdunum_(%E8%BD%AF%E4%BB%B6)#cite_note-1)" target="_blank" rel="noopener">9</a>，意即“eDonkey Server”（eDonkey服务器）。</p><a id="more"></a><p>Lugdunum是当前最常用的eD2k服务器软件，基本上现在所有的eD2k服务器都使用Lugdunum维护。它支持复杂的逻辑搜索。</p><p>Lugdunum主要用于<a href="https://zh.wikipedia.org/wiki/Linux" target="_blank" rel="noopener">Linux</a>下，支持多核与64位运行。虽然Lugdunum有<a href="https://zh.wikipedia.org/wiki/Windows" target="_blank" rel="noopener">Windows</a>版本，但它的Windows最新版本使用有一定问题，所有连接服务器的用户都会被错误的分配一个Low ID。所以如果想在Windows平台架设服务器则需要使用Lugdunum的17.14版本。</p><p>Lugdunum的主页现在已经失效，现在无任何官方网站，但是有一些非官方的资料页面。</p><p>Lugdunum软件名称源于<a href="https://zh.wikipedia.org/wiki/%E6%B3%95%E5%9B%BD" target="_blank" rel="noopener">法国</a>城市<a href="https://zh.wikipedia.org/wiki/%E9%87%8C%E6%98%82" target="_blank" rel="noopener">里昂</a>在<a href="https://zh.wikipedia.org/wiki/%E5%8F%A4%E7%BD%97%E9%A9%AC" target="_blank" rel="noopener">古罗马</a>时期的同名称呼。</p><pre><code>摘自维基百科中文</code></pre><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p>### 环境</p><ol><li>centos6.9 x64</li><li>Lugdunum相关软件</li><li>电骡官方客户端软件</li></ol><h1 id="相关下载"><a href="#相关下载" class="headerlink" title="相关下载"></a>相关下载</h1><p><a href="http://prdownloads.sourceforge.net/emule/eMule0.50a-Installer.exe" target="_blank" rel="noopener">电骡官方客户端软件</a><br><a href="https://github.com/Qifcn/eMule/archive/0.1.zip" target="_blank" rel="noopener">Lugdunum相关软件</a></p><h2 id="软件目录图"><a href="#软件目录图" class="headerlink" title="软件目录图"></a>软件目录图</h2><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be2783d0.jpg" alt="1" title="1"><br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be2d6f89.jpg" alt="2" title="2"></p><h2 id="默认搭建好了的centos6-9系统"><a href="#默认搭建好了的centos6-9系统" class="headerlink" title="默认搭建好了的centos6.9系统"></a>默认搭建好了的centos6.9系统</h2><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be3470c4.jpg" alt="3" title="3"><br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be3aaff7.jpg" alt><br>环境<br>ip地址192.168.13.99内网地址<br>打开端口4661</p><h2 id="上传相关文件到服务器home目录"><a href="#上传相关文件到服务器home目录" class="headerlink" title="上传相关文件到服务器home目录"></a>上传相关文件到服务器home目录</h2><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be41d6d6.jpg" alt><br>我用的是ssh上传文件的方式官方叫这个名字为sftp只要ssh远程能用就可以上传文件</p><h2 id="修改相关配置"><a href="#修改相关配置" class="headerlink" title="修改相关配置"></a>修改相关配置</h2><p>默认在hmoe目录</p><pre><code>vi donkey.ini </code></pre><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be48285e.jpg" alt></p><p>相关修改我已经圈了起来。</p><h3 id="2019年3月13日早上更新电骡配置文件"><a href="#2019年3月13日早上更新电骡配置文件" class="headerlink" title="2019年3月13日早上更新电骡配置文件"></a>2019年3月13日早上更新电骡配置文件</h3><pre><code>[server]name=特殊资源共享平台desc=http://lcx.comthisIP=192.168.13.99port=4661verbose=turepublic=truethreads=10LOWIDpercent=100autoservlist=softLimit=13000hardLimit=14000type=keytableSize=3089maxClients=100000maxVersion=9999logFile=turewelcome[0]=登录ddddd1111welcome[1]=***************************welcome[2]=临时电骡服务器seckey=2B9E64A4189599B5516E6C2C85327ECD # Added by eserver. Should not be public </code></pre><h2 id="打开端口操作"><a href="#打开端口操作" class="headerlink" title="打开端口操作"></a>打开端口操作</h2><pre><code>iptables -I INPUT -p tcp --dport 4661 -j ACCEPT /etc/init.d/iptables saveservice iptables restart</code></pre><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be50004c.jpg" alt></p><p>一行一条命令，centos6.9安装后默认打开了防火墙的。</p><h2 id="给相关权限"><a href="#给相关权限" class="headerlink" title="给相关权限"></a>给相关权限</h2><pre><code>chmod 755 lugdunum-17.15.x86_64-linux.nptl ln -s lugdunum-17.15.x86_64-linux.nptl eserverchmod 755 script.sh</code></pre><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be582a1d.jpg" alt><br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be616c9d.jpg" alt></p><h2 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h2><p>再输入screen ./script.sh 回车 就运行电骡服务器了<br>如果没有安装screen 就yum install screen 安装screen 再运行screen ./script.sh<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be68796c.jpg" alt></p><h3 id="运行成功的图"><a href="#运行成功的图" class="headerlink" title="运行成功的图"></a>运行成功的图</h3><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be6ed941.jpg" alt></p><h2 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h2><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be774d74.jpg" alt><br>打开电骡客户端的选项-》扩展设置<br><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be7df763.jpg" alt><br>把<code>过滤内网ip的服务器和客户</code>的勾去掉。</p><h3 id="最终效果图"><a href="#最终效果图" class="headerlink" title="最终效果图"></a>最终效果图</h3><p><img src="https://Qifcn.github.io/wp-content/uploads/sina/5ce42be8584aa.jpg" alt><br>至于为什么ID是LOWid因为我作实验的服务器和测试的客户端中间隔了一个无线路由器，测试的客户端是通过无线连接搭建的内网服务器的。</p><h2 id="测试速度"><a href="#测试速度" class="headerlink" title="测试速度"></a>测试速度</h2><p>官方的电骡客户端在2台电脑直连千兆交换机下有20M左右的速度。有兴趣的朋友可以试试。忘记说了我测试的文件是一个iso的系统文件有1.5G的大小。所以速度还是有一定的权威性。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>电骡是一个共享软件，体现了人人为我，我为人人，只要有速度神马都是浮云。希望有什么问题欢迎指出。</p><h2 id="支持"><a href="#支持" class="headerlink" title="支持"></a>支持</h2><p>相关软件和一些教程是在电骡群里找的，最权威的是，贴吧讨论得多一些。就这几个中文地方。如果有什么不足或者侵权的地方欢迎私信。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;&lt;p&gt;title: 电骡ed2k服务器搭建&lt;br&gt;tags: 电骡，ed2k，服务器，p2p&lt;br&gt;abbrlink: b140841c&lt;/p&gt;&lt;h2 id=&quot;date-2019-03-03-15-12-51&quot;&gt;&lt;a href=&quot;#date-2019-03-03-15-12-51&quot; class=&quot;headerlink&quot; title=&quot;date: 2019-03-03 15:12:51&quot;&gt;&lt;/a&gt;date: 2019-03-03 15:12:51&lt;/h2&gt;&lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Lugdunum&lt;/strong&gt;是一个&lt;a href=&quot;https://zh.wikipedia.org/wiki/EDonkey%E7%BD%91%E7%BB%9C&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;eDonkey网络&lt;/a&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;服务器&lt;/a&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;软件&lt;/a&gt;，也是一个&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%96%89%E6%BA%90%E8%BB%9F%E9%AB%94&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;闭源&lt;/a&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%85%8D%E8%B4%B9%E8%BD%AF%E4%BB%B6&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;免费&lt;/a&gt;的&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%B8%93%E6%9C%89%E8%BD%AF%E4%BB%B6&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;专有软件&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;创建eDonkey协议与&lt;a href=&quot;https://zh.wikipedia.org/wiki/EDonkey2000&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;eDonkey2000&lt;/a&gt;软件的&lt;a href=&quot;https://zh.wikipedia.org/w/index.php?title=MetaMachine&amp;amp;action=edit&amp;amp;redlink=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MetaMachine&lt;/a&gt;公司编写了最早的eD2k服务器软件，名字叫做&lt;strong&gt;DSERVER&lt;/strong&gt;，一直更新到版本16。之后交由法国的Lugdunum小组维护，最后版本为17.15。Lugdunum也称&lt;strong&gt;eserver&lt;/strong&gt;[&lt;a href=&quot;[https://zh.wikipedia.org/wiki/Lugdunum\_(%E8%BD%AF%E4%BB%B6&quot;&gt;1]\&lt;/a&gt;#cite_note-1)]&lt;a href=&quot;https://zh.wikipedia.org/wiki/Lugdunum_(%E8%BD%AF%E4%BB%B6)#cite_note-1)&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;9&lt;/a&gt;，意即“eDonkey Server”（eDonkey服务器）。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="未分类" scheme="https://Qifcn.Github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ProxmoxVE 安装后初始化操作</title>
+    <link href="https://Qifcn.Github.io/post/49d87ad4.html"/>
+    <id>https://Qifcn.Github.io/post/49d87ad4.html</id>
+    <published>2019-03-08T12:19:24.000Z</published>
+    <updated>2019-09-19T05:05:26.138Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>重要！！！更改软件源，默认是订阅版，如果不做修改，在使用pveceph init进行ceph初始化安装的时候会将整个环境破坏，切记！更改为非订阅版</p><a id="more"></a> <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -f /etc/apt/sources.list.d/pve-enterprise.list </span><br><span class="line">echo &quot;deb http://download.proxmox.com/debian/pve stretch pve-no-subscription&quot; &gt;/etc/apt/sources.list.d/pve-install-repo.list </span><br><span class="line">wget http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-5.x.gpg </span><br><span class="line">apt update &amp;&amp; apt dist-upgrade</span><br></pre></td></tr></table></figure><p>安装ntp。ceph集群对时间同步的要求很高，需要安装ntp服务：<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apt-get install ntp -y</span><br></pre></td></tr></table></figure></p><pre><code>安装完成之后会自动启动并同步debian的时间服务器，注意，是联网的情况下，如果不连接外网，需要设定内网的ntp服务，这里不赘述。</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install ntpdate </span><br><span class="line">ntpdate 120.25.108.11 </span><br><span class="line">echo &quot;0 * * * * /usr/sbin/ntpdate 120.25.108.11 &gt; /dev/null 2&gt;&amp;1&quot; &gt;&gt; /etc/crontab</span><br></pre></td></tr></table></figure><pre><code>消除“No valid subscription”提示的方法参考下面的网址：https://johnscs.com/remove-proxmox51-subscription-notice/即，ssh登录服务器后执行下面的指令：sed -i.bak &quot;s/data.status !== &apos;Active&apos;/false/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js &amp;&amp; systemctl restart pveproxy.service</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;&lt;p&gt;重要！！！更改软件源，默认是订阅版，如果不做修改，在使用pveceph init进行ceph初始化安装的时候会将整个环境破坏，切记！更改为非订阅版&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Proxmox" scheme="https://Qifcn.Github.io/tags/Proxmox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>esxi6.5 centos6.9 VMware Tools</title>
+    <link href="https://Qifcn.Github.io/post/e73cb6aa.html"/>
+    <id>https://Qifcn.Github.io/post/e73cb6aa.html</id>
+    <published>2019-03-05T01:24:46.000Z</published>
+    <updated>2019-09-19T05:05:26.044Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a> <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h1&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="esxi,Tools" scheme="https://Qifcn.Github.io/tags/esxi-Tools/"/>
+    
+  </entry>
+  
+</feed>
