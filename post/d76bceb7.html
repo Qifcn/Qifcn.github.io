@@ -56,14 +56,19 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="白墨笔记">
-<meta property="og:url" content="https://Qifcn.Github.io/categories/默认分类/index.html">
+  <meta name="description" content="安装1yay  -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=al">
+<meta name="keywords" content="docker 容器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 常用命令">
+<meta property="og:url" content="https://Qifcn.Github.io/post/d76bceb7.html">
 <meta property="og:site_name" content="白墨笔记">
+<meta property="og:description" content="安装1yay  -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=al">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-23T15:07:29.443Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白墨笔记">
-  <link rel="canonical" href="https://Qifcn.Github.io/categories/默认分类/">
+<meta name="twitter:title" content="docker 常用命令">
+<meta name="twitter:description" content="安装1yay  -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=al">
+  <link rel="canonical" href="https://Qifcn.Github.io/post/d76bceb7">
 
 
 <script id="page-configurations">
@@ -71,13 +76,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分类: 默认分类 | 白墨笔记</title>
+  <title>docker 常用命令 | 白墨笔记</title>
   
 
 
@@ -254,171 +259,130 @@
         <div class="content-wrap">
             
 
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block category">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">默认分类<small>分类</small>
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://Qifcn.Github.io/post/d76bceb7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="白墨">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/icon-144x144.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白墨笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">docker 常用命令
+
+          
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-17 20:44:14" itemprop="dateCreated datePublished" datetime="2019-10-17T20:44:14+08:00">2019-10-17</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-23 23:07:29" itemprop="dateModified" datetime="2019-10-23T23:07:29+08:00">2019-10-23</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+        <hr><hr><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay  -S docker</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker.service</span><br><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：</span><br><span class="line"></span><br><span class="line">docker run --restart=always</span><br><span class="line"></span><br><span class="line">如果已经启动了则可以使用如下命令：</span><br><span class="line"></span><br><span class="line">docker update --restart=always &lt;CONTAINER ID&gt;</span><br></pre></td></tr></table></figure><a id="more"></a>
 
-  
-  
 
-  
+
+
+<p><code>--restart=always</code></p>
+<ol>
+<li><p>–restart具体参数值详细信息：</p>
+<p>no - 容器退出时，不重启容器；</p>
+<p>on-failure - 只有在非0状态退出时才从新启动容器；</p>
+<p>always - 无论退出状态是如何，都重启容器；</p>
+</li>
+</ol>
+
+    </div>
+
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    
+    
         
-          <a class="post-title-link" href="/post/6fbcd38d.html" itemprop="url">
-            <span itemprop="name">OSFMount群晖镜像修改软件</span>
-          </a>
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/docker-容器/" rel="tag"># docker 容器</a>
+            
+          </div>
         
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-06-30T19:08:00+08:00"
-              content="2019-06-30">
-          06-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-          <a class="post-title-link" href="/post/11817a8a.html" itemprop="url">
-            <span itemprop="name">KMS激活服务器搭建自用版本</span>
-          </a>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/post/e50a9303.html" rel="next" title="manjaro环境搭建">
+                  <i class="fa fa-chevron-left"></i> manjaro环境搭建
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-06-04T20:25:11+08:00"
-              content="2019-06-04">
-          06-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/post/5c690de.html" itemprop="url">
-            <span itemprop="name">fedora29安装后操作</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-24T19:43:00+08:00"
-              content="2019-03-24">
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/post/f82e4eee.html" itemprop="url">
-            <span itemprop="name">centos7   smb共享快速设置</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-17T20:07:00+08:00"
-              content="2019-03-17">
-          03-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    </div>
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
@@ -437,6 +401,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -449,6 +418,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
