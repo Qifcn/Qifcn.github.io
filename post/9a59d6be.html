@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="安装1yay  -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=al">
-<meta name="keywords" content="docker 容器">
+  <meta name="description" content="关闭防火墙1systemctl stop firewalld关闭Selinux1setenforce 0安装smb1yum install -y samba创建用户1234567891011[root@localhost ~]# useradd centos[root@localhost ~]# smbpasswd -a centosNew SMB password:Retype new SMB">
+<meta name="keywords" content="centos7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker 常用命令">
-<meta property="og:url" content="https://Qifcn.Github.io/post/d76bceb7.html">
+<meta property="og:title" content="centos7 smb  用户登录访问">
+<meta property="og:url" content="https://Qifcn.Github.io/post/9a59d6be.html">
 <meta property="og:site_name" content="白墨笔记">
-<meta property="og:description" content="安装1yay  -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=al">
+<meta property="og:description" content="关闭防火墙1systemctl stop firewalld关闭Selinux1setenforce 0安装smb1yum install -y samba创建用户1234567891011[root@localhost ~]# useradd centos[root@localhost ~]# smbpasswd -a centosNew SMB password:Retype new SMB">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T15:07:29.443Z">
+<meta property="og:updated_time" content="2019-11-07T06:41:35.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker 常用命令">
-<meta name="twitter:description" content="安装1yay  -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=al">
-  <link rel="canonical" href="https://Qifcn.Github.io/post/d76bceb7">
+<meta name="twitter:title" content="centos7 smb  用户登录访问">
+<meta name="twitter:description" content="关闭防火墙1systemctl stop firewalld关闭Selinux1setenforce 0安装smb1yum install -y samba创建用户1234567891011[root@localhost ~]# useradd centos[root@localhost ~]# smbpasswd -a centosNew SMB password:Retype new SMB">
+  <link rel="canonical" href="https://Qifcn.Github.io/post/9a59d6be">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>docker 常用命令 | 白墨笔记</title>
+  <title>centos7 smb  用户登录访问 | 白墨笔记</title>
   
 
 
@@ -268,7 +268,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://Qifcn.Github.io/post/d76bceb7.html">
+    <link itemprop="mainEntityOfPage" href="https://Qifcn.Github.io/post/9a59d6be.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白墨">
@@ -280,7 +280,7 @@
       <meta itemprop="name" content="白墨笔记">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">docker 常用命令
+        <h1 class="post-title" itemprop="name headline">centos7 smb  用户登录访问
 
           
         </h1>
@@ -296,19 +296,11 @@
                 
               
 
-              <time title="创建时间：2019-10-17 20:44:14" itemprop="dateCreated datePublished" datetime="2019-10-17T20:44:14+08:00">2019-10-17</time>
+              <time title="创建时间：2019-11-07 02:41:05 / 修改时间：14:41:35" itemprop="dateCreated datePublished" datetime="2019-11-07T02:41:05+08:00">2019-11-07</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-23 23:07:29" itemprop="dateModified" datetime="2019-10-23T23:07:29+08:00">2019-10-23</time>
-              </span>
             
           
 
@@ -323,19 +315,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr><hr><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay  -S docker</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker.service</span><br><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：</span><br><span class="line"></span><br><span class="line">docker run --restart=always</span><br><span class="line"></span><br><span class="line">如果已经启动了则可以使用如下命令：</span><br><span class="line"></span><br><span class="line">docker update --restart=always &lt;CONTAINER ID&gt;</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure><h3 id="关闭Selinux"><a href="#关闭Selinux" class="headerlink" title="关闭Selinux"></a>关闭Selinux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br></pre></td></tr></table></figure><h3 id="安装smb"><a href="#安装smb" class="headerlink" title="安装smb"></a>安装smb</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y samba</span><br></pre></td></tr></table></figure><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# useradd centos</span><br><span class="line">[root@localhost ~]# smbpasswd -a centos</span><br><span class="line">New SMB password:</span><br><span class="line">Retype new SMB password:</span><br><span class="line">Added user centos.</span><br><span class="line">[root@localhost ~]#</span><br><span class="line">[root@localhost ~]#</span><br><span class="line">[root@localhost ~]#</span><br><span class="line">[root@localhost ~]# smbpasswd -e centos</span><br><span class="line">Enabled user centos.</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
 
-
-<p><code>--restart=always</code></p>
-<ol>
-<li><p>–restart具体参数值详细信息：</p>
-<p>no - 容器退出时，不重启容器；</p>
-<p>on-failure - 只有在非0状态退出时才从新启动容器；</p>
-<p>always - 无论退出状态是如何，都重启容器；</p>
-</li>
-</ol>
+<h3 id="创建共享目录并更改权限"><a href="#创建共享目录并更改权限" class="headerlink" title="创建共享目录并更改权限"></a>创建共享目录并更改权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]#cd /</span><br><span class="line">[root@localhost /]# mkdir /share</span><br><span class="line">[root@localhost /]# chown centos /share</span><br></pre></td></tr></table></figure>
+<h3 id="修改smb配置文件"><a href="#修改smb配置文件" class="headerlink" title="修改smb配置文件"></a>修改smb配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># See smb.conf.example for a more detailed config file or</span><br><span class="line"># read the smb.conf manpage.</span><br><span class="line"># Run &apos;testparm&apos; to verify the config is correct after</span><br><span class="line"># you modified it.</span><br><span class="line"></span><br><span class="line">[global]</span><br><span class="line">        workgroup = SAMBA</span><br><span class="line">        security = user</span><br><span class="line"></span><br><span class="line">        passdb backend = tdbsam</span><br><span class="line"></span><br><span class="line">        printing = cups</span><br><span class="line">        printcap name = cups</span><br><span class="line">        load printers = yes</span><br><span class="line">        cups options = raw</span><br><span class="line"></span><br><span class="line">#[homes]</span><br><span class="line">;       comment = Home Directories</span><br><span class="line">;       valid users = %S, %D%w%S</span><br><span class="line">;       browseable = No</span><br><span class="line">;       read only = No</span><br><span class="line">;       inherit acls = Yes</span><br><span class="line"></span><br><span class="line">;[printers]</span><br><span class="line">;       comment = All Printers</span><br><span class="line">;       path = /var/tmp</span><br><span class="line">;       printable = Yes</span><br><span class="line">;       create mask = 0600</span><br><span class="line">;       browseable = No</span><br><span class="line"></span><br><span class="line">;[print$]</span><br><span class="line">;       comment = Printer Drivers</span><br><span class="line">;       path = /var/lib/samba/drivers</span><br><span class="line">;       write list = @printadmin root</span><br><span class="line">;       force group = @printadmin</span><br><span class="line">;       create mask = 0664</span><br><span class="line">;       directory mask = 0775</span><br><span class="line">[share]</span><br><span class="line">    comment = sbm</span><br><span class="line">    path = /share</span><br><span class="line">    writable = yes</span><br><span class="line">    guest ok = no</span><br><span class="line">    valid users = @centos</span><br></pre></td></tr></table></figure>
+<h3 id="启动smb"><a href="#启动smb" class="headerlink" title="启动smb"></a>启动smb</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start smb nmb</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -351,7 +337,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/docker-容器/" rel="tag"># docker 容器</a>
+              <a href="/tags/centos7/" rel="tag"># centos7</a>
             
           </div>
         
@@ -361,8 +347,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/post/e50a9303.html" rel="next" title="manjaro环境搭建">
-                  <i class="fa fa-chevron-left"></i> manjaro环境搭建
+                <a href="/post/d76bceb7.html" rel="next" title="docker 常用命令">
+                  <i class="fa fa-chevron-left"></i> docker 常用命令
                 </a>
               
             </div>
@@ -370,10 +356,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/post/9a59d6be.html" rel="prev" title="centos7 smb  用户登录访问">
-                  centos7 smb  用户登录访问 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -422,7 +404,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">1.</span> <span class="nav-text">关闭防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭Selinux"><span class="nav-number">1.1.</span> <span class="nav-text">关闭Selinux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装smb"><span class="nav-number">1.2.</span> <span class="nav-text">安装smb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建用户"><span class="nav-number">1.3.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建共享目录并更改权限"><span class="nav-number">1.4.</span> <span class="nav-text">创建共享目录并更改权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改smb配置文件"><span class="nav-number">1.5.</span> <span class="nav-text">修改smb配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动smb"><span class="nav-number">1.6.</span> <span class="nav-text">启动smb</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

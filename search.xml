@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[centos7 smb 用户登录访问]]></title>
+    <url>%2Fpost%2F9a59d6be.html</url>
+    <content type="text"><![CDATA[关闭防火墙1systemctl stop firewalld关闭Selinux1setenforce 0安装smb1yum install -y samba创建用户1234567891011[root@localhost ~]# useradd centos[root@localhost ~]# smbpasswd -a centosNew SMB password:Retype new SMB password:Added user centos.[root@localhost ~]#[root@localhost ~]#[root@localhost ~]#[root@localhost ~]# smbpasswd -e centosEnabled user centos.[root@localhost ~]# 创建共享目录并更改权限123[root@localhost /]#cd /[root@localhost /]# mkdir /share[root@localhost /]# chown centos /share 修改smb配置文件12345678910111213141516171819202122232425262728293031323334353637383940414243# See smb.conf.example for a more detailed config file or# read the smb.conf manpage.# Run &apos;testparm&apos; to verify the config is correct after# you modified it.[global] workgroup = SAMBA security = user passdb backend = tdbsam printing = cups printcap name = cups load printers = yes cups options = raw#[homes]; comment = Home Directories; valid users = %S, %D%w%S; browseable = No; read only = No; inherit acls = Yes;[printers]; comment = All Printers; path = /var/tmp; printable = Yes; create mask = 0600; browseable = No;[print$]; comment = Printer Drivers; path = /var/lib/samba/drivers; write list = @printadmin root; force group = @printadmin; create mask = 0664; directory mask = 0775[share] comment = sbm path = /share writable = yes guest ok = no valid users = @centos 启动smb1systemctl start smb nmb]]></content>
+      <tags>
+        <tag>centos7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[docker 常用命令]]></title>
     <url>%2Fpost%2Fd76bceb7.html</url>
     <content type="text"><![CDATA[安装1yay -S docker12systemctl enable docker.servicesystemctl start docker.service1234567在运行docker容器时可以加如下参数来保证每次docker服务重启后容器也自动重启：docker run --restart=always如果已经启动了则可以使用如下命令：docker update --restart=always &lt;CONTAINER ID&gt; --restart=always –restart具体参数值详细信息： no - 容器退出时，不重启容器； on-failure - 只有在非0状态退出时才从新启动容器； always - 无论退出状态是如何，都重启容器；]]></content>
@@ -843,19 +851,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[华为路由器]]></title>
-    <url>%2Fpost%2F77d696.html</url>
-    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
-      <tags>
-        <tag>经验,待验证</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[网络经验（2）]]></title>
     <url>%2Fpost%2Fdfc88137.html</url>
     <content type="text"><![CDATA[经过试验，centos7安装起后boot分区启动不能自动启动，去、fs文件下注释掉这个boot，可以启动经过试验应该，是系统版本太高，驱动太新，对这个电脑不支持，（长城定制电脑）其他电脑可以正常安装，最后centos6.9正常安装启动已经安装了轻量级桌面xfce。打个备忘]]></content>
       <tags>
         <tag>经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[华为路由器]]></title>
+    <url>%2Fpost%2F77d696.html</url>
+    <content type="text"><![CDATA[system-view[HUAWEI]http server enable(开启http服务)[HUAWEI]interface vlanif 1[HUAWEI-Vlanif1]ip add 192.168.1.1 255.255.255.0 （配置IP地址）[HUAWEI-Vlanif1]quit[HUAWEI]aaa[HUAWEI-aaa]local-user huawei password cipher huawei@123（配置用户名huawei和密码huawei@123）[HUAWEI-aaa]local-user huawei privilege level 15（配置用户名权限）[HUAWEI-aaa]local-user huawei service-type http（配置用户名服务类型）[HUAWEI-aaa]quit[HUAWEI]quit save]]></content>
+      <tags>
+        <tag>经验,待验证</tag>
       </tags>
   </entry>
   <entry>
@@ -883,19 +891,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7关闭防火墙和selinux]]></title>
-    <url>%2Fpost%2F74201e82.html</url>
-    <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
-      <tags>
-        <tag>linux资料</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[centos7安装webmin]]></title>
     <url>%2Fpost%2F4c082866.html</url>
     <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
       <tags>
         <tag>linux软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7关闭防火墙和selinux]]></title>
+    <url>%2Fpost%2F74201e82.html</url>
+    <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
+      <tags>
+        <tag>linux资料</tag>
       </tags>
   </entry>
   <entry>
@@ -915,11 +923,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[linux安装btsync]]></title>
-    <url>%2Fpost%2Fb8706160.html</url>
-    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
+    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
+    <url>%2Fpost%2F597c0af.html</url>
+    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
       <tags>
-        <tag>Linux 系统教程</tag>
+        <tag>经验</tag>
       </tags>
   </entry>
   <entry>
@@ -931,19 +939,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
-    <url>%2Fpost%2F104acc17.html</url>
-    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+    <title><![CDATA[linux安装btsync]]></title>
+    <url>%2Fpost%2Fb8706160.html</url>
+    <content type="text"><![CDATA[这个软件安装完后通过网页浏览器设置共享目录并生成同步Secret，异地的客户端可以通过这个同步Secret访问共的目录，其中有读写和只读两种同步方式选择，以点对点的形式传送数据，其实可以理解为一种新型的P2P分享方式。这里我们可以用这个软件来同步备份下载盒子上的指定目录的所有文件，下面的内容是盒子端的配置过程。linux系统下的安装与配置（使用root用户登录） 1.首先要下载应用程序解压，根据系统的字长选择32位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_i386.tar.gz tar zxvf btsync_i386.tar.gz -C /root 64位系统wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_x64.tar.gz tar zxvf btsync_x64.tar.gz -C /root2.运行程序输出配置模板文件./btsync –dump-sample-config &gt; btsync.conf3.编辑上一步输出的btsync.conf //配置文件vi btsync.conf将下面的&lt;&gt;部分改为你自己的服务器的信息。例如“&lt;设备名&gt;”改为“My BT Server”.端口不要设置成80、8112、9091、443之类的，避免与其他软件应用冲突。{ “device_name”: “&lt;设备名&gt;”, “listening_port” : 0, // 0 - randomize port “storage_path” : “/home/root/.sync”, // uncomment next line if you want to set location of pid file // “pid_file” : “/var/run/syncapp/syncapp.pid”, “check_for_updates” : true, “use_upnp” : true, // use UPnP for port mapping “download_limit” : 0, “upload_limit” : 0, “webui” : { “listen” : “&lt;服务器的IP地址&gt;:&lt;端口&gt;”, “login” : “&lt;登陆用户名&gt;”, “password” : “&lt;登陆密码&gt;” } // Advanced preferences can be added to config file. // Info is available in BitTorrent Sync User Guide. }4.运行BT sync，此时系统会新增一个btsync进程./btsync –config btsync.conf如果想关闭BT sync可以使用killall命令关闭killall btsync5.把BT sync加入开机启动vi /etc/rc.localexit 0 前一行加入cd /root ./btsync –config btsync.conf通过本地浏览器打开&lt;服务器的IP地址&gt;:&lt;端口&gt;/gui 登陆以后即可设置同步目录。下载链接：https://download-cdn.getsync.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz原文链接：[链接地址][1][1] http://www.ldisp.com/a/linux/2013/CentOS-BitTorrent-Sync.shtml]]></content>
       <tags>
-        <tag>经验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[CentOS7.0下载各版本说明]]></title>
-    <url>%2Fpost%2F597c0af.html</url>
-    <content type="text"><![CDATA[CentOS-7.0-1406-x86_64-DVD.iso 标准安装版，一般下载这个就可以了CentOS-7.0-1406-x86_64-NetInstall.iso 网络安装镜像CentOS-7.0-1406-x86_64-Everything.iso 对完整版安装盘的软件进行补充，集成所有软件。CentOS-7.0-1406-x86_64-GnomeLive.iso GNOME桌面版CentOS-7.0-1406-x86_64-KdeLive.iso KDE桌面版CentOS-7.0-1406-x86_64-livecd.iso 光盘上运行的系统，类拟于winpe（1）CentOS-xxxx-LiveCD.ios 和CentOS-xxxx-bin-DVD.iso有什么区别？前者只有700M，后者有3.8G。其差别不仅仅在大小上，其更本质的差别是，CentOS-xxxx-LiveCD.ios只能加载到内存里运行，不能安装。CentOS-xxx-bin-DVD1.iso才可以安装到硬盘上。（2）CentOS-xxx-bin-DVD1.iso，CentOS-xxx-bin-DVD2.iso分别是干什么的？前者是3.8G，后者是500M。其差别是DVD1是CentOS的安装文件，DVD2是CentOS的一些软件（就简单实用CentOS来说是不需要的）。大笑]]></content>
-      <tags>
-        <tag>经验</tag>
+        <tag>Linux 系统教程</tag>
       </tags>
   </entry>
   <entry>
@@ -960,6 +960,14 @@
     <content type="text"><![CDATA[第一步建组port-group 1 #1的意思是id号 建立后一般是进入这个组的第二步把端口加入组group-member GigabitEthernet 0/0/1 to GigabitEthernet 0/0/10第三步对组里的端口进行操作。这些操作将同时应用以上面的端口port link-type access #批量修改端口模式重要进行批量加入端口 #请无视它至于为什么开始批量加入不行因为端口模式没有修改 也就是没有修改为access模式Port default vlan 10 在组里操作这样就一次把10个端口加入vlan 10里了 #注意vlan10一定要在建组前先建立 #下面是我华为交换机s5700做绑定mac地址dhcp分配固定ip的参考资料可无视 dhcp enable dhcp snooping enable2）建立VLAN，开启DHCP SNOOPING功能，开启IP源地址检查功能 vlan 10 dhcp snooping enable ip source check user-bind enable3）配置二层接口加入VLAN interface G0/0/10 port link-type access port default vlan 104）进入虚拟三层接口，配置IP地址，DHCP参数 interface vlan 10 ip address 192.168.10.254 255.255.255.0 –接口地址，DHCP据此分配网关和地址 dhcp select interface –基于接口的DHCP地址池 dhcp server dns-list 8.8.8.8 8.8.4.4 –客户端DNS服务器 dhcp server static-bind ip-address 192.168.10.1 mac-address 0800-27c0-1943 –DHCP分配固定IP的MAC]]></content>
       <tags>
         <tag>交换机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
+    <url>%2Fpost%2F104acc17.html</url>
+    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+      <tags>
+        <tag>经验</tag>
       </tags>
   </entry>
   <entry>
