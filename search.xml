@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[armbian5.90编译安装qbittorrent]]></title>
+    <url>%2Fpost%2F0.html</url>
+    <content type="text"><![CDATA[armbian5.90编译安装qbittorrent包地址qbittorrentlibtorrent参考教程地址-for-ARM-devices)安装依赖与编译环境123456789101112131415sudo apt-get install \ build-essential \ pkg-config \ automake \ libtool \ libc6-dev \ libboost-dev \ libboost-system-dev \ libboost-chrono-dev \ libboost-random-dev \ libssl-dev \ qtbase5-dev \ qttools5-dev-tools \ libqt5svg5-dev \ zlib1g-dev 下载包12wget https://github.com/qbittorrent/qBittorrent/archive/release-4.1.9.1.tar.gzwget https://github.com/arvidn/libtorrent/releases/download/libtorrent_1_1_12/libtorrent-rasterbar-1.1.12.tar.gz 解压包12tar -zxf libtorrent-rasterbar-1.1.12.tar.gztar -zxf release-4.1.9.1.tar.gz 编译libtorrent1234567cd libtorrent-rasterbar-1.1.12./configure --prefix=/usr CXXFLAGS=-std=c++11makemake installln -s /usr/lib/pkgconfig/libtorrent-rasterbar.pc /usr/lib64/pkgconfig/libtorrent-rasterbar.pcln -s /usr/lib/libtorrent-rasterbar.so.9 /usr/lib64/libtorrent-rasterbar.so.9cd ~ 编译qbittorrent12345cd qBittorrent-release-4.1.9.1./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5makemake installcd ~ 执行一遍程序123在#下输入qbittorrent-noxPress ‘y’ key to accept and continue…输入y回车同意 设置成systemctl 服务123456789101112cat &lt;&lt;EOF | sudo tee /usr/lib/systemd/system/qbittorrent.service[Unit]Description=qbittorrent torrent server [Service]User=rootExecStart=/usr/bin/qbittorrent-noxRestart=on-abort [Install]WantedBy=multi-user.targeEOF]]></content>
+      <tags>
+        <tag>armbian</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[粒子云armbian5.90接近完美版折腾记录]]></title>
+    <url>%2Fpost%2F0.html</url>
+    <content type="text"><![CDATA[粒子云armbian5.90接近完美版折腾记录关于vim自带vim.tiny版本很好用1root@rock64:/var/lib/transmission-daemon/info# vim.tiny我家云cpu资料我是链接1、镜像文件来源我是链接2、安装docker我是链接关于已经启动后的容器自启安装速度有一点慢，特别容易卡，不要以为卡死了多等一下时间。 3、30多个N1可用docker镜像-百度云同步、1898种dos游戏、花生壳、可道云、蚂蚁笔记…我是链接 不要以为docker是万能的，要镜像支持cpu才行，不然也白搭，这个链接需要恩山会员 armbian samba服务的重启12service smbd restartservice nmbd restart 关于smb共享，自带的有一个bug最好在配置文件修改一下 关于报容量不足，写入文件时候 同步时间123456date -s &quot;xxx xx：xx：xx&quot; 设置系统时间[root@LAMP ~]# date -s &quot;20160819 15:30:30&quot;Fri Aug 19 15:30:30 HKT 2016date -s &quot;20191116 16:46:30&quot; 下载软件安装123apt-get install transmission-daemon -y systemctl start transmission-daemon.servicesystemctl enable transmission-daemon.service 安装好后我们需要先修改配置,首先停止程序运行: 1systemctl stop transmission-daemon.service 修改一个名为settings.json就是Transmission配置文件，路径为： 1vim.tiny /var/lib/transmission-daemon/info/settings.json 修改以下项目即可远程登录: rpc-usernamerpc-passwordrpc-portrpc-whitelist-enabled改为false 提示密码不正确的话点我 汉化操作 http://IP地址:9091 安装后默认用户权限是 1debian-transmission 安装媒体服务器我是链接 qbittorrent ARM下docker运行 我是链接 64位那个不能运行不知道为什么。 docker jellyfin 1234567docker run --restart always -d \-p 8096:8096 \--device=/dev/dri/renderD128 \--privileged=true \-v /media/root/jellyfin/config:/config \-v /media/root/9cfc9560-ec9a-ec45-9f57-40de0ec9f2e6/ptdownloads:/media \jellyfin/jellyfin:latest]]></content>
+      <tags>
+        <tag>armbian</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[centos7 smb 用户登录访问]]></title>
     <url>%2Fpost%2F9a59d6be.html</url>
     <content type="text"><![CDATA[关闭防火墙1systemctl stop firewalld关闭Selinux1setenforce 0安装smb1yum install -y samba创建用户1234567891011[root@localhost ~]# useradd centos[root@localhost ~]# smbpasswd -a centosNew SMB password:Retype new SMB password:Added user centos.[root@localhost ~]#[root@localhost ~]#[root@localhost ~]#[root@localhost ~]# smbpasswd -e centosEnabled user centos.[root@localhost ~]# 创建共享目录并更改权限123[root@localhost /]#cd /[root@localhost /]# mkdir /share[root@localhost /]# chown centos /share 修改smb配置文件12345678910111213141516171819202122232425262728293031323334353637383940414243# See smb.conf.example for a more detailed config file or# read the smb.conf manpage.# Run &apos;testparm&apos; to verify the config is correct after# you modified it.[global] workgroup = SAMBA security = user passdb backend = tdbsam printing = cups printcap name = cups load printers = yes cups options = raw#[homes]; comment = Home Directories; valid users = %S, %D%w%S; browseable = No; read only = No; inherit acls = Yes;[printers]; comment = All Printers; path = /var/tmp; printable = Yes; create mask = 0600; browseable = No;[print$]; comment = Printer Drivers; path = /var/lib/samba/drivers; write list = @printadmin root; force group = @printadmin; create mask = 0664; directory mask = 0775[share] comment = sbm path = /share writable = yes guest ok = no valid users = @centos 启动smb1systemctl start smb nmb]]></content>
@@ -811,19 +827,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[建了一个新博客]]></title>
-    <url>%2Fpost%2Fc7c3121d.html</url>
-    <content type="text"><![CDATA[不知道为什么在三蛋空间老是出问题，查了论坛说是升级ssd现在好咯一些了，但有时会数据库出现问题，所以嘞建了一个Git博客，呵呵 过程1 1其中需要注意的是空格问题 2编码问题 3一些美化了 4推荐使用Notepas++工具来修改配 置文件 5过程使用的是yilia主题坑已经填 完 6慢慢改进其中网站统计还有待提 高 7写文章的地方在网上了[网站地址][1][1]: https://www.zybuluo.com]]></content>
-      <tags>
-        <tag>心情</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[博客建造历程一搭建]]></title>
     <url>%2Fpost%2F52078ffc.html</url>
     <content type="text"><![CDATA[这次建造博客可以说是经历了波折，没有其他的人感觉这样累吧但也是收获了不少东西， #选择主题1一般来说一开始搭建我是按照教程开始的主题也是选择yiliy的但毕竟有一些小众对于大白来说修改或添加一些东西还是不怎么方便最后我选择的是next这个主题官方也有许多的教程也很方便修改，官方有很好的教程安装这个主题可以说我们现在是没有教怎么安装hexo这个静态博客程序而是直奔主题怎么优化给一个思路附上next主题官方教程地址[next中文地址][1][1]: http://theme-next.iissnan.com/官方有许多好东西写的也比我们这些时间一过没有维护文章的误人子弟强多了]]></content>
       <tags>
         <tag>博客建造历程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[建了一个新博客]]></title>
+    <url>%2Fpost%2Fc7c3121d.html</url>
+    <content type="text"><![CDATA[不知道为什么在三蛋空间老是出问题，查了论坛说是升级ssd现在好咯一些了，但有时会数据库出现问题，所以嘞建了一个Git博客，呵呵 过程1 1其中需要注意的是空格问题 2编码问题 3一些美化了 4推荐使用Notepas++工具来修改配 置文件 5过程使用的是yilia主题坑已经填 完 6慢慢改进其中网站统计还有待提 高 7写文章的地方在网上了[网站地址][1][1]: https://www.zybuluo.com]]></content>
+      <tags>
+        <tag>心情</tag>
       </tags>
   </entry>
   <entry>
@@ -891,19 +907,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[centos7安装webmin]]></title>
-    <url>%2Fpost%2F4c082866.html</url>
-    <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
-      <tags>
-        <tag>linux软件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[centos7关闭防火墙和selinux]]></title>
     <url>%2Fpost%2F74201e82.html</url>
     <content type="text"><![CDATA[临时关闭SELinuxsetenforce 02临时打开SELinuxsetenforce 13开机关闭SELinux编辑/etc/selinux/config文件，将SELINUX的值设置为disabled，如下图。下次开机SELinux就不会启动了 防火墙（firewalld）临时关闭防火墙systemctl stop firewalld永久防火墙开机自启动systemctl disable firewalld临时打开防火墙systemctl start firewalld防火墙开机启动systemctl enable firewalld查看防火墙状态systemctl status firewalld]]></content>
       <tags>
         <tag>linux资料</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos7安装webmin]]></title>
+    <url>%2Fpost%2F4c082866.html</url>
+    <content type="text"><![CDATA[这是官方的安装教程If you are using the RPM version of Webmin, first download the file from the downloads page , or run the command :第一步wget http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpmthen install optional dependencies with :第二步yum -y install perl perl-Net-SSLeay openssl perl-IO-Ttyand then run the command :第三步rpm -U webmin-1.831-1.noarch.rpmThe rest of the install will be done automatically to the directory /usr/libexec/webmin, the administration username set to root and the password to your current root password. You should now be able to login to Webmin at the URL访问 http://localhost:10000/. Or if accessing it remotely, replace localhost with your system’s IP address.If you want to connect from a remote server and your system has a firewall installed, see this page for instructions on how to open up port 10000.]]></content>
+      <tags>
+        <tag>linux软件</tag>
       </tags>
   </entry>
   <entry>
@@ -947,11 +963,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[几种nas硬件方案]]></title>
-    <url>%2Fpost%2F4cf0d6b6.html</url>
-    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
+    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
+    <url>%2Fpost%2F104acc17.html</url>
+    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
       <tags>
-        <tag>方案</tag>
+        <tag>经验</tag>
       </tags>
   </entry>
   <entry>
@@ -963,11 +979,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[关于主板换固态硬盘装系统无法装起可能原因之一]]></title>
-    <url>%2Fpost%2F104acc17.html</url>
-    <content type="text"><![CDATA[原因：2003换成win7，主板不兼容固态硬盘，要在bios设置ACHL模式不然装不起系统，就是不设置这个模式的话主板认不到固态硬盘，纯手打，麻烦好评9星]]></content>
+    <title><![CDATA[几种nas硬件方案]]></title>
+    <url>%2Fpost%2F4cf0d6b6.html</url>
+    <content type="text"><![CDATA[NAS可以理解为共享网络连接和存储空间的一种小型设备，自然就会有人想到将NAS设备的功能进行扩展，使之除了具备SMB、FTP、NSF等存储服务外，还能够实现小型网站、BT下载终端等功能。本页面给出几种可用的方案列表，以及相关参考链接，但并不涉及实现细节，细节可以跟踪推荐的链接找到或者Google一下找到。通常对NAS设备的要求是24小时开机、稳定可靠、省电、安静、成本低等等，这也正好是很多家庭和部门服务器的要求，也许可以据此扩展实现智能家庭的概念吧。这样做出来的东西可能实现的功能有： 家庭网络服务器：为家庭或者小部门提供文件存储、流媒体等服务，也可以对外开放，供共享或者备份数据；个人网站服务器：自己可以在家里架设自己的对外个人网站，提供海量邮箱空间、自己全权管理的动态网站，开论坛、架Wiki、写Blog什么的；个人项目管理服务：可以用Subversion等为自己架设一个管理源代码的空间，这样不管走到哪里，都可以积累自己的程序了；P2P下载客户端：作为BT或者电驴的下载客户端，这样下载的时候就不影响正常工作的响应速度了；其他所有linux可以做的事。 商用RISC或MIPS瘦客户机方案在市场上可以比较容易地找到基于x86、RISC或者MIPS结构的瘦客户机产品，比如HP公司主页就有卖，但是与想像的不同，这些瘦客户机主要面向企业或者行业应用，因此其价格并不瘦，同样价格已经能够购买完整的低档PC了。这类设备可以比较容易地安装对应架构的Linux发行版，比如 Debian的RISC版本，但考虑到成本问题，对我来说会放弃这个方案。 低档PC方案对这个方案来说，其实很多PC已经很便宜，2、3千也能搞定个配置还过得去的，而且作为NAS使用还可以不要显示器等等。就算用老旧的淘汰PC，通常配置也不是问题，可以很好地运行大多数Linux发行版。但这个方案如果想降低耗电量或者想弄得很安静还是相当困难的，不说别的，整一个安静、稳定的 CPU散热器就是一个很麻烦而且不大经济的事。也许可以考虑VIA的整合式系统或者MiniPC（比如MacMini），但是这种东西因为出货量不大，通常也不是很便宜。 也可以考虑购买低档笔记本来用，低档笔记本现在虽然不贵，甚至已经有2999元的，不过通常一年左右会出点问题，稳定性也不算很理想。因此还是放弃了这个方案 加强路由方案自从LinkSys推出了NSLU2这个带USB存储功能的路由器之后，这个方案变得现实了。不但可以定制Linux系统实现对原配flash存储上的系统功能进行修改，还有人想出了直接将系统（比如Debian的Arm版本）安装到USB硬盘上的想法，因此功能已经可以说是完整了。这个东西视新旧程度，大约700－1000之间可以拿下，当然要再另外花钱买USB硬盘。硬件大致为Arm 133MHz，32M SD内存，8M Flash存储。说实话是个功能相当不错的方案，只是可惜硬件配置还是有点弱。 NSLU2-Linux项目 NSLU2设备上Linux的官方主页，包含了直接改造ROM和安装完整的Debian等多种方法，另外也介绍了与LinkSys产品类似的D-Link等公司的可选产品。http://www.cyrius.com/debian/nslu2/ 在NSLU2上安装Debian的方法。http://net.yesky.com/27/2288527.shtml 一篇中文的介绍NSLU2改造的文档。 改造XBox方案我们都知道XBox是种游戏机，那么它自然应该够安静、稳定，配置也不低——赛扬700、64M内存、标准硬盘、DVD接口、宽带接口，可扩展到USB键盘鼠标等，现在已经有相当完善的办法在上面安装Linux了，比如XBox上的Debian修改版——Xebian。价格也便宜，新的不到1700，旧的700－1000就可以拿下，简直是完美的NAS啊。如果需要，还可以在改造为NAS的同时保留游戏机的功能，还可以启动Gui，真是好东西啊～ http://www.xbox-linux.org 在XBox上安装Linux的总页面，介绍内容很全，可以从这里开始，更多的可以Google一下。改造所需的硬件、配件等，一般可以在游戏机店买到，甚至可以请店里帮忙改动硬件，买不到的话还可以通过ebay、taobao等网络拍卖网站购买。 使用PS2方案虽然和XBox同样是游戏机，但是有如下缺点不建议选用：发热量大、硬件配置低（主频128位的RISC，300MHz，32M内存），CPU太特殊因而兼容性差，硬件不标准（硬盘几乎必须使用Sony提供的，电子市场里的没法直接用）。虽然Sony直接提供了官方的Linux版本，但是要收钱才给的，虽然也有其他的发行版，也得先装官方的版本才能安装。因此，基本上PS2上的Linux也就是用来开发PS2游戏的，想做其他用途限制不少。如果还是要考虑这个方案，可以参考：[链接地址][1][1]: http://playstation2-linux.com 原文链接：[链接地址][2][2] http://www.elias.cn/pmwiki.php?n=Linux.LinuxNAS?action=print]]></content>
       <tags>
-        <tag>经验</tag>
+        <tag>方案</tag>
       </tags>
   </entry>
   <entry>
